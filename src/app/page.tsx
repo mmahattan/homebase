@@ -4,8 +4,9 @@ export default function Home() {
   return (
     <section className="space-y-12">
       <div className="space-y-4">
+        <h1 className="text-3xl font-normal tracking-tight">hi</h1>
         <p className="text-lg text-[var(--muted)] leading-relaxed max-w-lg">
-          hi, i&apos;m M. welcome to my Imagination Station. currently building{" "}
+          i&apos;m M. welcome to my Imagination Station. currently building{" "}
           <Link href="/projects" className="text-black underline underline-offset-4">
             projects here
           </Link>
