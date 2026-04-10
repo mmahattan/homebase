@@ -1,11 +1,18 @@
 @import "tailwindcss";
 
-:root {
+:root,
+[data-theme="light"] {
   --background: #fafafa;
   --foreground: #111111;
   --muted: #888888;
   --border: #e5e5e5;
-  --accent: #111111;
+}
+
+[data-theme="dark"] {
+  --background: #111111;
+  --foreground: #fafafa;
+  --muted: #666666;
+  --border: #2a2a2a;
 }
 
 body {
@@ -13,4 +20,5 @@ body {
   color: var(--foreground);
   font-family: "Georgia", serif;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

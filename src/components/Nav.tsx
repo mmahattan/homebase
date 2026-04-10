@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { href: "/", label: "Home" },
@@ -18,22 +19,25 @@ export default function Nav() {
       <Link href="/" className="text-sm tracking-widest uppercase font-medium">
         M.
       </Link>
-      <ul className="flex gap-8">
-        {links.map(({ href, label }) => (
-          <li key={href}>
-            <Link
-              href={href}
-              className={`text-sm tracking-wide transition-colors ${
-                pathname === href
-                  ? "text-black"
-                  : "text-[var(--muted)] hover:text-black"
-              }`}
-            >
-              {label}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div className="flex items-center gap-8">
+        <ul className="flex gap-8">
+          {links.map(({ href, label }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className={`text-sm tracking-wide transition-colors ${
+                  pathname === href
+                    ? "text-[var(--foreground)]"
+                    : "text-[var(--muted)] hover:text-[var(--foreground)]"
+                }`}
+              >
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <ThemeToggle />
+      </div>
     </nav>
   );
 }
