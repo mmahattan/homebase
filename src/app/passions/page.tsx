@@ -3,7 +3,7 @@ import { passions } from "@/data/passions";
 export default function Passions() {
   return (
     <section className="space-y-12">
-      <h1 className="text-2xl font-normal tracking-tight">Passions</h1>
+      <h1 className="text-2xl font-normal tracking-tight">Lately&apos;s</h1>
 
       {passions.map((category) => (
         <div key={category.slug} className="space-y-6">

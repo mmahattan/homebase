@@ -1,7 +1,7 @@
 export default function About() {
   return (
     <section className="space-y-10">
-      <h1 className="text-2xl font-normal tracking-tight">About</h1>
+      <h1 className="text-2xl font-normal tracking-tight">Chronicle</h1>
 
       <div className="space-y-4 text-[var(--muted)] leading-relaxed">
         {/* Edit this section freely */}
