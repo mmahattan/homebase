@@ -10,8 +10,8 @@
 
 [data-theme="dark"] {
   --background: #111111;
-  --foreground: #fafafa;
-  --muted: #666666;
+  --foreground: #ffffff;
+  --muted: #aaaaaa;
   --border: #2a2a2a;
 }
 
