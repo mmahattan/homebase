@@ -15,11 +15,11 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <>
-      <nav className="flex items-center justify-between py-8 mb-16">
-        <Link href="/" className="text-sm tracking-widest uppercase font-medium">
-          M.
-        </Link>
+    <nav className="flex items-center justify-between py-8 mb-16">
+      <Link href="/" className="text-sm tracking-widest uppercase font-medium">
+        M.
+      </Link>
+      <div className="flex items-center gap-8">
         <ul className="flex gap-8">
           {links.map(({ href, label }) => (
             <li key={href}>
@@ -36,10 +36,8 @@ export default function Nav() {
             </li>
           ))}
         </ul>
-      </nav>
-      <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
-    </>
+    </nav>
   );
 }
