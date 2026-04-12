@@ -26,6 +26,7 @@ export default function WorldMap() {
   const containerRef              = useRef<HTMLDivElement>(null);
   const mapRef                    = useRef<SVGSVGElement>(null);
   const dragRef                   = useRef<{ startX: number; startY: number; tx: number; ty: number } | null>(null);
+  const animFrameRef              = useRef<number | null>(null);
   const clearPinRef               = useRef<() => void>(() => {});
   const [dragging, setDragging]   = useState(false);
 
@@ -56,6 +57,7 @@ export default function WorldMap() {
     if (!svg) return;
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
       clearPinRef.current();
       const { x, y, k } = tfRef.current;
       const delta = e.ctrlKey ? -e.deltaY * 0.02 : -e.deltaY * 0.001;
@@ -71,7 +73,29 @@ export default function WorldMap() {
     return () => svg.removeEventListener("wheel", onWheel);
   }, []);
 
+  function animateTo(target: Transform) {
+    if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    const start = { ...tfRef.current };
+    const startTime = performance.now();
+    const duration = 550;
+    const ease = (t: number) => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+    function frame(now: number) {
+      const t = Math.min((now - startTime) / duration, 1);
+      const e = ease(t);
+      const next = {
+        x: start.x + (target.x - start.x) * e,
+        y: start.y + (target.y - start.y) * e,
+        k: start.k + (target.k - start.k) * e,
+      };
+      tfRef.current = next;
+      setTf({ ...next });
+      if (t < 1) animFrameRef.current = requestAnimationFrame(frame);
+    }
+    animFrameRef.current = requestAnimationFrame(frame);
+  }
+
   function onMouseDown(e: React.MouseEvent<SVGSVGElement>) {
+    if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     setPinnedCity(null);
     dragRef.current = { startX: e.clientX, startY: e.clientY, tx: tfRef.current.x, ty: tfRef.current.y };
     setDragging(true);
@@ -129,9 +153,7 @@ export default function WorldMap() {
     const k = 1.5;
     if (proj) {
       const [cx, cy] = proj;
-      const next = { x: W / 2 - cx * k, y: H / 2 - cy * k, k };
-      tfRef.current = next;
-      setTf(next);
+      animateTo({ x: W / 2 - cx * k, y: H / 2 - cy * k, k });
     }
 
     // Popup anchored slightly above center of container
