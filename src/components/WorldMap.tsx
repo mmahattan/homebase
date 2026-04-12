@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import { places } from "@/data/places";
+import { places, type Place } from "@/data/places";
 
 const GEO_URL =
   "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 export default function WorldMap() {
   const [isDark, setIsDark] = useState(false);
-  const [tooltip, setTooltip] = useState<{ country: string; dates: string } | null>(null);
+  const [hovered, setHovered] = useState<Place | null>(null);
 
   useEffect(() => {
     const update = () =>
@@ -28,12 +28,12 @@ export default function WorldMap() {
   const colors = {
     visited:   isDark ? "#ffffff" : "#111111",
     unvisited: isDark ? "#2a2a2a" : "#e5e5e5",
-    hover:     isDark ? "#aaaaaa" : "#555555",
+    hovered:   isDark ? "#aaaaaa" : "#555555",
     stroke:    isDark ? "#111111" : "#ffffff",
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <ComposableMap
         projectionConfig={{ scale: 140 }}
         style={{ width: "100%", height: "auto" }}
@@ -47,11 +47,8 @@ export default function WorldMap() {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  onMouseEnter={() => {
-                    if (place)
-                      setTooltip({ country: place.country, dates: place.dates });
-                  }}
-                  onMouseLeave={() => setTooltip(null)}
+                  onMouseEnter={() => { if (place) setHovered(place); }}
+                  onMouseLeave={() => setHovered(null)}
                   style={{
                     default: {
                       fill: isVisited ? colors.visited : colors.unvisited,
@@ -61,7 +58,7 @@ export default function WorldMap() {
                       transition: "fill 0.2s ease",
                     },
                     hover: {
-                      fill: isVisited ? colors.hover : colors.unvisited,
+                      fill: isVisited ? colors.hovered : colors.unvisited,
                       stroke: colors.stroke,
                       strokeWidth: 0.5,
                       outline: "none",
@@ -77,22 +74,38 @@ export default function WorldMap() {
       </ComposableMap>
 
       {/* Tooltip */}
-      <div className="h-5">
-        {tooltip && (
-          <p className="text-sm">
-            <span className="font-medium">{tooltip.country}</span>
-            <span className="text-[var(--muted)] ml-2">{tooltip.dates}</span>
-          </p>
+      <div className="min-h-[3rem]">
+        {hovered ? (
+          <div className="space-y-1">
+            <p className="text-sm font-medium">{hovered.country}</p>
+            <ul className="space-y-0.5">
+              {hovered.cities.map((c) => (
+                <li key={c.city} className="text-xs text-[var(--muted)]">
+                  {c.city}
+                  {c.dates && <span className="ml-1.5">{c.dates}</span>}
+                  {c.note && <span className="ml-1.5 opacity-60">— {c.note}</span>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p className="text-xs text-[var(--muted)]">hover a country</p>
         )}
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap gap-x-6 gap-y-1 pt-2">
+      <div className="border-t border-[var(--border)] pt-4 grid grid-cols-2 gap-x-8 gap-y-3">
         {places.map((p) => (
-          <span key={p.isoNumeric} className="text-xs text-[var(--muted)]">
-            {p.country}
-            <span className="ml-1 opacity-60">{p.dates}</span>
-          </span>
+          <div key={p.isoNumeric} className="space-y-0.5">
+            <p className="text-xs font-medium">{p.country}</p>
+            {p.cities.map((c) => (
+              <p key={c.city} className="text-xs text-[var(--muted)]">
+                {c.city}
+                {c.dates && <span className="ml-1.5">{c.dates}</span>}
+                {c.note && <span className="ml-1.5 opacity-60">— {c.note}</span>}
+              </p>
+            ))}
+          </div>
         ))}
       </div>
     </div>
