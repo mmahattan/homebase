@@ -19,8 +19,9 @@ export const places: Place[] = [
     isoNumeric: "764",
     cities: [
       { city: "Bangkok",    lat: 13.7563,  lon: 100.5018, dates: "2009 – 2023", note: "Homebase", weight: 5 },
-      { city: "Krabi",      lat: 8.0863,   lon: 98.9063,  weight: 2 },
-      { city: "Phuket",     lat: 7.8804,   lon: 98.3923,  weight: 2 },
+      { city: "Krabi",      lat: 8.0863,   lon: 98.9063,  dates: "2009, 2023", weight: 2 },
+      { city: "Phuket",     lat: 7.8804,   lon: 98.3923,  dates: "2009, 2023", weight: 2 },
+      { city: "Koh Samui",  lat: 9.5120,   lon: 100.0136, dates: "2022", weight: 1 },
       { city: "Chiang Mai", lat: 18.7883,  lon: 98.9853,  dates: "2018", note: "best class trip ever", weight: 2 },
     ],
   },
