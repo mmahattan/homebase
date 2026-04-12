@@ -6,8 +6,8 @@ export default function About() {
       <div className="space-y-4 text-[var(--muted)] leading-relaxed">
         <p>
           I find new ways to explore my creativity and fulfill my curiosity.
-          Currently studying business admin at USC Marshall with a minor in AI
-          Applications. As it stands, I am returning to IBM as an intern for
+          Currently a third-year studying business admin at USC Marshall with a
+          minor in AI Applications. As it stands, I am returning to IBM as an intern for
           Summer 2026.
         </p>
         <p>
