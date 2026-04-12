@@ -20,6 +20,8 @@ export default function WorldMap() {
   const [tf, setTf]           = useState<Transform>({ x: 0, y: 0, k: 1 });
   const tfRef                 = useRef<Transform>({ x: 0, y: 0, k: 1 });
   const mapRef                = useRef<SVGSVGElement>(null);
+  const dragRef               = useRef<{ startX: number; startY: number; tx: number; ty: number } | null>(null);
+  const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
     fetch(GEO_URL)
@@ -70,6 +72,25 @@ export default function WorldMap() {
     return () => svg.removeEventListener("wheel", onWheel);
   }, []);
 
+  function onMouseDown(e: React.MouseEvent<SVGSVGElement>) {
+    dragRef.current = { startX: e.clientX, startY: e.clientY, tx: tfRef.current.x, ty: tfRef.current.y };
+    setDragging(true);
+  }
+
+  function onMouseMove(e: React.MouseEvent<SVGSVGElement>) {
+    if (!dragRef.current) return;
+    const dx = e.clientX - dragRef.current.startX;
+    const dy = e.clientY - dragRef.current.startY;
+    const next = { ...tfRef.current, x: dragRef.current.tx + dx, y: dragRef.current.ty + dy };
+    tfRef.current = next;
+    setTf(next);
+  }
+
+  function onMouseUp() {
+    dragRef.current = null;
+    setDragging(false);
+  }
+
   const projection = geoNaturalEarth1().scale(140).translate([W / 2, H / 2]);
   const path       = geoPath().projection(projection);
 
@@ -92,7 +113,11 @@ export default function WorldMap() {
       <svg
         ref={mapRef}
         viewBox={`0 0 ${W} ${H}`}
-        style={{ width: "100%", height: "auto", cursor: "grab" }}
+        style={{ width: "100%", height: "auto", cursor: dragging ? "grabbing" : "grab", userSelect: "none" }}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onMouseLeave={onMouseUp}
       >
         <g transform={`translate(${tf.x},${tf.y}) scale(${tf.k})`}>
           {/* Land */}
