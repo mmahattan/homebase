@@ -1,3 +1,5 @@
+import Timeline from "@/components/Timeline";
+
 export default function About() {
   return (
     <section className="space-y-10">
@@ -31,108 +33,8 @@ export default function About() {
       {/* Timeline */}
       <div className="space-y-6 pt-4">
         <h2 className="text-xs tracking-widest uppercase text-[var(--muted)]">Timeline</h2>
-
-        <div className="relative border-l border-[var(--border)] ml-1.5 space-y-0">
-          <TimelineEntry
-            years="2023 – present"
-            title="University of Southern California, Marshall School of Business"
-            subtitle="Los Angeles, CA · Expected May 2027"
-            tag="education"
-            ongoing
-            details={[
-              "BS Business Administration · Minor in AI Applications",
-              "Coursework: Global Strategy, Product Management, Operations Management, Business Finance, Basics in Artificial Intelligence, Applied Python",
-            ]}
-          />
-          <TimelineEntry
-            years="2023 – present"
-            title="International Student Assembly (ISA)"
-            subtitle="USC Undergraduate Student Government · Los Angeles, CA"
-            tag="leadership"
-            ongoing
-            details={[
-              "Executive Director — Apr 2025 – present",
-              "Recruitment Director — May 2024 – Apr 2025",
-              "Intern — Sep 2023 – May 2024",
-            ]}
-          />
-          <TimelineEntry
-            years="2024 – present"
-            title="USC Flavors"
-            subtitle="Los Angeles, CA"
-            tag="leadership"
-            ongoing
-            details={[
-              "Events Manager — May 2025 – present",
-              "Director of Operations — Nov 2024 – May 2025",
-            ]}
-          />
-          <TimelineEntry
-            years="2024 – 2025"
-            title="International Business Machines (IBM)"
-            subtitle="Bangkok, Thailand"
-            tag="work"
-            details={[
-              "BRD Intern, Banking — Jun 2025 – Aug 2025",
-              "Technical Business Analyst, Telecom & Banking — May 2024 – Aug 2024",
-            ]}
-          />
-          <TimelineEntry
-            years="2014 – 2023"
-            title="International School Bangkok (ISB)"
-            subtitle="Bangkok, Thailand"
-            tag="education"
-            details={[
-              "Varsity Swim Team (2019 – 2023) · Captain from 2021",
-              "Varsity Orchestra Strings (2019 – 2023) · Captain from 2021",
-            ]}
-          />
-        </div>
+        <Timeline />
       </div>
     </section>
-  );
-}
-
-function TimelineEntry({
-  years,
-  title,
-  subtitle,
-  tag,
-  details,
-  ongoing,
-}: {
-  years: string;
-  title: string;
-  subtitle: string;
-  tag: string;
-  details?: string[];
-  ongoing?: boolean;
-}) {
-  return (
-    <div className="relative pl-7 pb-10 last:pb-2">
-      {/* dot */}
-      <div
-        className={`absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full border-2 transition-colors ${
-          ongoing
-            ? "border-[var(--foreground)] bg-[var(--foreground)]"
-            : "border-[var(--muted)] bg-[var(--background)]"
-        }`}
-      />
-      <div className="space-y-1">
-        <span className="text-xs text-[var(--muted)]">{years}</span>
-        <p className="text-sm font-medium leading-snug">{title}</p>
-        <p className="text-xs text-[var(--muted)]">{subtitle}</p>
-        {details && (
-          <ul className="pt-1 space-y-0.5">
-            {details.map((d) => (
-              <li key={d} className="text-xs text-[var(--muted)]">{d}</li>
-            ))}
-          </ul>
-        )}
-        <span className="inline-block text-xs text-[var(--muted)] border border-[var(--border)] rounded-full px-2 py-0.5 mt-1">
-          {tag}
-        </span>
-      </div>
-    </div>
   );
 }
