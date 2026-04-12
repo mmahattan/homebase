@@ -34,18 +34,38 @@ function buildEntries(): CityEntry[] {
   const all: CityEntry[] = [];
   for (const place of places) {
     place.cities.forEach((city, i) => {
-      all.push({
-        id: `${place.isoNumeric}-${city.city}`,
-        city: city.city,
-        country: place.country,
-        dates: city.dates,
-        note: city.note,
-        startYear: extractMinYear(city.dates),
-        ongoing: city.dates?.includes("present") ?? false,
-        isHome: HOME_CITIES.has(city.city),
-        place,
-        cityIndex: i,
-      });
+      const baseId = `${place.isoNumeric}-${city.city}`;
+      // Detect comma-separated year list e.g. "2006, 2014, 2016"
+      const isMultiYear = /^\d{4}(,\s*\d{4})+$/.test(city.dates ?? "");
+      if (isMultiYear && city.dates) {
+        city.dates.split(",").map((y) => y.trim()).forEach((year) => {
+          all.push({
+            id: `${baseId}-${year}`,
+            city: city.city,
+            country: place.country,
+            dates: year,
+            note: city.note,
+            startYear: parseInt(year),
+            ongoing: false,
+            isHome: HOME_CITIES.has(city.city),
+            place,
+            cityIndex: i,
+          });
+        });
+      } else {
+        all.push({
+          id: baseId,
+          city: city.city,
+          country: place.country,
+          dates: city.dates,
+          note: city.note,
+          startYear: extractMinYear(city.dates),
+          ongoing: city.dates?.includes("present") ?? false,
+          isHome: HOME_CITIES.has(city.city),
+          place,
+          cityIndex: i,
+        });
+      }
     });
   }
   return all;
@@ -84,9 +104,12 @@ export default function TravelTimeline({ onCityClick, activeCity }: Props) {
     return () => observer.disconnect();
   }, []);
 
-  // When map pins a city, sync activeId
+  // When map pins a city, sync to first matching entry (handles split year entries)
   useEffect(() => {
-    if (activeCity) setActiveId(activeCity);
+    if (!activeCity) return;
+    const all = [...homeEntries, ...otherEntries];
+    const match = all.find((e) => e.id === activeCity || e.id.startsWith(activeCity + "-"));
+    if (match) setActiveId(match.id);
   }, [activeCity]);
 
   function renderEntry(entry: CityEntry) {
