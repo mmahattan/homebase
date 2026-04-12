@@ -1,79 +1,74 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import { geoNaturalEarth1, geoPath } from "d3-geo";
+import { feature } from "topojson-client";
 import { places, type Place } from "@/data/places";
 
-const GEO_URL =
-  "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+const W = 800;
+const H = 400;
+
+type GeoFeature = GeoJSON.Feature<GeoJSON.Geometry>;
 
 export default function WorldMap() {
+  const [geos, setGeos] = useState<GeoFeature[]>([]);
   const [isDark, setIsDark] = useState(false);
   const [hovered, setHovered] = useState<Place | null>(null);
+
+  useEffect(() => {
+    fetch(GEO_URL)
+      .then((r) => r.json())
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .then((world: any) => {
+        const countries = feature(world, world.objects.countries);
+        setGeos((countries as GeoJSON.FeatureCollection).features);
+      });
+  }, []);
 
   useEffect(() => {
     const update = () =>
       setIsDark(document.documentElement.getAttribute("data-theme") === "dark");
     update();
     const obs = new MutationObserver(update);
-    obs.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
     return () => obs.disconnect();
   }, []);
 
+  const projection = geoNaturalEarth1().scale(140).translate([W / 2, H / 2]);
+  const path = geoPath().projection(projection);
   const visitedMap = new Map(places.map((p) => [p.isoNumeric, p]));
 
-  const colors = {
-    visited:   isDark ? "#ffffff" : "#111111",
-    unvisited: isDark ? "#2a2a2a" : "#e5e5e5",
-    hovered:   isDark ? "#aaaaaa" : "#555555",
-    stroke:    isDark ? "#111111" : "#ffffff",
+  const fill = (id: string, isHovered: boolean) => {
+    if (isHovered) return isDark ? "#aaaaaa" : "#555555";
+    if (visitedMap.has(id)) return isDark ? "#ffffff" : "#111111";
+    return isDark ? "#2a2a2a" : "#e5e5e5";
   };
 
   return (
     <div className="space-y-4">
-      <ComposableMap
-        projectionConfig={{ scale: 140 }}
-        style={{ width: "100%", height: "auto" }}
-      >
-        <Geographies geography={GEO_URL}>
-          {({ geographies }) =>
-            geographies.map((geo) => {
-              const place = visitedMap.get(geo.id?.toString());
-              const isVisited = !!place;
-              return (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  onMouseEnter={() => { if (place) setHovered(place); }}
-                  onMouseLeave={() => setHovered(null)}
-                  style={{
-                    default: {
-                      fill: isVisited ? colors.visited : colors.unvisited,
-                      stroke: colors.stroke,
-                      strokeWidth: 0.5,
-                      outline: "none",
-                      transition: "fill 0.2s ease",
-                    },
-                    hover: {
-                      fill: isVisited ? colors.hovered : colors.unvisited,
-                      stroke: colors.stroke,
-                      strokeWidth: 0.5,
-                      outline: "none",
-                      cursor: isVisited ? "pointer" : "default",
-                    },
-                    pressed: { outline: "none" },
-                  }}
-                />
-              );
-            })
-          }
-        </Geographies>
-      </ComposableMap>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
+        {geos.map((geo) => {
+          const id = String(geo.id ?? "");
+          const place = visitedMap.get(id);
+          const d = path(geo);
+          if (!d) return null;
+          return (
+            <path
+              key={id}
+              d={d}
+              fill={fill(id, hovered?.isoNumeric === id)}
+              stroke={isDark ? "#111111" : "#ffffff"}
+              strokeWidth={0.5}
+              style={{ transition: "fill 0.2s ease", cursor: place ? "pointer" : "default" }}
+              onMouseEnter={() => { if (place) setHovered(place); }}
+              onMouseLeave={() => setHovered(null)}
+            />
+          );
+        })}
+      </svg>
 
-      {/* Tooltip */}
+      {/* Hover tooltip */}
       <div className="min-h-[3rem]">
         {hovered ? (
           <div className="space-y-1">
