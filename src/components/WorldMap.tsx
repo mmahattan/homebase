@@ -10,13 +10,16 @@ const W = 800;
 const H = 400;
 
 type GeoFeature = GeoJSON.Feature<GeoJSON.Geometry>;
+type Transform = { x: number; y: number; k: number };
 
 export default function WorldMap() {
-  const [geos, setGeos] = useState<GeoFeature[]>([]);
-  const [isDark, setIsDark] = useState(false);
+  const [geos, setGeos]       = useState<GeoFeature[]>([]);
+  const [isDark, setIsDark]   = useState(false);
   const [hovered, setHovered] = useState<{ place: Place; cityIndex: number } | null>(null);
   const [focused, setFocused] = useState<Place | null>(null);
-  const mapRef = useRef<SVGSVGElement>(null);
+  const [tf, setTf]           = useState<Transform>({ x: 0, y: 0, k: 1 });
+  const tfRef                 = useRef<Transform>({ x: 0, y: 0, k: 1 });
+  const mapRef                = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
     fetch(GEO_URL)
@@ -37,71 +40,120 @@ export default function WorldMap() {
     return () => obs.disconnect();
   }, []);
 
-  const projection = geoNaturalEarth1().scale(140).translate([W / 2, H / 2]);
-  const path = geoPath().projection(projection);
+  // Wheel zoom — non-passive so we can preventDefault
+  useEffect(() => {
+    const svg = mapRef.current;
+    if (!svg) return;
 
-  const landColor   = isDark ? "#222222" : "#e8e8e8";
-  const strokeColor = isDark ? "#111111" : "#ffffff";
-  const dotDefault  = isDark ? "#ffffff" : "#111111";
-  const dotFocused  = isDark ? "#ffffff" : "#111111";
-  const dotFaded    = isDark ? "#444444" : "#cccccc";
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const { x, y, k } = tfRef.current;
+
+      // pinch (ctrlKey) vs scroll
+      const delta = e.ctrlKey ? -e.deltaY * 0.02 : -e.deltaY * 0.001;
+      const scaleFactor = Math.exp(delta);
+      const newK = Math.max(1, Math.min(10, k * scaleFactor));
+
+      // zoom toward cursor
+      const rect = svg.getBoundingClientRect();
+      const mx = ((e.clientX - rect.left) / rect.width) * W;
+      const my = ((e.clientY - rect.top) / rect.height) * H;
+      const newX = mx - (mx - x) * (newK / k);
+      const newY = my - (my - y) * (newK / k);
+
+      const next = { x: newX, y: newY, k: newK };
+      tfRef.current = next;
+      setTf(next);
+    };
+
+    svg.addEventListener("wheel", onWheel, { passive: false });
+    return () => svg.removeEventListener("wheel", onWheel);
+  }, []);
+
+  const projection = geoNaturalEarth1().scale(140).translate([W / 2, H / 2]);
+  const path       = geoPath().projection(projection);
+
+  const land    = isDark ? "#222222" : "#e8e8e8";
+  const stroke  = isDark ? "#111111" : "#ffffff";
+  const dotOn   = isDark ? "#ffffff" : "#111111";
+  const dotOff  = isDark ? "#444444" : "#cccccc";
+
+  const hasFocus     = focused !== null;
+  const tooltipCity  = hovered != null ? hovered.place.cities[hovered.cityIndex] : null;
+  const hoveredPlace = hovered?.place ?? null;
 
   function handleLegendClick(place: Place) {
     setFocused(place);
     mapRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
-  const hoveredPlace = hovered?.place ?? null;
-  const tooltipCity  = hovered != null ? hovered.place.cities[hovered.cityIndex] : null;
-
   return (
     <div className="space-y-4">
-      {/* Map */}
-      <svg ref={mapRef} viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", height: "auto" }}>
-        {/* Land */}
-        {geos.map((geo) => {
-          const d = path(geo);
-          if (!d) return null;
-          return (
-            <path
-              key={String(geo.id ?? "")}
-              d={d}
-              fill={landColor}
-              stroke={strokeColor}
-              strokeWidth={0.5}
-            />
-          );
-        })}
-
-        {/* City dots */}
-        {places.map((place) =>
-          place.cities.map((city, i) => {
-            const proj = projection([city.lon, city.lat]);
-            if (!proj) return null;
-            const [x, y] = proj;
-            const isFocusedPlace = focused?.isoNumeric === place.isoNumeric;
-            const isHovered = hoveredPlace?.isoNumeric === place.isoNumeric && hovered?.cityIndex === i;
-            const hasFocus = focused !== null;
-
-            const r = isHovered ? 5 : isFocusedPlace ? 4.5 : 3;
-            const fill = hasFocus
-              ? isFocusedPlace ? dotFocused : dotFaded
-              : dotDefault;
-
+      <svg
+        ref={mapRef}
+        viewBox={`0 0 ${W} ${H}`}
+        style={{ width: "100%", height: "auto", cursor: "grab" }}
+      >
+        <g transform={`translate(${tf.x},${tf.y}) scale(${tf.k})`}>
+          {/* Land */}
+          {geos.map((geo) => {
+            const d = path(geo);
+            if (!d) return null;
             return (
-              <circle
-                key={`${place.isoNumeric}-${city.city}`}
-                cx={x}
-                cy={y}
-                r={r}
-                fill={fill}
-                style={{ transition: "all 0.2s ease", cursor: "pointer" }}
-                onMouseEnter={() => setHovered({ place, cityIndex: i })}
-                onMouseLeave={() => setHovered(null)}
+              <path
+                key={String(geo.id ?? "")}
+                d={d}
+                fill={land}
+                stroke={stroke}
+                strokeWidth={0.5 / tf.k}
               />
             );
-          })
-        )}
+          })}
+
+          {/* City dots — double layer */}
+          {places.map((place) =>
+            place.cities.map((city, i) => {
+              const proj = projection([city.lon, city.lat]);
+              if (!proj) return null;
+              const [cx, cy] = proj;
+
+              const isHov  = hoveredPlace?.isoNumeric === place.isoNumeric && hovered?.cityIndex === i;
+              const isFoc  = focused?.isoNumeric === place.isoNumeric;
+              const active = isHov || isFoc;
+              const color  = hasFocus ? (isFoc ? dotOn : dotOff) : dotOn;
+
+              // Scale dot size inversely with zoom so dots stay visually constant
+              const innerR = (active ? 3.5 : 2.5) / tf.k;
+              const outerR = (active ? 7   : 5.5) / tf.k;
+              const sw     = (active ? 1.2 : 0.8) / tf.k;
+
+              return (
+                <g
+                  key={`${place.isoNumeric}-${city.city}`}
+                  style={{ cursor: "pointer" }}
+                  onMouseEnter={() => setHovered({ place, cityIndex: i })}
+                  onMouseLeave={() => setHovered(null)}
+                >
+                  {/* Outer ring */}
+                  <circle
+                    cx={cx} cy={cy} r={outerR}
+                    fill="none"
+                    stroke={color}
+                    strokeWidth={sw}
+                    opacity={active ? 0.6 : 0.4}
+                    style={{ transition: "all 0.2s ease" }}
+                  />
+                  {/* Inner dot */}
+                  <circle
+                    cx={cx} cy={cy} r={innerR}
+                    fill={color}
+                    style={{ transition: "all 0.2s ease" }}
+                  />
+                </g>
+              );
+            })
+          )}
+        </g>
       </svg>
 
       {/* Tooltip */}
@@ -119,7 +171,7 @@ export default function WorldMap() {
             <span className="text-[var(--muted)] ml-2 text-xs">click elsewhere to clear</span>
           </p>
         ) : (
-          <p className="text-xs text-[var(--muted)]">hover a dot · click a country below to focus</p>
+          <p className="text-xs text-[var(--muted)]">hover a dot · scroll to zoom · click a country below to focus</p>
         )}
       </div>
 
@@ -132,7 +184,7 @@ export default function WorldMap() {
           <div
             key={p.isoNumeric}
             className={`space-y-0.5 cursor-pointer transition-opacity duration-200 ${
-              focused && focused.isoNumeric !== p.isoNumeric ? "opacity-30" : "opacity-100"
+              hasFocus && focused?.isoNumeric !== p.isoNumeric ? "opacity-30" : "opacity-100"
             }`}
             onClick={(e) => { e.stopPropagation(); handleLegendClick(p); }}
           >
