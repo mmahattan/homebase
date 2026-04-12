@@ -143,8 +143,10 @@ export default function WorldMap() {
                 const isFoc  = focused?.isoNumeric === place.isoNumeric;
                 const active = isHov || isFoc;
                 const color  = hasFocus ? (isFoc ? dotOn : dotOff) : dotOn;
-                const innerR = (active ? 3.5 : 2.5) / tf.k;
-                const outerR = (active ? 7   : 5.5) / tf.k;
+                const w      = city.weight ?? 1;
+                const base   = 1.5 + w * 0.6; // weight 1→2.1, 5→4.5
+                const innerR = (active ? base + 1 : base) / tf.k;
+                const outerR = (active ? base * 2 + 1 : base * 2) / tf.k;
                 const sw     = (active ? 1.2 : 0.8) / tf.k;
                 return (
                   <g
