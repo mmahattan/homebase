@@ -4,21 +4,15 @@ export default function About() {
       <h1 className="text-2xl font-normal tracking-tight">Chronicle</h1>
 
       <div className="space-y-4 text-[var(--muted)] leading-relaxed">
-        {/* Edit this section freely */}
         <p>
-          A few lines about who you are — your background, what you do, what
-          drives you.
+          I find new ways to explore my creativity and fulfill my curiosity.
+          Currently studying business admin at USC Marshall with a minor in AI
+          Applications. As it stands, I am returning to IBM as an intern for
+          Summer 2026.
         </p>
         <p>
-          Keep it short, keep it honest.
+          Below is my most recent resume and a timeline of where I&apos;ve been.
         </p>
-      </div>
-
-      {/* Optional: quick facts */}
-      <div className="border-t border-[var(--border)] pt-8 space-y-3">
-        <Row label="Based in" value="—" />
-        <Row label="Working on" value="—" />
-        <Row label="Contact" value="—" />
       </div>
     </section>
   );
