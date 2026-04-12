@@ -44,6 +44,37 @@ export default function About() {
             ]}
           />
           <TimelineEntry
+            years="2023 – present"
+            title="International Student Assembly (ISA)"
+            subtitle="USC Undergraduate Student Government · Los Angeles, CA"
+            tag="leadership"
+            details={[
+              "Executive Director — Apr 2025 – present",
+              "Recruitment Director — May 2024 – Apr 2025",
+              "Intern — Sep 2023 – May 2024",
+            ]}
+          />
+          <TimelineEntry
+            years="2024 – present"
+            title="USC Flavors"
+            subtitle="Los Angeles, CA"
+            tag="leadership"
+            details={[
+              "Events Manager — May 2025 – present",
+              "Director of Operations — Nov 2024 – May 2025",
+            ]}
+          />
+          <TimelineEntry
+            years="2024 – 2025"
+            title="International Business Machines (IBM)"
+            subtitle="Bangkok, Thailand"
+            tag="work"
+            details={[
+              "BRD Intern, Banking — Jun 2025 – Aug 2025",
+              "Technical Business Analyst, Telecom & Banking — May 2024 – Aug 2024",
+            ]}
+          />
+          <TimelineEntry
             years="2014 – 2023"
             title="International School Bangkok (ISB)"
             subtitle="Bangkok, Thailand"
