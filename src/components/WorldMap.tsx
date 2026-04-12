@@ -22,7 +22,7 @@ export default function WorldMap() {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((world: any) => {
         const countries = feature(world, world.objects.countries);
-        setGeos((countries as GeoJSON.FeatureCollection).features);
+        setGeos((countries as unknown as GeoJSON.FeatureCollection).features);
       });
   }, []);
 
