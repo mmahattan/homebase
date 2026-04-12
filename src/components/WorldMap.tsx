@@ -12,19 +12,25 @@ const H = 400;
 type GeoFeature  = GeoJSON.Feature<GeoJSON.Geometry>;
 type Transform   = { x: number; y: number; k: number };
 type MousePos    = { x: number; y: number };
+type PinnedCity  = { place: Place; cityIndex: number; pos: { x: number; y: number } };
 
 export default function WorldMap() {
-  const [geos, setGeos]         = useState<GeoFeature[]>([]);
-  const [isDark, setIsDark]     = useState(false);
-  const [hovered, setHovered]   = useState<{ place: Place; cityIndex: number } | null>(null);
-  const [focused, setFocused]   = useState<Place | null>(null);
-  const [tf, setTf]             = useState<Transform>({ x: 0, y: 0, k: 1 });
-  const [mousePos, setMousePos] = useState<MousePos>({ x: 0, y: 0 });
-  const tfRef                   = useRef<Transform>({ x: 0, y: 0, k: 1 });
-  const containerRef            = useRef<HTMLDivElement>(null);
-  const mapRef                  = useRef<SVGSVGElement>(null);
-  const dragRef                 = useRef<{ startX: number; startY: number; tx: number; ty: number } | null>(null);
-  const [dragging, setDragging] = useState(false);
+  const [geos, setGeos]           = useState<GeoFeature[]>([]);
+  const [isDark, setIsDark]       = useState(false);
+  const [hovered, setHovered]     = useState<{ place: Place; cityIndex: number } | null>(null);
+  const [focused, setFocused]     = useState<Place | null>(null);
+  const [pinnedCity, setPinnedCity] = useState<PinnedCity | null>(null);
+  const [tf, setTf]               = useState<Transform>({ x: 0, y: 0, k: 1 });
+  const [mousePos, setMousePos]   = useState<MousePos>({ x: 0, y: 0 });
+  const tfRef                     = useRef<Transform>({ x: 0, y: 0, k: 1 });
+  const containerRef              = useRef<HTMLDivElement>(null);
+  const mapRef                    = useRef<SVGSVGElement>(null);
+  const dragRef                   = useRef<{ startX: number; startY: number; tx: number; ty: number } | null>(null);
+  const clearPinRef               = useRef<() => void>(() => {});
+  const [dragging, setDragging]   = useState(false);
+
+  // Keep clearPinRef current so wheel handler (captured in useEffect) can clear pin
+  clearPinRef.current = () => setPinnedCity(null);
 
   useEffect(() => {
     fetch(GEO_URL)
@@ -50,6 +56,7 @@ export default function WorldMap() {
     if (!svg) return;
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
+      clearPinRef.current();
       const { x, y, k } = tfRef.current;
       const delta = e.ctrlKey ? -e.deltaY * 0.02 : -e.deltaY * 0.001;
       const newK  = Math.max(1, Math.min(10, k * Math.exp(delta)));
@@ -65,12 +72,12 @@ export default function WorldMap() {
   }, []);
 
   function onMouseDown(e: React.MouseEvent<SVGSVGElement>) {
+    setPinnedCity(null);
     dragRef.current = { startX: e.clientX, startY: e.clientY, tx: tfRef.current.x, ty: tfRef.current.y };
     setDragging(true);
   }
 
   function onMouseMove(e: React.MouseEvent<SVGSVGElement>) {
-    // Track cursor position relative to the container for popup placement
     const rect = containerRef.current?.getBoundingClientRect();
     if (rect) setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
 
@@ -87,28 +94,59 @@ export default function WorldMap() {
     setDragging(false);
   }
 
-  const projection   = geoNaturalEarth1().scale(140).translate([W / 2, H / 2]);
-  const path         = geoPath().projection(projection);
-  const land         = isDark ? "#222222" : "#e8e8e8";
-  const stroke       = isDark ? "#111111" : "#ffffff";
-  const dotOn        = isDark ? "#ffffff" : "#111111";
-  const dotOff       = isDark ? "#444444" : "#cccccc";
-  const hasFocus     = focused !== null;
+  const projection = geoNaturalEarth1().scale(140).translate([W / 2, H / 2]);
+  const path       = geoPath().projection(projection);
+  const land       = isDark ? "#222222" : "#e8e8e8";
+  const stroke     = isDark ? "#111111" : "#ffffff";
+  const dotOn      = isDark ? "#ffffff" : "#111111";
+  const dotOff     = isDark ? "#444444" : "#cccccc";
+  const hasFocus   = focused !== null;
+
   const hoveredPlace = hovered?.place ?? null;
   const hoveredCity  = hovered != null ? hovered.place.cities[hovered.cityIndex] : null;
 
-  // Flip popup left if cursor is in right half of container
-  const containerW   = containerRef.current?.getBoundingClientRect().width ?? 600;
-  const popupLeft    = mousePos.x > containerW * 0.6;
+  // Hover popup flips left when cursor is near right edge
+  const containerW = containerRef.current?.getBoundingClientRect().width ?? 600;
+  const popupLeft  = mousePos.x > containerW * 0.6;
+
+  // Active popup: hover takes priority over pinned
+  const popupCity  = hoveredCity ?? (pinnedCity ? pinnedCity.place.cities[pinnedCity.cityIndex] : null);
+  const popupPlace = hoveredCity ? hoveredPlace : (pinnedCity?.place ?? null);
+  const popupPos   = hoveredCity
+    ? { x: mousePos.x, y: mousePos.y - 12, flipLeft: popupLeft }
+    : pinnedCity
+    ? { x: pinnedCity.pos.x, y: pinnedCity.pos.y, flipLeft: false }
+    : null;
 
   function handleLegendClick(place: Place) {
+    // Pick the city with highest weight as the focus target
+    const primaryCity = place.cities.reduce((best, c) =>
+      (c.weight ?? 1) > (best.weight ?? 1) ? c : best
+    );
+    const primaryIndex = place.cities.indexOf(primaryCity);
+
+    const proj = projection([primaryCity.lon, primaryCity.lat]);
+    const k = 1.5;
+    if (proj) {
+      const [cx, cy] = proj;
+      const next = { x: W / 2 - cx * k, y: H / 2 - cy * k, k };
+      tfRef.current = next;
+      setTf(next);
+    }
+
+    // Popup anchored slightly above center of container
+    const rect = containerRef.current?.getBoundingClientRect();
+    const px = (rect?.width  ?? 600) / 2;
+    const py = (rect?.height ?? 300) / 2 - 16;
+
     setFocused(place);
+    setPinnedCity({ place, cityIndex: primaryIndex, pos: { x: px, y: py } });
     mapRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
   return (
     <div className="space-y-4">
-      {/* Map container — relative so popup can be absolutely positioned */}
+      {/* Map container */}
       <div ref={containerRef} className="relative">
         <svg
           ref={mapRef}
@@ -140,8 +178,9 @@ export default function WorldMap() {
                 if (!proj) return null;
                 const [cx, cy] = proj;
                 const isHov  = hoveredPlace?.isoNumeric === place.isoNumeric && hovered?.cityIndex === i;
+                const isPinned = pinnedCity?.place.isoNumeric === place.isoNumeric && pinnedCity?.cityIndex === i;
                 const isFoc  = focused?.isoNumeric === place.isoNumeric;
-                const active = isHov || isFoc;
+                const active = isHov || isFoc || isPinned;
                 const color  = hasFocus ? (isFoc ? dotOn : dotOff) : dotOn;
                 const innerR = active ? 3.5 : 2.5;
                 const outerR = active ? 7   : 5.5;
@@ -162,28 +201,27 @@ export default function WorldMap() {
           </g>
         </svg>
 
-        {/* Floating popup */}
-        {hoveredCity && (
+        {/* Floating popup — hover or pinned */}
+        {popupCity && popupPos && (
           <div
             className="absolute z-10 pointer-events-none"
             style={{
-              top:   mousePos.y - 12,
-              left:  popupLeft ? mousePos.x - 16 : mousePos.x + 16,
-              transform: popupLeft ? "translate(-100%, -100%)" : "translateY(-100%)",
+              top:       popupPos.y,
+              left:      popupPos.flipLeft ? popupPos.x - 16 : popupPos.x + 16,
+              transform: popupPos.flipLeft ? "translate(-100%, -100%)" : "translateY(-100%)",
             }}
           >
             <div className="bg-[var(--background)] border border-[var(--border)] rounded px-3 py-2.5 shadow-sm space-y-1 min-w-[160px]">
               <div>
-                <p className="text-sm font-medium leading-tight">{hoveredCity.city}</p>
-                <p className="text-xs text-[var(--muted)]">{hoveredPlace?.country}</p>
+                <p className="text-sm font-medium leading-tight">{popupCity.city}</p>
+                <p className="text-xs text-[var(--muted)]">{popupPlace?.country}</p>
               </div>
-              {hoveredCity.dates && (
-                <p className="text-xs text-[var(--muted)]">{hoveredCity.dates}</p>
+              {popupCity.dates && (
+                <p className="text-xs text-[var(--muted)]">{popupCity.dates}</p>
               )}
-              {hoveredCity.note && (
-                <p className="text-xs text-[var(--muted)] opacity-70 italic">{hoveredCity.note}</p>
+              {popupCity.note && (
+                <p className="text-xs text-[var(--muted)] opacity-70 italic">{popupCity.note}</p>
               )}
-              {/* Photos slot — populate in the future */}
             </div>
           </div>
         )}
@@ -199,7 +237,7 @@ export default function WorldMap() {
       {/* Legend */}
       <div
         className="border-t border-[var(--border)] pt-4 grid grid-cols-2 gap-x-8 gap-y-3"
-        onClick={() => setFocused(null)}
+        onClick={() => { setFocused(null); setPinnedCity(null); }}
       >
         {places.map((p) => (
           <div
