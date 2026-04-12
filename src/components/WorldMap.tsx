@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { geoNaturalEarth1, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import { places, type Place } from "@/data/places";
+import TravelTimeline from "./TravelTimeline";
 
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 const W = 800;
@@ -15,22 +16,21 @@ type MousePos    = { x: number; y: number };
 type PinnedCity  = { place: Place; cityIndex: number; pos: { x: number; y: number } };
 
 export default function WorldMap() {
-  const [geos, setGeos]           = useState<GeoFeature[]>([]);
-  const [isDark, setIsDark]       = useState(false);
-  const [hovered, setHovered]     = useState<{ place: Place; cityIndex: number } | null>(null);
-  const [focused, setFocused]     = useState<Place | null>(null);
+  const [geos, setGeos]             = useState<GeoFeature[]>([]);
+  const [isDark, setIsDark]         = useState(false);
+  const [hovered, setHovered]       = useState<{ place: Place; cityIndex: number } | null>(null);
+  const [focused, setFocused]       = useState<Place | null>(null);
   const [pinnedCity, setPinnedCity] = useState<PinnedCity | null>(null);
-  const [tf, setTf]               = useState<Transform>({ x: 0, y: 0, k: 1 });
-  const [mousePos, setMousePos]   = useState<MousePos>({ x: 0, y: 0 });
-  const tfRef                     = useRef<Transform>({ x: 0, y: 0, k: 1 });
-  const containerRef              = useRef<HTMLDivElement>(null);
-  const mapRef                    = useRef<SVGSVGElement>(null);
-  const dragRef                   = useRef<{ startX: number; startY: number; tx: number; ty: number } | null>(null);
-  const animFrameRef              = useRef<number | null>(null);
-  const clearPinRef               = useRef<() => void>(() => {});
-  const [dragging, setDragging]   = useState(false);
+  const [tf, setTf]                 = useState<Transform>({ x: 0, y: 0, k: 1 });
+  const [mousePos, setMousePos]     = useState<MousePos>({ x: 0, y: 0 });
+  const tfRef                       = useRef<Transform>({ x: 0, y: 0, k: 1 });
+  const containerRef                = useRef<HTMLDivElement>(null);
+  const mapRef                      = useRef<SVGSVGElement>(null);
+  const dragRef                     = useRef<{ startX: number; startY: number; tx: number; ty: number } | null>(null);
+  const animFrameRef                = useRef<number | null>(null);
+  const clearPinRef                 = useRef<() => void>(() => {});
+  const [dragging, setDragging]     = useState(false);
 
-  // Keep clearPinRef current so wheel handler (captured in useEffect) can clear pin
   clearPinRef.current = () => setPinnedCity(null);
 
   useEffect(() => {
@@ -104,7 +104,6 @@ export default function WorldMap() {
   function onMouseMove(e: React.MouseEvent<SVGSVGElement>) {
     const rect = containerRef.current?.getBoundingClientRect();
     if (rect) setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-
     if (!dragRef.current) return;
     const dx   = e.clientX - dragRef.current.startX;
     const dy   = e.clientY - dragRef.current.startY;
@@ -129,11 +128,9 @@ export default function WorldMap() {
   const hoveredPlace = hovered?.place ?? null;
   const hoveredCity  = hovered != null ? hovered.place.cities[hovered.cityIndex] : null;
 
-  // Hover popup flips left when cursor is near right edge
   const containerW = containerRef.current?.getBoundingClientRect().width ?? 600;
   const popupLeft  = mousePos.x > containerW * 0.6;
 
-  // Active popup: hover takes priority over pinned
   const popupCity  = hoveredCity ?? (pinnedCity ? pinnedCity.place.cities[pinnedCity.cityIndex] : null);
   const popupPlace = hoveredCity ? hoveredPlace : (pinnedCity?.place ?? null);
   const popupPos   = hoveredCity
@@ -142,33 +139,30 @@ export default function WorldMap() {
     ? { x: pinnedCity.pos.x, y: pinnedCity.pos.y, flipLeft: false }
     : null;
 
-  function handleLegendClick(place: Place) {
-    // Pick the city with highest weight as the focus target
-    const primaryCity = place.cities.reduce((best, c) =>
-      (c.weight ?? 1) > (best.weight ?? 1) ? c : best
-    );
-    const primaryIndex = place.cities.indexOf(primaryCity);
+  // id of the currently pinned city (to sync TravelTimeline highlight)
+  const pinnedId = pinnedCity
+    ? `${pinnedCity.place.isoNumeric}-${pinnedCity.place.cities[pinnedCity.cityIndex].city}`
+    : undefined;
 
-    const proj = projection([primaryCity.lon, primaryCity.lat]);
+  function handleCitySelect(place: Place, cityIndex: number) {
+    const city = place.cities[cityIndex];
+    const proj = projection([city.lon, city.lat]);
     const k = 1.5;
     if (proj) {
       const [cx, cy] = proj;
       animateTo({ x: W / 2 - cx * k, y: H / 2 - cy * k, k });
     }
-
-    // Popup anchored slightly above center of container
     const rect = containerRef.current?.getBoundingClientRect();
     const px = (rect?.width  ?? 600) / 2;
     const py = (rect?.height ?? 300) / 2 - 16;
-
     setFocused(place);
-    setPinnedCity({ place, cityIndex: primaryIndex, pos: { x: px, y: py } });
-    mapRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    setPinnedCity({ place, cityIndex, pos: { x: px, y: py } });
+    mapRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   return (
     <div className="space-y-4">
-      {/* Map container */}
+      {/* Map */}
       <div ref={containerRef} className="relative">
         <svg
           ref={mapRef}
@@ -193,20 +187,19 @@ export default function WorldMap() {
                 />
               );
             })}
-
             {places.map((place) =>
               place.cities.map((city, i) => {
                 const proj = projection([city.lon, city.lat]);
                 if (!proj) return null;
                 const [cx, cy] = proj;
-                const isHov  = hoveredPlace?.isoNumeric === place.isoNumeric && hovered?.cityIndex === i;
+                const isHov    = hoveredPlace?.isoNumeric === place.isoNumeric && hovered?.cityIndex === i;
                 const isPinned = pinnedCity?.place.isoNumeric === place.isoNumeric && pinnedCity?.cityIndex === i;
-                const isFoc  = focused?.isoNumeric === place.isoNumeric;
-                const active = isHov || isFoc || isPinned;
-                const color  = hasFocus ? (isFoc ? dotOn : dotOff) : dotOn;
-                const innerR = active ? 3.5 : 2.5;
-                const outerR = active ? 7   : 5.5;
-                const sw     = (active ? 1.2 : 0.8) / tf.k;
+                const isFoc    = focused?.isoNumeric === place.isoNumeric;
+                const active   = isHov || isFoc || isPinned;
+                const color    = hasFocus ? (isFoc ? dotOn : dotOff) : dotOn;
+                const innerR   = active ? 3.5 : 2.5;
+                const outerR   = active ? 7   : 5.5;
+                const sw       = (active ? 1.2 : 0.8) / tf.k;
                 return (
                   <g
                     key={`${place.isoNumeric}-${city.city}`}
@@ -223,7 +216,7 @@ export default function WorldMap() {
           </g>
         </svg>
 
-        {/* Floating popup — hover or pinned */}
+        {/* Popup */}
         {popupCity && popupPos && (
           <div
             className="absolute z-10 pointer-events-none"
@@ -251,34 +244,24 @@ export default function WorldMap() {
 
       {/* Hint */}
       <p className="text-xs text-[var(--muted)]">
-        {focused
-          ? `${focused.country} — click background to clear`
-          : "hover a dot · scroll to zoom · drag to pan · click a country below to focus"}
+        {focused ? (
+          <>
+            {focused.country} —{" "}
+            <button
+              className="underline underline-offset-2 hover:text-[var(--foreground)] transition-colors"
+              onClick={() => { setFocused(null); setPinnedCity(null); }}
+            >
+              clear
+            </button>
+          </>
+        ) : (
+          "hover a dot · scroll to zoom · drag to pan · click below to navigate"
+        )}
       </p>
 
-      {/* Legend */}
-      <div
-        className="border-t border-[var(--border)] pt-4 grid grid-cols-2 gap-x-8 gap-y-3"
-        onClick={() => { setFocused(null); setPinnedCity(null); }}
-      >
-        {places.map((p) => (
-          <div
-            key={p.isoNumeric}
-            className={`space-y-0.5 cursor-pointer transition-opacity duration-200 ${
-              hasFocus && focused?.isoNumeric !== p.isoNumeric ? "opacity-30" : "opacity-100"
-            }`}
-            onClick={(e) => { e.stopPropagation(); handleLegendClick(p); }}
-          >
-            <p className="text-xs font-medium">{p.country}</p>
-            {p.cities.map((c) => (
-              <p key={c.city} className="text-xs text-[var(--muted)]">
-                {c.city}
-                {c.dates && <span className="ml-1.5">{c.dates}</span>}
-                {c.note && <span className="ml-1.5 opacity-60">— {c.note}</span>}
-              </p>
-            ))}
-          </div>
-        ))}
+      {/* Travel timeline replaces legend */}
+      <div className="border-t border-[var(--border)] pt-4">
+        <TravelTimeline onCityClick={handleCitySelect} activeCity={pinnedId} />
       </div>
     </div>
   );
