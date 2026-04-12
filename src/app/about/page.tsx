@@ -32,12 +32,13 @@ export default function About() {
       <div className="space-y-6 pt-4">
         <h2 className="text-xs tracking-widest uppercase text-[var(--muted)]">Timeline</h2>
 
-        <div className="space-y-0">
+        <div className="relative border-l border-[var(--border)] ml-1.5 space-y-0">
           <TimelineEntry
             years="2023 – present"
             title="University of Southern California, Marshall School of Business"
             subtitle="Los Angeles, CA · Expected May 2027"
             tag="education"
+            ongoing
             details={[
               "BS Business Administration · Minor in AI Applications",
               "Coursework: Global Strategy, Product Management, Operations Management, Business Finance, Basics in Artificial Intelligence, Applied Python",
@@ -48,6 +49,7 @@ export default function About() {
             title="International Student Assembly (ISA)"
             subtitle="USC Undergraduate Student Government · Los Angeles, CA"
             tag="leadership"
+            ongoing
             details={[
               "Executive Director — Apr 2025 – present",
               "Recruitment Director — May 2024 – Apr 2025",
@@ -59,6 +61,7 @@ export default function About() {
             title="USC Flavors"
             subtitle="Los Angeles, CA"
             tag="leadership"
+            ongoing
             details={[
               "Events Manager — May 2025 – present",
               "Director of Operations — Nov 2024 – May 2025",
@@ -96,18 +99,28 @@ function TimelineEntry({
   subtitle,
   tag,
   details,
+  ongoing,
 }: {
   years: string;
   title: string;
   subtitle: string;
   tag: string;
   details?: string[];
+  ongoing?: boolean;
 }) {
   return (
-    <div className="flex gap-6 border-t border-[var(--border)] py-5">
-      <span className="w-28 shrink-0 text-xs text-[var(--muted)] pt-0.5">{years}</span>
+    <div className="relative pl-7 pb-10 last:pb-2">
+      {/* dot */}
+      <div
+        className={`absolute -left-[5px] top-1 w-2.5 h-2.5 rounded-full border-2 transition-colors ${
+          ongoing
+            ? "border-[var(--foreground)] bg-[var(--foreground)]"
+            : "border-[var(--muted)] bg-[var(--background)]"
+        }`}
+      />
       <div className="space-y-1">
-        <p className="text-sm font-medium">{title}</p>
+        <span className="text-xs text-[var(--muted)]">{years}</span>
+        <p className="text-sm font-medium leading-snug">{title}</p>
         <p className="text-xs text-[var(--muted)]">{subtitle}</p>
         {details && (
           <ul className="pt-1 space-y-0.5">
