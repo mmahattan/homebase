@@ -106,7 +106,10 @@ export default function Timeline() {
             key={entry.id}
             data-id={entry.id}
             ref={(el) => { refs.current[entry.id] = el; }}
-            onClick={() => setActiveId(entry.id)}
+            onClick={() => {
+              setActiveId(entry.id);
+              refs.current[entry.id]?.scrollIntoView({ behavior: "smooth", block: "center" });
+            }}
             className={`relative pl-7 pb-12 last:pb-2 transition-all duration-500 ease-out cursor-pointer ${
               activeId === null || isActive
                 ? "opacity-100"
