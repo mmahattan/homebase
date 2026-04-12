@@ -15,24 +15,18 @@ export default function About() {
         </p>
       </div>
 
-      <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-[var(--muted)] uppercase tracking-widest">Resume</span>
-          <a
-            href="/resume.pdf"
-            download
-            className="text-xs text-[var(--muted)] hover:text-[var(--foreground)] transition-colors underline underline-offset-4"
-          >
-            download
-          </a>
-        </div>
-        <iframe
-          src="/resume.pdf"
-          className="w-full border border-[var(--border)] rounded"
-          style={{ height: "780px" }}
-          title="Mats Mahattanakul Resume"
-        />
-      </div>
+      <a
+        href="/resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 w-fit border border-[var(--border)] rounded px-4 py-3 hover:border-[var(--muted)] transition-colors"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--muted)] shrink-0">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+        </svg>
+        <span className="text-sm text-[var(--muted)]">Mats Resume SPRING 26.pdf</span>
+      </a>
     </section>
   );
 }
