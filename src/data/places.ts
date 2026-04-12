@@ -28,7 +28,8 @@ export const places: Place[] = [
     country: "Japan",
     isoNumeric: "392",
     cities: [
-      { city: "Tokyo", lat: 35.6762, lon: 139.6503, dates: "2006, 2014, 2016, 2017, 2019", weight: 4 },
+      { city: "Tokyo",   lat: 35.6762, lon: 139.6503, dates: "2006, 2014, 2016, 2017, 2019", weight: 4 },
+      { city: "Sapporo", lat: 43.0618, lon: 141.3545, dates: "2016", weight: 1 },
     ],
   },
   {
