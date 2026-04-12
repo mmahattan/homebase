@@ -14,6 +14,25 @@ export default function About() {
           Below is my most recent resume and a timeline of where I&apos;ve been.
         </p>
       </div>
+
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-[var(--muted)] uppercase tracking-widest">Resume</span>
+          <a
+            href="/resume.pdf"
+            download
+            className="text-xs text-[var(--muted)] hover:text-[var(--foreground)] transition-colors underline underline-offset-4"
+          >
+            download
+          </a>
+        </div>
+        <iframe
+          src="/resume.pdf"
+          className="w-full border border-[var(--border)] rounded"
+          style={{ height: "780px" }}
+          title="Mats Mahattanakul Resume"
+        />
+      </div>
     </section>
   );
 }
