@@ -1,4 +1,4 @@
-import Timeline from "@/components/Timeline";
+import ChronicleView from "@/components/ChronicleView";
 
 export default function About() {
   return (
@@ -30,11 +30,7 @@ export default function About() {
         <span className="text-sm text-[var(--muted)]">Mats Resume SPRING 26.pdf</span>
       </a>
 
-      {/* Timeline */}
-      <div className="space-y-6 pt-4">
-        <h2 className="text-xs tracking-widest uppercase text-[var(--muted)]">Timeline</h2>
-        <Timeline />
-      </div>
+      <ChronicleView />
     </section>
   );
 }
