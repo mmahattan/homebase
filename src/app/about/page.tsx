@@ -34,6 +34,16 @@ export default function About() {
 
         <div className="space-y-0">
           <TimelineEntry
+            years="2023 – present"
+            title="University of Southern California, Marshall School of Business"
+            subtitle="Los Angeles, CA · Expected May 2027"
+            tag="education"
+            details={[
+              "BS Business Administration · Minor in AI Applications",
+              "Coursework: Global Strategy, Product Management, Operations Management, Business Finance, Basics in Artificial Intelligence, Applied Python",
+            ]}
+          />
+          <TimelineEntry
             years="2014 – 2023"
             title="International School Bangkok (ISB)"
             subtitle="Bangkok, Thailand"
