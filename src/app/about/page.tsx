@@ -38,6 +38,10 @@ export default function About() {
             title="International School Bangkok (ISB)"
             subtitle="Bangkok, Thailand"
             tag="education"
+            details={[
+              "Varsity Swim Team (2019 – 2023) · Captain from 2021",
+              "Varsity Orchestra Strings (2019 – 2023) · Captain from 2021",
+            ]}
           />
         </div>
       </div>
@@ -50,11 +54,13 @@ function TimelineEntry({
   title,
   subtitle,
   tag,
+  details,
 }: {
   years: string;
   title: string;
   subtitle: string;
   tag: string;
+  details?: string[];
 }) {
   return (
     <div className="flex gap-6 border-t border-[var(--border)] py-5">
@@ -62,6 +68,13 @@ function TimelineEntry({
       <div className="space-y-1">
         <p className="text-sm font-medium">{title}</p>
         <p className="text-xs text-[var(--muted)]">{subtitle}</p>
+        {details && (
+          <ul className="pt-1 space-y-0.5">
+            {details.map((d) => (
+              <li key={d} className="text-xs text-[var(--muted)]">{d}</li>
+            ))}
+          </ul>
+        )}
         <span className="inline-block text-xs text-[var(--muted)] border border-[var(--border)] rounded-full px-2 py-0.5 mt-1">
           {tag}
         </span>
