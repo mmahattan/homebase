@@ -144,10 +144,9 @@ export default function WorldMap() {
     ? `${pinnedCity.place.isoNumeric}-${pinnedCity.place.cities[pinnedCity.cityIndex].city}`
     : undefined;
 
-  function handleCitySelect(place: Place, cityIndex: number) {
+  function handleCitySelect(place: Place, cityIndex: number, k = 1.5) {
     const city = place.cities[cityIndex];
     const proj = projection([city.lon, city.lat]);
-    const k = 1.5;
     if (proj) {
       const [cx, cy] = proj;
       animateTo({ x: W / 2 - cx * k, y: H / 2 - cy * k, k });
@@ -206,6 +205,7 @@ export default function WorldMap() {
                     style={{ cursor: "pointer" }}
                     onMouseEnter={() => setHovered({ place, cityIndex: i })}
                     onMouseLeave={() => setHovered(null)}
+                    onClick={(e) => { e.stopPropagation(); handleCitySelect(place, i, 3); }}
                   >
                     <circle cx={cx} cy={cy} r={outerR} fill="none" stroke={color} strokeWidth={sw} opacity={active ? 0.6 : 0.4} style={{ transition: "all 0.2s ease" }} />
                     <circle cx={cx} cy={cy} r={innerR} fill={color} style={{ transition: "all 0.2s ease" }} />
