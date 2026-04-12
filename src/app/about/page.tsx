@@ -27,15 +27,45 @@ export default function About() {
         </svg>
         <span className="text-sm text-[var(--muted)]">Mats Resume SPRING 26.pdf</span>
       </a>
+
+      {/* Timeline */}
+      <div className="space-y-6 pt-4">
+        <h2 className="text-xs tracking-widest uppercase text-[var(--muted)]">Timeline</h2>
+
+        <div className="space-y-0">
+          <TimelineEntry
+            years="2014 – 2023"
+            title="International School Bangkok (ISB)"
+            subtitle="Bangkok, Thailand"
+            tag="education"
+          />
+        </div>
+      </div>
     </section>
   );
 }
 
-function Row({ label, value }: { label: string; value: string }) {
+function TimelineEntry({
+  years,
+  title,
+  subtitle,
+  tag,
+}: {
+  years: string;
+  title: string;
+  subtitle: string;
+  tag: string;
+}) {
   return (
-    <div className="flex gap-8 text-sm">
-      <span className="w-24 shrink-0 text-[var(--muted)]">{label}</span>
-      <span>{value}</span>
+    <div className="flex gap-6 border-t border-[var(--border)] py-5">
+      <span className="w-28 shrink-0 text-xs text-[var(--muted)] pt-0.5">{years}</span>
+      <div className="space-y-1">
+        <p className="text-sm font-medium">{title}</p>
+        <p className="text-xs text-[var(--muted)]">{subtitle}</p>
+        <span className="inline-block text-xs text-[var(--muted)] border border-[var(--border)] rounded-full px-2 py-0.5 mt-1">
+          {tag}
+        </span>
+      </div>
     </div>
   );
 }
