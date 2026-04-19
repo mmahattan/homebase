@@ -12,7 +12,7 @@ const PROFILE = {
   name:      "mats.",
   followers: 56,
   url:       "https://open.spotify.com/user/mats_swimz",
-  image:     "/spotify-profile.jpg", // drop your photo at public/spotify-profile.jpg
+  image:     "/spotify-profile.png",
 };
 
 export default function SpotifySection() {
