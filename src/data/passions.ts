@@ -25,12 +25,7 @@ export const passions: PassionCategory[] = [
   {
     slug: "music",
     label: "Music",
-    items: [
-      {
-        title: "Example artist",
-        description: "What I'm listening to or artists I love.",
-      },
-    ],
+    items: [],
   },
   {
     slug: "sports",
