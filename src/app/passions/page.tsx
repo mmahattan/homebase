@@ -13,7 +13,19 @@ export default function Passions() {
           </h2>
 
           {category.slug === "music" ? (
-            <SpotifySection />
+            <div className="space-y-8">
+              <SpotifySection />
+              <div className="space-y-3">
+                <p className="text-xs uppercase tracking-widest text-[var(--muted)]">collage</p>
+                <div className="grid grid-cols-1 gap-4">
+                  <img
+                    src="/bill-clinton-albums-1.png"
+                    alt="collage 1"
+                    className="w-full rounded-md"
+                  />
+                </div>
+              </div>
+            </div>
           ) : (
             <ul className="space-y-6">
               {category.items.map((item) => (
