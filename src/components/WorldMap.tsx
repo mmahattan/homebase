@@ -171,6 +171,7 @@ export default function WorldMap() {
           onMouseMove={onMouseMove}
           onMouseUp={onMouseUp}
           onMouseLeave={() => { onMouseUp(); setHovered(null); }}
+          onDoubleClick={() => { animateTo({ x: 0, y: 0, k: 1 }); setFocused(null); setPinnedCity(null); }}
         >
           <g transform={`translate(${tf.x},${tf.y}) scale(${tf.k})`}>
             {geos.map((geo) => {
