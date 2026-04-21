@@ -261,7 +261,7 @@ export default function WorldMap() {
 
       {/* Travel timeline replaces legend */}
       <div className="border-t border-[var(--border)] pt-4">
-        <TravelTimeline onCityClick={handleCitySelect} activeCity={pinnedId} />
+        <TravelTimeline onCityClick={handleCitySelect} activeCity={pinnedId} focusedIso={focused?.isoNumeric} />
       </div>
     </div>
   );

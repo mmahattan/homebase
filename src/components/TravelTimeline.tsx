@@ -19,7 +19,8 @@ type CityEntry = {
 
 type Props = {
   onCityClick?: (place: Place, cityIndex: number) => void;
-  activeCity?: string; // id of pinned city from map
+  activeCity?: string;   // id of pinned city from map
+  focusedIso?: string;   // isoNumeric of focused country — highlights all its entries
 };
 
 const HOME_CITIES = new Set(["Bangkok", "Stockholm"]);
@@ -86,7 +87,7 @@ const otherEntries = allEntries
     return a.startYear - b.startYear;
   });
 
-export default function TravelTimeline({ onCityClick, activeCity }: Props) {
+export default function TravelTimeline({ onCityClick, activeCity, focusedIso }: Props) {
   const [activeId, setActiveId]     = useState<string | null>(null);
   const refs                        = useRef<Record<string, HTMLDivElement | null>>({});
   const scrollContainerRef          = useRef<HTMLDivElement>(null);
@@ -111,8 +112,11 @@ export default function TravelTimeline({ onCityClick, activeCity }: Props) {
     const container = scrollContainerRef.current;
     const el = refs.current[id];
     if (!container || !el) return;
-    const offset = el.offsetTop - container.clientHeight / 2 + el.clientHeight / 2;
-    container.scrollTo({ top: offset, behavior: "smooth" });
+    const elRect        = el.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    const scrollTop     = container.scrollTop + (elRect.top - containerRect.top)
+                          - container.clientHeight / 2 + el.clientHeight / 2;
+    container.scrollTo({ top: scrollTop, behavior: "smooth" });
   }
 
   // When map pins a city, sync highlight and scroll to entry
@@ -128,7 +132,11 @@ export default function TravelTimeline({ onCityClick, activeCity }: Props) {
   }, [activeCity]);
 
   function renderEntry(entry: CityEntry) {
-    const isActive = activeId === entry.id;
+    const isActive = focusedIso
+      ? entry.place.isoNumeric === focusedIso
+      : activeId === entry.id;
+    const showFull = (focusedIso === null && activeId === null) || isActive;
+
     return (
       <div
         key={entry.id}
@@ -140,7 +148,7 @@ export default function TravelTimeline({ onCityClick, activeCity }: Props) {
           onCityClick?.(entry.place, entry.cityIndex);
         }}
         className={`relative pl-7 pb-10 last:pb-2 transition-all duration-500 ease-out cursor-pointer ${
-          activeId === null || isActive ? "opacity-100" : "opacity-25"
+          showFull ? "opacity-100" : "opacity-25"
         }`}
       >
         {/* dot */}
