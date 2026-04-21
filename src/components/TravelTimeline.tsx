@@ -87,10 +87,13 @@ const otherEntries = allEntries
   });
 
 export default function TravelTimeline({ onCityClick, activeCity }: Props) {
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const refs = useRef<Record<string, HTMLDivElement | null>>({});
+  const [activeId, setActiveId]     = useState<string | null>(null);
+  const refs                        = useRef<Record<string, HTMLDivElement | null>>({});
+  const scrollContainerRef          = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const root = scrollContainerRef.current;
+    if (!root) return;
     const observer = new IntersectionObserver(
       (observed) => {
         observed.forEach((entry) => {
@@ -98,18 +101,30 @@ export default function TravelTimeline({ onCityClick, activeCity }: Props) {
             setActiveId(entry.target.getAttribute("data-id"));
         });
       },
-      { rootMargin: "-35% 0px -35% 0px", threshold: 0 }
+      { root, rootMargin: "-35% 0px -35% 0px", threshold: 0 }
     );
     Object.values(refs.current).forEach((el) => { if (el) observer.observe(el); });
     return () => observer.disconnect();
   }, []);
 
-  // When map pins a city, sync to first matching entry (handles split year entries)
+  function scrollToEntry(id: string) {
+    const container = scrollContainerRef.current;
+    const el = refs.current[id];
+    if (!container || !el) return;
+    const offset = el.offsetTop - container.clientHeight / 2 + el.clientHeight / 2;
+    container.scrollTo({ top: offset, behavior: "smooth" });
+  }
+
+  // When map pins a city, sync highlight and scroll to entry
   useEffect(() => {
     if (!activeCity) return;
     const all = [...homeEntries, ...otherEntries];
     const match = all.find((e) => e.id === activeCity || e.id.startsWith(activeCity + "-"));
-    if (match) setActiveId(match.id);
+    if (match) {
+      setActiveId(match.id);
+      scrollToEntry(match.id);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCity]);
 
   function renderEntry(entry: CityEntry) {
@@ -121,6 +136,7 @@ export default function TravelTimeline({ onCityClick, activeCity }: Props) {
         ref={(el) => { refs.current[entry.id] = el; }}
         onClick={() => {
           setActiveId(entry.id);
+          scrollToEntry(entry.id);
           onCityClick?.(entry.place, entry.cityIndex);
         }}
         className={`relative pl-7 pb-10 last:pb-2 transition-all duration-500 ease-out cursor-pointer ${
@@ -164,6 +180,11 @@ export default function TravelTimeline({ onCityClick, activeCity }: Props) {
   }
 
   return (
+    <div
+      ref={scrollContainerRef}
+      className="overflow-y-auto h-[420px] pr-2"
+      style={{ scrollbarWidth: "none" }}
+    >
     <div className="relative border-l border-[var(--border)] ml-1.5">
       {/* Home section */}
       <div className="pl-7 pb-3 pt-1">
@@ -178,6 +199,7 @@ export default function TravelTimeline({ onCityClick, activeCity }: Props) {
 
       {/* Chronological entries */}
       {otherEntries.map(renderEntry)}
+    </div>
     </div>
   );
 }
