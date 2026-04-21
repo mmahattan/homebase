@@ -17,7 +17,7 @@ export default function Passions() {
               <SpotifySection />
               <div className="space-y-3">
                 <p className="text-xs uppercase tracking-widest text-[var(--muted)]">collage</p>
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <img
                     src="/bill-clinton-albums-1.png"
                     alt="collage 1"
