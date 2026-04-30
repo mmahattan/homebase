@@ -1,6 +1,7 @@
 export type ProjectFile = {
   label: string;
   url: string;
+  thumb?: string;
 };
 
 export type Project = {
@@ -20,10 +21,10 @@ export const projects: Project[] = [
     tags: ["UX Design", "Prototype", "HTML/CSS", "JavaScript"],
     year: 2026,
     files: [
-      { label: "Prototype", url: "/netflix-mood-meter.html" },
-      { label: "PRD", url: "/mor-499-prd.pdf" },
-      { label: "Lean Canvas", url: "/mor-499-lean-canvas.pdf" },
-      { label: "User Stories", url: "/mor-499-user-stories.pdf" },
+      { label: "Prototype", url: "/netflix-mood-meter.html", thumb: "/mor-499-prototype.png" },
+      { label: "PRD", url: "/mor-499-prd.pdf", thumb: "/mor-499-prd.png" },
+      { label: "Lean Canvas", url: "/mor-499-lean-canvas.pdf", thumb: "/mor-499-lean-canvas.png" },
+      { label: "User Stories", url: "/mor-499-user-stories.pdf", thumb: "/mor-499-user-stories.png" },
     ],
   },
   {

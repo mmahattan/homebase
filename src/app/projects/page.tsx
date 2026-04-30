@@ -37,16 +37,31 @@ export default function Projects() {
               </div>
             )}
             {project.files && project.files.length > 0 && (
-              <div className="flex flex-wrap gap-2 pt-1">
+              <div className="flex gap-3 pt-2 overflow-x-auto pb-1">
                 {project.files.map((file) => (
                   <a
                     key={file.label}
                     href={file.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-[var(--muted)] border border-[var(--border)] px-2 py-0.5 rounded-full hover:border-[var(--foreground)] hover:text-[var(--foreground)] transition-colors"
+                    className="group flex-shrink-0 flex flex-col gap-1.5"
                   >
-                    ↗ {file.label}
+                    {file.thumb ? (
+                      <div className="w-36 h-24 rounded overflow-hidden border border-[var(--border)] group-hover:border-[var(--foreground)] transition-colors">
+                        <img
+                          src={file.thumb}
+                          alt={file.label}
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-36 h-24 rounded border border-[var(--border)] group-hover:border-[var(--foreground)] transition-colors flex items-center justify-center text-[var(--muted)] text-xs">
+                        {file.label}
+                      </div>
+                    )}
+                    <span className="text-xs text-[var(--muted)] group-hover:text-[var(--foreground)] transition-colors">
+                      ↗ {file.label}
+                    </span>
                   </a>
                 ))}
               </div>
