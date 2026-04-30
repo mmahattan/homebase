@@ -36,6 +36,21 @@ export default function Projects() {
                 ))}
               </div>
             )}
+            {project.files && project.files.length > 0 && (
+              <div className="flex flex-wrap gap-2 pt-1">
+                {project.files.map((file) => (
+                  <a
+                    key={file.label}
+                    href={file.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-[var(--muted)] border border-[var(--border)] px-2 py-0.5 rounded-full hover:border-[var(--foreground)] hover:text-[var(--foreground)] transition-colors"
+                  >
+                    ↗ {file.label}
+                  </a>
+                ))}
+              </div>
+            )}
           </li>
         ))}
       </ul>
