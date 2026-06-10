@@ -26,16 +26,6 @@ export const places: Place[] = [
     ],
   },
   {
-    country: "Japan",
-    isoNumeric: "392",
-    cities: [
-      { city: "Tokyo",       lat: 35.6762, lon: 139.6503, dates: "2006, 2014, 2016, 2026", weight: 4 },
-      { city: "Yamanakako",  lat: 35.4122, lon: 138.8700, dates: "2026", weight: 1 },
-      { city: "Sapporo",     lat: 43.0618, lon: 141.3545, dates: "2016", weight: 1 },
-      { city: "Hokkaido",    lat: 43.7,    lon: 142.9,    dates: "2014", weight: 1 },
-    ],
-  },
-  {
     country: "China",
     isoNumeric: "156",
     cities: [
@@ -120,6 +110,16 @@ export const places: Place[] = [
     cities: [
       { city: "Los Angeles",       lat: 34.0522, lon: -118.2437, dates: "2023 – present", note: "base_2", weight: 5 },
       { city: "Carmel-by-the-Sea", lat: 36.5552, lon: -121.9233, dates: "2026", weight: 1 },
+    ],
+  },
+  {
+    country: "Japan",
+    isoNumeric: "392",
+    cities: [
+      { city: "Tokyo",       lat: 35.6762, lon: 139.6503, dates: "2006, 2014, 2016, 2026", weight: 4 },
+      { city: "Yamanakako",  lat: 35.4122, lon: 138.8700, dates: "2026", weight: 1 },
+      { city: "Sapporo",     lat: 43.0618, lon: 141.3545, dates: "2016", weight: 1 },
+      { city: "Hokkaido",    lat: 43.7,    lon: 142.9,    dates: "2014", weight: 1 },
     ],
   },
 ];
