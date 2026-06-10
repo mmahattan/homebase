@@ -3,10 +3,13 @@ import { NextResponse } from "next/server";
 const CLIENT_ID     = process.env.SPOTIFY_CLIENT_ID!;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET!;
 
-const PLAYLIST_IDS = [
-  "1KZ7x4sG5rlDySvbWHDfDh",
-  "7rN87AkZGx83YTFBsyEin0",
-  "57BX3znSZLv4xLyT21Bne8",
+const ITEMS: { id: string; type: "playlist" | "album" }[] = [
+  { id: "3IZS6O7BgxDIuvCPUbkGxR", type: "playlist" },
+  { id: "5gkQaUoBKuMPltRNgdjaZP", type: "playlist" },
+  { id: "2233LC6uuoi67lGcO2OaBm", type: "album" },
+  { id: "1KZ7x4sG5rlDySvbWHDfDh", type: "playlist" },
+  { id: "7rN87AkZGx83YTFBsyEin0", type: "playlist" },
+  { id: "57BX3znSZLv4xLyT21Bne8", type: "playlist" },
 ];
 
 async function getAccessToken(): Promise<string> {
@@ -26,16 +29,16 @@ async function getAccessToken(): Promise<string> {
 export async function GET() {
   try {
     const token = await getAccessToken();
-    const playlists = await Promise.all(
-      PLAYLIST_IDS.map((id) =>
+    const items = await Promise.all(
+      ITEMS.map(({ id, type }) =>
         fetch(
-          `https://api.spotify.com/v1/playlists/${id}?fields=name,images,external_urls`,
+          `https://api.spotify.com/v1/${type}s/${id}?fields=name,images,external_urls`,
           { headers: { Authorization: `Bearer ${token}` }, next: { revalidate: 3600 } }
         ).then((r) => r.json())
       )
     );
     return NextResponse.json(
-      playlists.map((p) => ({
+      items.map((p) => ({
         id:    p.id,
         name:  p.name,
         image: p.images?.[0]?.url ?? null,

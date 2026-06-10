@@ -91,7 +91,7 @@ export default function SpotifySection() {
       {/* Skeleton while loading */}
       {playlists.length === 0 && (
         <div className="grid grid-cols-3 gap-3">
-          {[0, 1, 2].map((i) => (
+          {[0, 1, 2, 3, 4, 5].map((i) => (
             <div key={i} className="space-y-2">
               <div className="aspect-square w-full rounded-md bg-[var(--border)] animate-pulse" />
               <div className="h-3 w-2/3 rounded bg-[var(--border)] animate-pulse" />
