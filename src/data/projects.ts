@@ -20,6 +20,7 @@ export const projects: Project[] = [
     description:
       "A multilingual chatbot that transcribes spoken input via OpenAI's Whisper and routes responses through IBM's WatsonX Runtime. Uses embedded keywords as a semantic foundation for intent matching, enabling natural voice-driven conversation across multiple languages.",
     tags: ["Python", "OpenAI Whisper", "IBM WatsonX", "Speech-to-Text", "NLP"],
+    url: "https://github.com/mmahattan/multilingual-ai-chatbot",
     year: 2026,
   },
   {
