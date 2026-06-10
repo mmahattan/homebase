@@ -30,6 +30,16 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: "Going Global: Starlink to India",
+    description:
+      "A consulting report for MOR-492, a Global Strategy course, advising Starlink on its market entry into India. Analyzes the regional competitive landscape, regulatory environment, and infrastructure opportunities to build a strategic recommendation for expansion into one of the world's fastest-growing connectivity markets.",
+    tags: ["Consulting", "Global Strategy", "Market Entry", "Research"],
+    year: 2026,
+    files: [
+      { label: "Report", url: "/starlink-india.pdf" },
+    ],
+  },
+  {
     title: "Netflix Mood Engine",
     description: "A UX prototype for a mood-based content discovery feature on Netflix. Select how you're feeling and get a personalized watch session — with a simulated AI loading flow and curated picks. Built for MOR-499, a Product Management course.",
     tags: ["UX Design", "Prototype", "HTML/CSS", "JavaScript"],
