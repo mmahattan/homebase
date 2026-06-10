@@ -24,7 +24,7 @@ export const projects: Project[] = [
   },
   {
     title: "Netflix Mood Engine",
-    description: "A UX prototype for a mood-based content discovery feature on Netflix. Select how you're feeling and get a personalized watch session — with a simulated AI loading flow and curated picks. Built for MOR-499.",
+    description: "A UX prototype for a mood-based content discovery feature on Netflix. Select how you're feeling and get a personalized watch session — with a simulated AI loading flow and curated picks. Built for MOR-499, a Product Management course.",
     tags: ["UX Design", "Prototype", "HTML/CSS", "JavaScript"],
     year: 2026,
     files: [
