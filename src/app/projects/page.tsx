@@ -51,7 +51,7 @@ export default function Projects() {
                         <img
                           src={file.thumb}
                           alt={file.label}
-                          className="w-full h-full object-cover object-top"
+                          className={`w-full h-full ${file.contain ? "object-contain" : "object-cover object-top"}`}
                         />
                       </div>
                     ) : (

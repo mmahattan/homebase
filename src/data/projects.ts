@@ -2,6 +2,7 @@ export type ProjectFile = {
   label: string;
   url: string;
   thumb?: string;
+  contain?: boolean;
 };
 
 export type Project = {
@@ -36,7 +37,7 @@ export const projects: Project[] = [
     tags: ["Consulting", "Global Strategy", "Market Entry", "Research"],
     year: 2026,
     files: [
-      { label: "Report", url: "/starlink-india.pdf", thumb: "/starlink-india-thumb.png" },
+      { label: "Report", url: "/starlink-india.pdf", thumb: "/starlink-india-thumb.png", contain: true },
     ],
   },
   {
