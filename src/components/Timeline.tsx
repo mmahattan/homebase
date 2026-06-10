@@ -14,6 +14,32 @@ type TimelineEntry = {
 
 const entries: TimelineEntry[] = [
   {
+    id: "ibm",
+    years: "2024 – present",
+    title: "International Business Machines (IBM)",
+    subtitle: "Bangkok, Thailand",
+    tag: "work",
+    ongoing: true,
+    details: [
+      "Forward Deployment Engineer — Jun 2026 – Aug 2026",
+      "BRD Intern, Banking — Jun 2025 – Aug 2025",
+      "Technical Business Analyst, Telecom & Banking — May 2024 – Aug 2024",
+    ],
+  },
+  {
+    id: "flavors",
+    years: "2024 – present",
+    title: "USC Flavors",
+    subtitle: "Los Angeles, CA",
+    tag: "leadership",
+    ongoing: true,
+    details: [
+      "Director of Operations — May 2026 – present",
+      "Events Manager — May 2025 – May 2026",
+      "Director of Operations — Nov 2024 – May 2025",
+    ],
+  },
+  {
     id: "usc",
     years: "2023 – present",
     title: "University of Southern California, Marshall School of Business",
@@ -27,38 +53,14 @@ const entries: TimelineEntry[] = [
   },
   {
     id: "isa",
-    years: "2023 – present",
+    years: "2023 – 2026",
     title: "International Student Assembly (ISA)",
     subtitle: "USC Undergraduate Student Government · Los Angeles, CA",
     tag: "leadership",
-    ongoing: true,
     details: [
-      "Executive Director — Apr 2025 – present",
+      "Executive Director — Apr 2025 – May 2026",
       "Recruitment Director — May 2024 – Apr 2025",
       "Intern — Sep 2023 – May 2024",
-    ],
-  },
-  {
-    id: "flavors",
-    years: "2024 – present",
-    title: "USC Flavors",
-    subtitle: "Los Angeles, CA",
-    tag: "leadership",
-    ongoing: true,
-    details: [
-      "Events Manager — May 2025 – present",
-      "Director of Operations — Nov 2024 – May 2025",
-    ],
-  },
-  {
-    id: "ibm",
-    years: "2024 – 2025",
-    title: "International Business Machines (IBM)",
-    subtitle: "Bangkok, Thailand",
-    tag: "work",
-    details: [
-      "BRD Intern, Banking — Jun 2025 – Aug 2025",
-      "Technical Business Analyst, Telecom & Banking — May 2024 – Aug 2024",
     ],
   },
   {
