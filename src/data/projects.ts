@@ -22,6 +22,12 @@ export const projects: Project[] = [
     tags: ["Python", "OpenAI Whisper", "IBM WatsonX", "Speech-to-Text", "NLP"],
     url: "https://github.com/mmahattan/multilingual-ai-chatbot",
     year: 2026,
+    files: [
+      { label: "UI", url: "/chatbot-1.png", thumb: "/chatbot-1.png" },
+      { label: "English Demo", url: "/chatbot-2.png", thumb: "/chatbot-2.png" },
+      { label: "Thai Input", url: "/chatbot-3.png", thumb: "/chatbot-3.png" },
+      { label: "Thai Voice", url: "/chatbot-4.png", thumb: "/chatbot-4.png" },
+    ],
   },
   {
     title: "Netflix Mood Engine",
