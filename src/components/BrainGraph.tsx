@@ -49,11 +49,44 @@ export default function BrainGraph() {
   const activeNode = selectedNode ?? hoveredNode;
   const activeConnected = activeNode ? connectedIds(activeNode) : new Set<string>();
 
+  const drawLabel = useCallback((
+    ctx: CanvasRenderingContext2D,
+    text: string,
+    x: number,
+    y: number,
+    r: number,
+    zoom: number,
+    primary: boolean,
+  ) => {
+    // All dimensions in graph-space divided by zoom = constant screen size
+    const screenSize = primary ? 12 : 10;
+    const fontSize   = screenSize / zoom;
+    const pad        = 5 / zoom;
+    const gap        = 8 / zoom;
+    const labelY     = y - r - gap;
+
+    ctx.font = `${primary ? 600 : 500} ${fontSize}px ui-sans-serif, system-ui, sans-serif`;
+    ctx.textAlign = "center";
+
+    const textW = ctx.measureText(text).width;
+    const boxH  = fontSize + 4 / zoom;
+
+    // Pill background
+    ctx.fillStyle = primary ? "rgba(10,10,10,0.8)" : "rgba(10,10,10,0.65)";
+    ctx.beginPath();
+    ctx.roundRect(x - textW / 2 - pad, labelY - fontSize, textW + pad * 2, boxH + pad, 3 / zoom);
+    ctx.fill();
+
+    ctx.fillStyle = primary ? "#ffffff" : "rgba(255,255,255,0.8)";
+    ctx.fillText(text, x, labelY);
+  }, []);
+
   const paintNode = useCallback((node: Node, ctx: CanvasRenderingContext2D) => {
-    const id    = node.id;
-    const x     = node.x ?? 0;
-    const y     = node.y ?? 0;
-    const r     = 4 + Math.sqrt(node.count) * 1.2;
+    const id   = node.id;
+    const x    = node.x ?? 0;
+    const y    = node.y ?? 0;
+    const r    = 4 + Math.sqrt(node.count) * 1.2;
+    const zoom = ctx.getTransform().a;
 
     const isActive    = id === activeNode;
     const isConnected = activeNode ? activeConnected.has(id) : false;
@@ -82,39 +115,16 @@ export default function BrainGraph() {
       : "rgba(45,212,191,0.35)";
     ctx.fill();
 
-    // Label: only on active node (hover or selected)
+    // Active node label (hover or selected) — always visible
     if (isActive) {
-      const fontSize = 12;
-      ctx.font = `600 ${fontSize}px ui-sans-serif, system-ui, sans-serif`;
-      ctx.textAlign = "center";
-      // Background pill for readability
-      const textW = ctx.measureText(id).width;
-      const pad   = 5;
-      const labelY = y - r - 10;
-      ctx.fillStyle = "rgba(10,10,10,0.75)";
-      ctx.beginPath();
-      ctx.roundRect(x - textW / 2 - pad, labelY - fontSize, textW + pad * 2, fontSize + 6, 4);
-      ctx.fill();
-      ctx.fillStyle = "#ffffff";
-      ctx.fillText(id, x, labelY);
+      drawLabel(ctx, id, x, y, r, zoom, true);
     }
 
-    // Labels for connected nodes only when a node is selected (clicked)
+    // Connected labels only when a node is selected
     if (isConnected && selectedNode) {
-      const fontSize = 10;
-      ctx.font = `500 ${fontSize}px ui-sans-serif, system-ui, sans-serif`;
-      ctx.textAlign = "center";
-      const textW = ctx.measureText(id).width;
-      const pad   = 4;
-      const labelY = y - r - 8;
-      ctx.fillStyle = "rgba(10,10,10,0.65)";
-      ctx.beginPath();
-      ctx.roundRect(x - textW / 2 - pad, labelY - fontSize, textW + pad * 2, fontSize + 5, 3);
-      ctx.fill();
-      ctx.fillStyle = "rgba(255,255,255,0.85)";
-      ctx.fillText(id, x, labelY);
+      drawLabel(ctx, id, x, y, r, zoom, false);
     }
-  }, [activeNode, activeConnected, selectedNode]);
+  }, [activeNode, activeConnected, selectedNode, drawLabel]);
 
   const paintLink = useCallback((link: Link, ctx: CanvasRenderingContext2D) => {
     const src = link.source as unknown as Node;
