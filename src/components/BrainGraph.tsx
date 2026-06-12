@@ -10,15 +10,14 @@ type Link = { source: string; target: string; strength: number };
 type GraphData = { nodes: Node[]; links: Link[] };
 
 export default function BrainGraph() {
-  const [graphData, setGraphData] = useState<GraphData>({ nodes: [], links: [] });
+  const [graphData, setGraphData]     = useState<GraphData>({ nodes: [], links: [] });
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
-  const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
+  const [selectedNode, setSelectedNode] = useState<string | null>(null);
+  const [dimensions, setDimensions]   = useState({ width: 800, height: 600 });
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch("/brain-graph.json")
-      .then((r) => r.json())
-      .then(setGraphData);
+    fetch("/brain-graph.json").then((r) => r.json()).then(setGraphData);
   }, []);
 
   useEffect(() => {
@@ -46,48 +45,76 @@ export default function BrainGraph() {
     return ids;
   }, [graphData]);
 
+  // Active node is selected node (if any), otherwise hovered
+  const activeNode = selectedNode ?? hoveredNode;
+  const activeConnected = activeNode ? connectedIds(activeNode) : new Set<string>();
+
   const paintNode = useCallback((node: Node, ctx: CanvasRenderingContext2D) => {
-    const id = node.id;
-    const isHovered = id === hoveredNode;
-    const isConnected = hoveredNode ? connectedIds(hoveredNode).has(id) : false;
-    const isActive = isHovered || isConnected;
-    const isDimmed = hoveredNode && !isActive;
+    const id    = node.id;
+    const x     = node.x ?? 0;
+    const y     = node.y ?? 0;
+    const r     = 4 + Math.sqrt(node.count) * 1.2;
 
-    const radius = 3 + Math.sqrt(node.count) * 1.5;
-    const x = node.x ?? 0;
-    const y = node.y ?? 0;
+    const isActive    = id === activeNode;
+    const isConnected = activeNode ? activeConnected.has(id) : false;
+    const isDimmed    = !!activeNode && !isActive && !isConnected;
 
-    // Glow
+    // Glow for active node only
     if (isActive) {
-      const glow = ctx.createRadialGradient(x, y, 0, x, y, radius * 4);
-      glow.addColorStop(0, isHovered ? "rgba(45,212,191,0.5)" : "rgba(45,212,191,0.2)");
+      const glow = ctx.createRadialGradient(x, y, 0, x, y, r * 5);
+      glow.addColorStop(0, "rgba(45,212,191,0.45)");
       glow.addColorStop(1, "rgba(45,212,191,0)");
       ctx.beginPath();
-      ctx.arc(x, y, radius * 4, 0, 2 * Math.PI);
+      ctx.arc(x, y, r * 5, 0, 2 * Math.PI);
       ctx.fillStyle = glow;
       ctx.fill();
     }
 
-    // Node
+    // Node circle
     ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.arc(x, y, r, 0, 2 * Math.PI);
     ctx.fillStyle = isDimmed
-      ? "rgba(100,100,100,0.2)"
-      : isHovered
+      ? "rgba(80,80,80,0.25)"
+      : isActive
       ? "#2dd4bf"
       : isConnected
-      ? "rgba(45,212,191,0.7)"
-      : "rgba(45,212,191,0.4)";
+      ? "rgba(45,212,191,0.55)"
+      : "rgba(45,212,191,0.35)";
     ctx.fill();
 
-    // Label on hover or connected
+    // Label: only on active node (hover or selected)
     if (isActive) {
-      ctx.font = `${isHovered ? 13 : 10}px ui-monospace, monospace`;
-      ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.7)";
+      const fontSize = 12;
+      ctx.font = `600 ${fontSize}px ui-sans-serif, system-ui, sans-serif`;
       ctx.textAlign = "center";
-      ctx.fillText(id, x, y - radius - 5);
+      // Background pill for readability
+      const textW = ctx.measureText(id).width;
+      const pad   = 5;
+      const labelY = y - r - 10;
+      ctx.fillStyle = "rgba(10,10,10,0.75)";
+      ctx.beginPath();
+      ctx.roundRect(x - textW / 2 - pad, labelY - fontSize, textW + pad * 2, fontSize + 6, 4);
+      ctx.fill();
+      ctx.fillStyle = "#ffffff";
+      ctx.fillText(id, x, labelY);
     }
-  }, [hoveredNode, connectedIds]);
+
+    // Labels for connected nodes only when a node is selected (clicked)
+    if (isConnected && selectedNode) {
+      const fontSize = 10;
+      ctx.font = `500 ${fontSize}px ui-sans-serif, system-ui, sans-serif`;
+      ctx.textAlign = "center";
+      const textW = ctx.measureText(id).width;
+      const pad   = 4;
+      const labelY = y - r - 8;
+      ctx.fillStyle = "rgba(10,10,10,0.65)";
+      ctx.beginPath();
+      ctx.roundRect(x - textW / 2 - pad, labelY - fontSize, textW + pad * 2, fontSize + 5, 3);
+      ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,0.85)";
+      ctx.fillText(id, x, labelY);
+    }
+  }, [activeNode, activeConnected, selectedNode]);
 
   const paintLink = useCallback((link: Link, ctx: CanvasRenderingContext2D) => {
     const src = link.source as unknown as Node;
@@ -96,19 +123,19 @@ export default function BrainGraph() {
 
     const srcId = src.id;
     const tgtId = tgt.id;
-    const isActive = hoveredNode && (srcId === hoveredNode || tgtId === hoveredNode);
+    const isActive = activeNode && (srcId === activeNode || tgtId === activeNode);
 
     ctx.beginPath();
     ctx.moveTo(src.x, src.y ?? 0);
     ctx.lineTo(tgt.x, tgt.y ?? 0);
     ctx.strokeStyle = isActive
-      ? "rgba(45,212,191,0.6)"
-      : hoveredNode
+      ? "rgba(45,212,191,0.55)"
+      : activeNode
       ? "rgba(255,255,255,0.03)"
-      : "rgba(255,255,255,0.07)";
+      : "rgba(255,255,255,0.08)";
     ctx.lineWidth = isActive ? 1.5 : 0.5;
     ctx.stroke();
-  }, [hoveredNode]);
+  }, [activeNode]);
 
   return (
     <div ref={containerRef} className="w-full h-full">
@@ -123,17 +150,22 @@ export default function BrainGraph() {
           nodeCanvasObjectMode={() => "replace"}
           linkCanvasObjectMode={() => "replace"}
           onNodeHover={(node) => setHoveredNode(node ? (node as Node).id : null)}
+          onNodeClick={(node) => {
+            const id = (node as Node).id;
+            setSelectedNode((prev) => (prev === id ? null : id));
+          }}
+          onBackgroundClick={() => setSelectedNode(null)}
           nodeLabel={() => ""}
           cooldownTicks={120}
           linkDirectionalParticles={(link) => {
-            const l = link as Link;
+            const l   = link as Link;
             const src = typeof l.source === "object" ? (l.source as Node).id : l.source;
             const tgt = typeof l.target === "object" ? (l.target as Node).id : l.target;
-            return hoveredNode && (src === hoveredNode || tgt === hoveredNode) ? 3 : 0;
+            return selectedNode && (src === selectedNode || tgt === selectedNode) ? 3 : 0;
           }}
           linkDirectionalParticleWidth={2}
           linkDirectionalParticleColor={() => "#2dd4bf"}
-          linkDirectionalParticleSpeed={0.006}
+          linkDirectionalParticleSpeed={0.005}
         />
       )}
     </div>
