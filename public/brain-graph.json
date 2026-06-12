@@ -1,0 +1,1775 @@
+{
+  "nodes": [
+    {
+      "id": "Artificial Intelligence",
+      "count": 106
+    },
+    {
+      "id": "USC",
+      "count": 30
+    },
+    {
+      "id": "ISA",
+      "count": 29
+    },
+    {
+      "id": "UX Design",
+      "count": 13
+    },
+    {
+      "id": "Python",
+      "count": 12
+    },
+    {
+      "id": "Travel",
+      "count": 12
+    },
+    {
+      "id": "Product Management",
+      "count": 11
+    },
+    {
+      "id": "Interviews",
+      "count": 10
+    },
+    {
+      "id": "Classification",
+      "count": 9
+    },
+    {
+      "id": "Global Strategy",
+      "count": 9
+    },
+    {
+      "id": "USC Marshall",
+      "count": 8
+    },
+    {
+      "id": "React",
+      "count": 8
+    },
+    {
+      "id": "GitHub",
+      "count": 8
+    },
+    {
+      "id": "Japan",
+      "count": 8
+    },
+    {
+      "id": "IBM",
+      "count": 7
+    },
+    {
+      "id": "Resume",
+      "count": 7
+    },
+    {
+      "id": "JMP",
+      "count": 7
+    },
+    {
+      "id": "Clustering",
+      "count": 6
+    },
+    {
+      "id": "Tokyo",
+      "count": 6
+    },
+    {
+      "id": "Regression Analysis",
+      "count": 5
+    },
+    {
+      "id": "Spotify",
+      "count": 5
+    },
+    {
+      "id": "IBM WatsonX",
+      "count": 4
+    },
+    {
+      "id": "Market Entry",
+      "count": 4
+    },
+    {
+      "id": "Next.js",
+      "count": 4
+    },
+    {
+      "id": "Neural Networks",
+      "count": 4
+    },
+    {
+      "id": "Internship",
+      "count": 4
+    },
+    {
+      "id": "Product Requirements",
+      "count": 4
+    },
+    {
+      "id": "Vercel",
+      "count": 3
+    },
+    {
+      "id": "USC Flavors",
+      "count": 3
+    },
+    {
+      "id": "OpenAI Whisper",
+      "count": 2
+    },
+    {
+      "id": "Data Analysis",
+      "count": 2
+    },
+    {
+      "id": "Machine Learning",
+      "count": 1
+    },
+    {
+      "id": "Tailwind",
+      "count": 1
+    },
+    {
+      "id": "Starlink",
+      "count": 1
+    },
+    {
+      "id": "Obsidian",
+      "count": 1
+    },
+    {
+      "id": "TypeScript",
+      "count": 1
+    }
+  ],
+  "links": [
+    {
+      "source": "Artificial Intelligence",
+      "target": "ISA",
+      "strength": 27
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Travel",
+      "strength": 12
+    },
+    {
+      "source": "ISA",
+      "target": "Travel",
+      "strength": 6
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Product Management",
+      "strength": 11
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "USC",
+      "strength": 29
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Regression Analysis",
+      "strength": 5
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Data Analysis",
+      "strength": 2
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Regression Analysis",
+      "strength": 2
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Global Strategy",
+      "strength": 9
+    },
+    {
+      "source": "Global Strategy",
+      "target": "USC",
+      "strength": 5
+    },
+    {
+      "source": "Global Strategy",
+      "target": "ISA",
+      "strength": 6
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "USC",
+      "strength": 10
+    },
+    {
+      "source": "Travel",
+      "target": "USC",
+      "strength": 3
+    },
+    {
+      "source": "Machine Learning",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Machine Learning",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "Machine Learning",
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
+      "target": "Machine Learning",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Python",
+      "strength": 12
+    },
+    {
+      "source": "ISA",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
+      "target": "Python",
+      "strength": 3
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Clustering",
+      "strength": 6
+    },
+    {
+      "source": "Clustering",
+      "target": "ISA",
+      "strength": 3
+    },
+    {
+      "source": "IBM",
+      "target": "Product Management",
+      "strength": 3
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "IBM",
+      "strength": 7
+    },
+    {
+      "source": "IBM",
+      "target": "USC",
+      "strength": 6
+    },
+    {
+      "source": "IBM",
+      "target": "USC Marshall",
+      "strength": 4
+    },
+    {
+      "source": "IBM",
+      "target": "Interviews",
+      "strength": 4
+    },
+    {
+      "source": "IBM",
+      "target": "Product Requirements",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "USC",
+      "strength": 5
+    },
+    {
+      "source": "Product Management",
+      "target": "USC Marshall",
+      "strength": 4
+    },
+    {
+      "source": "Interviews",
+      "target": "Product Management",
+      "strength": 3
+    },
+    {
+      "source": "Product Management",
+      "target": "Product Requirements",
+      "strength": 4
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "USC Marshall",
+      "strength": 8
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Interviews",
+      "strength": 10
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Product Requirements",
+      "strength": 4
+    },
+    {
+      "source": "USC",
+      "target": "USC Marshall",
+      "strength": 8
+    },
+    {
+      "source": "Interviews",
+      "target": "USC",
+      "strength": 5
+    },
+    {
+      "source": "Product Requirements",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "Interviews",
+      "target": "USC Marshall",
+      "strength": 3
+    },
+    {
+      "source": "Product Requirements",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "Interviews",
+      "target": "Product Requirements",
+      "strength": 3
+    },
+    {
+      "source": "IBM",
+      "target": "React",
+      "strength": 3
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "React",
+      "strength": 8
+    },
+    {
+      "source": "React",
+      "target": "USC",
+      "strength": 5
+    },
+    {
+      "source": "ISA",
+      "target": "React",
+      "strength": 3
+    },
+    {
+      "source": "React",
+      "target": "Resume",
+      "strength": 3
+    },
+    {
+      "source": "Internship",
+      "target": "React",
+      "strength": 2
+    },
+    {
+      "source": "IBM",
+      "target": "ISA",
+      "strength": 3
+    },
+    {
+      "source": "IBM",
+      "target": "Resume",
+      "strength": 4
+    },
+    {
+      "source": "IBM",
+      "target": "Internship",
+      "strength": 2
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Resume",
+      "strength": 7
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Internship",
+      "strength": 4
+    },
+    {
+      "source": "Resume",
+      "target": "USC",
+      "strength": 3
+    },
+    {
+      "source": "Internship",
+      "target": "USC",
+      "strength": 3
+    },
+    {
+      "source": "ISA",
+      "target": "Resume",
+      "strength": 4
+    },
+    {
+      "source": "ISA",
+      "target": "Internship",
+      "strength": 3
+    },
+    {
+      "source": "Internship",
+      "target": "Resume",
+      "strength": 2
+    },
+    {
+      "source": "Classification",
+      "target": "Python",
+      "strength": 4
+    },
+    {
+      "source": "JMP",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Classification",
+      "strength": 9
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "JMP",
+      "strength": 7
+    },
+    {
+      "source": "Classification",
+      "target": "JMP",
+      "strength": 6
+    },
+    {
+      "source": "IBM",
+      "target": "IBM WatsonX",
+      "strength": 4
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "IBM WatsonX",
+      "strength": 4
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "USC",
+      "strength": 3
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "ISA",
+      "strength": 2
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Resume",
+      "strength": 3
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Interviews",
+      "strength": 3
+    },
+    {
+      "source": "ISA",
+      "target": "Interviews",
+      "strength": 5
+    },
+    {
+      "source": "Interviews",
+      "target": "Resume",
+      "strength": 4
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
+      "target": "JMP",
+      "strength": 2
+    },
+    {
+      "source": "Next.js",
+      "target": "Vercel",
+      "strength": 3
+    },
+    {
+      "source": "GitHub",
+      "target": "Next.js",
+      "strength": 3
+    },
+    {
+      "source": "Next.js",
+      "target": "Spotify",
+      "strength": 2
+    },
+    {
+      "source": "Next.js",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "Next.js",
+      "strength": 2
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Next.js",
+      "strength": 1
+    },
+    {
+      "source": "Next.js",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "Next.js",
+      "target": "Product Management",
+      "strength": 2
+    },
+    {
+      "source": "Next.js",
+      "target": "UX Design",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Next.js",
+      "strength": 2
+    },
+    {
+      "source": "Market Entry",
+      "target": "Next.js",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Next.js",
+      "strength": 1
+    },
+    {
+      "source": "Next.js",
+      "target": "Python",
+      "strength": 2
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Next.js",
+      "strength": 4
+    },
+    {
+      "source": "Next.js",
+      "target": "USC",
+      "strength": 2
+    },
+    {
+      "source": "Next.js",
+      "target": "USC Marshall",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "Vercel",
+      "strength": 3
+    },
+    {
+      "source": "Spotify",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "Obsidian",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "UX Design",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "Market Entry",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Vercel",
+      "strength": 3
+    },
+    {
+      "source": "USC",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "USC Marshall",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "Spotify",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "IBM",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "IBM WatsonX",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "Product Management",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "UX Design",
+      "strength": 3
+    },
+    {
+      "source": "GitHub",
+      "target": "Global Strategy",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "Market Entry",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "Neural Networks",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "Python",
+      "strength": 3
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "GitHub",
+      "strength": 8
+    },
+    {
+      "source": "GitHub",
+      "target": "USC",
+      "strength": 4
+    },
+    {
+      "source": "GitHub",
+      "target": "USC Marshall",
+      "strength": 2
+    },
+    {
+      "source": "Obsidian",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "Spotify",
+      "strength": 2
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "Spotify",
+      "strength": 2
+    },
+    {
+      "source": "Spotify",
+      "target": "UX Design",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Spotify",
+      "strength": 3
+    },
+    {
+      "source": "Market Entry",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "Spotify",
+      "strength": 2
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Spotify",
+      "strength": 5
+    },
+    {
+      "source": "Spotify",
+      "target": "USC",
+      "strength": 4
+    },
+    {
+      "source": "Spotify",
+      "target": "USC Marshall",
+      "strength": 3
+    },
+    {
+      "source": "IBM",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "Product Management",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "UX Design",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "IBM",
+      "strength": 2
+    },
+    {
+      "source": "IBM",
+      "target": "Market Entry",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "Python",
+      "strength": 2
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Product Management",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "IBM WatsonX",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Market Entry",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "USC Marshall",
+      "strength": 2
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "Product Management",
+      "strength": 1
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "OpenAI Whisper",
+      "strength": 2
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "UX Design",
+      "strength": 5
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Product Management",
+      "strength": 2
+    },
+    {
+      "source": "Market Entry",
+      "target": "Product Management",
+      "strength": 2
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Product Management",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "Python",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "UX Design",
+      "strength": 3
+    },
+    {
+      "source": "Market Entry",
+      "target": "UX Design",
+      "strength": 2
+    },
+    {
+      "source": "Neural Networks",
+      "target": "UX Design",
+      "strength": 2
+    },
+    {
+      "source": "Python",
+      "target": "UX Design",
+      "strength": 3
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "UX Design",
+      "strength": 13
+    },
+    {
+      "source": "USC",
+      "target": "UX Design",
+      "strength": 5
+    },
+    {
+      "source": "USC Marshall",
+      "target": "UX Design",
+      "strength": 3
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Market Entry",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Python",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "USC Marshall",
+      "strength": 4
+    },
+    {
+      "source": "Market Entry",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Market Entry",
+      "strength": 4
+    },
+    {
+      "source": "Market Entry",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Python",
+      "strength": 4
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Neural Networks",
+      "strength": 4
+    },
+    {
+      "source": "Neural Networks",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "USC",
+      "strength": 3
+    },
+    {
+      "source": "Python",
+      "target": "USC Marshall",
+      "strength": 2
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Japan",
+      "strength": 8
+    },
+    {
+      "source": "Product Requirements",
+      "target": "UX Design",
+      "strength": 3
+    },
+    {
+      "source": "ISA",
+      "target": "UX Design",
+      "strength": 4
+    },
+    {
+      "source": "Interviews",
+      "target": "UX Design",
+      "strength": 3
+    },
+    {
+      "source": "Internship",
+      "target": "UX Design",
+      "strength": 2
+    },
+    {
+      "source": "Internship",
+      "target": "Interviews",
+      "strength": 3
+    },
+    {
+      "source": "React",
+      "target": "Spotify",
+      "strength": 2
+    },
+    {
+      "source": "ISA",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "Japan",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Japan",
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
+      "target": "Global Strategy",
+      "strength": 1
+    },
+    {
+      "source": "Japan",
+      "target": "USC",
+      "strength": 2
+    },
+    {
+      "source": "Clustering",
+      "target": "USC",
+      "strength": 2
+    },
+    {
+      "source": "ISA",
+      "target": "USC Marshall",
+      "strength": 4
+    },
+    {
+      "source": "Japan",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "Japan",
+      "strength": 4
+    },
+    {
+      "source": "Clustering",
+      "target": "Japan",
+      "strength": 1
+    },
+    {
+      "source": "Internship",
+      "target": "Product Management",
+      "strength": 1
+    },
+    {
+      "source": "Internship",
+      "target": "Product Requirements",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "React",
+      "strength": 2
+    },
+    {
+      "source": "React",
+      "target": "Regression Analysis",
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
+      "target": "React",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "Regression Analysis",
+      "strength": 2
+    },
+    {
+      "source": "Regression Analysis",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
+      "target": "Regression Analysis",
+      "strength": 2
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "React",
+      "strength": 1
+    },
+    {
+      "source": "React",
+      "target": "USC Marshall",
+      "strength": 2
+    },
+    {
+      "source": "React",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Interviews",
+      "target": "React",
+      "strength": 2
+    },
+    {
+      "source": "IBM",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Internship",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "USC Flavors",
+      "strength": 3
+    },
+    {
+      "source": "USC",
+      "target": "USC Flavors",
+      "strength": 3
+    },
+    {
+      "source": "USC Flavors",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "Resume",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "Internship",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Resume",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Interviews",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Internship",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Next.js",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Next.js",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Next.js",
+      "target": "React",
+      "strength": 1
+    },
+    {
+      "source": "Tailwind",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "React",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "TypeScript",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Spotify",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "TypeScript",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "TypeScript",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "TypeScript",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "React",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Tailwind",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Spotify",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Tailwind",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Tailwind",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "Tailwind",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "React",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "React",
+      "strength": 3
+    },
+    {
+      "source": "Product Management",
+      "target": "React",
+      "strength": 2
+    },
+    {
+      "source": "React",
+      "target": "UX Design",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "React",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "JMP",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "Next.js",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Neural Networks",
+      "strength": 2
+    },
+    {
+      "source": "ISA",
+      "target": "Market Entry",
+      "strength": 3
+    },
+    {
+      "source": "Japan",
+      "target": "Market Entry",
+      "strength": 1
+    },
+    {
+      "source": "React",
+      "target": "Travel",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "React",
+      "strength": 1
+    },
+    {
+      "source": "Product Requirements",
+      "target": "React",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "Product Management",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "Resume",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Resume",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "Travel",
+      "target": "UX Design",
+      "strength": 2
+    },
+    {
+      "source": "Market Entry",
+      "target": "Resume",
+      "strength": 1
+    },
+    {
+      "source": "Interviews",
+      "target": "Market Entry",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "Product Requirements",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "Product Requirements",
+      "strength": 1
+    },
+    {
+      "source": "Resume",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Product Requirements",
+      "target": "Resume",
+      "strength": 1
+    },
+    {
+      "source": "Interviews",
+      "target": "Travel",
+      "strength": 2
+    },
+    {
+      "source": "Product Requirements",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Travel",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "Regression Analysis",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "JMP",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "Regression Analysis",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "ISA",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "JMP",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "ISA",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Regression Analysis",
+      "strength": 2
+    },
+    {
+      "source": "JMP",
+      "target": "Regression Analysis",
+      "strength": 2
+    },
+    {
+      "source": "Classification",
+      "target": "Clustering",
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
+      "target": "Data Analysis",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Data Analysis",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "JMP",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Tokyo",
+      "strength": 4
+    },
+    {
+      "source": "Japan",
+      "target": "Travel",
+      "strength": 2
+    },
+    {
+      "source": "Japan",
+      "target": "Tokyo",
+      "strength": 2
+    },
+    {
+      "source": "Tokyo",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "Regression Analysis",
+      "target": "Travel",
+      "strength": 2
+    },
+    {
+      "source": "Classification",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "JMP",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Japan",
+      "target": "React",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "Japan",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Tokyo",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "Japan",
+      "target": "UX Design",
+      "strength": 1
+    },
+    {
+      "source": "Tokyo",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Travel",
+      "target": "USC Flavors",
+      "strength": 1
+    }
+  ]
+}
