@@ -10,11 +10,12 @@ type Link = { source: string; target: string; strength: number };
 type GraphData = { nodes: Node[]; links: Link[] };
 
 export default function BrainGraph() {
-  const [graphData, setGraphData]     = useState<GraphData>({ nodes: [], links: [] });
-  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
+  const [graphData, setGraphData]       = useState<GraphData>({ nodes: [], links: [] });
+  const [hoveredNode, setHoveredNode]   = useState<string | null>(null);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
-  const [dimensions, setDimensions]   = useState({ width: 800, height: 600 });
+  const [dimensions, setDimensions]     = useState({ width: 800, height: 600 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const graphRef     = useRef<any>(null);
 
   useEffect(() => {
     fetch("/brain-graph.json").then((r) => r.json()).then(setGraphData);
@@ -45,8 +46,7 @@ export default function BrainGraph() {
     return ids;
   }, [graphData]);
 
-  // Active node is selected node (if any), otherwise hovered
-  const activeNode = selectedNode ?? hoveredNode;
+  const activeNode      = selectedNode ?? hoveredNode;
   const activeConnected = activeNode ? connectedIds(activeNode) : new Set<string>();
 
   const drawLabel = useCallback((
@@ -58,7 +58,6 @@ export default function BrainGraph() {
     zoom: number,
     primary: boolean,
   ) => {
-    // All dimensions in graph-space divided by zoom = constant screen size
     const screenSize = primary ? 15 : 13;
     const fontSize   = screenSize / zoom;
     const pad        = 5 / zoom;
@@ -71,7 +70,6 @@ export default function BrainGraph() {
     const textW = ctx.measureText(text).width;
     const boxH  = fontSize + 4 / zoom;
 
-    // Pill background
     ctx.fillStyle = primary ? "rgba(10,10,10,0.8)" : "rgba(10,10,10,0.65)";
     ctx.beginPath();
     ctx.roundRect(x - textW / 2 - pad, labelY - fontSize, textW + pad * 2, boxH + pad, 3 / zoom);
@@ -92,7 +90,6 @@ export default function BrainGraph() {
     const isConnected = activeNode ? activeConnected.has(id) : false;
     const isDimmed    = !!activeNode && !isActive && !isConnected;
 
-    // Glow for active node only
     if (isActive) {
       const glow = ctx.createRadialGradient(x, y, 0, x, y, r * 5);
       glow.addColorStop(0, "rgba(45,212,191,0.45)");
@@ -103,7 +100,6 @@ export default function BrainGraph() {
       ctx.fill();
     }
 
-    // Node circle
     ctx.beginPath();
     ctx.arc(x, y, r, 0, 2 * Math.PI);
     ctx.fillStyle = isDimmed
@@ -115,12 +111,10 @@ export default function BrainGraph() {
       : "rgba(45,212,191,0.35)";
     ctx.fill();
 
-    // Active node label (hover or selected) — always visible
     if (isActive) {
       drawLabel(ctx, id, x, y, r, zoom, true);
     }
 
-    // Connected labels only when a node is selected
     if (isConnected && selectedNode) {
       drawLabel(ctx, id, x, y, r, zoom, false);
     }
@@ -131,8 +125,8 @@ export default function BrainGraph() {
     const tgt = link.target as unknown as Node;
     if (!src?.x || !tgt?.x) return;
 
-    const srcId = src.id;
-    const tgtId = tgt.id;
+    const srcId    = src.id;
+    const tgtId    = tgt.id;
     const isActive = activeNode && (srcId === activeNode || tgtId === activeNode);
 
     ctx.beginPath();
@@ -147,10 +141,36 @@ export default function BrainGraph() {
     ctx.stroke();
   }, [activeNode]);
 
+  const zoomToNode = useCallback((node: Node) => {
+    const id      = node.id;
+    const connected = connectedIds(id);
+    const related   = [node, ...graphData.nodes.filter((nd) => connected.has(nd.id))];
+
+    const xs = related.map((nd) => nd.x ?? 0);
+    const ys = related.map((nd) => nd.y ?? 0);
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const minY = Math.min(...ys);
+    const maxY = Math.max(...ys);
+
+    const pad  = 80;
+    const spanX = Math.max(maxX - minX, 1);
+    const spanY = Math.max(maxY - minY, 1);
+    const k = Math.min(
+      (dimensions.width  - pad * 2) / spanX,
+      (dimensions.height - pad * 2) / spanY,
+      6,
+    );
+
+    graphRef.current?.centerAt((minX + maxX) / 2, (minY + maxY) / 2, 400);
+    graphRef.current?.zoom(Math.max(0.5, k), 400);
+  }, [connectedIds, graphData.nodes, dimensions]);
+
   return (
     <div ref={containerRef} className="w-full h-full">
       {graphData.nodes.length > 0 && (
         <ForceGraph2D
+          ref={graphRef}
           graphData={graphData}
           width={dimensions.width}
           height={dimensions.height}
@@ -162,9 +182,18 @@ export default function BrainGraph() {
           onNodeHover={(node) => setHoveredNode(node ? (node as Node).id : null)}
           onNodeClick={(node) => {
             const id = (node as Node).id;
-            setSelectedNode((prev) => (prev === id ? null : id));
+            if (selectedNode === id) {
+              setSelectedNode(null);
+              graphRef.current?.zoomToFit(400, 60);
+            } else {
+              setSelectedNode(id);
+              zoomToNode(node as Node);
+            }
           }}
-          onBackgroundClick={() => setSelectedNode(null)}
+          onBackgroundClick={() => {
+            setSelectedNode(null);
+            graphRef.current?.zoomToFit(400, 60);
+          }}
           nodeLabel={() => ""}
           cooldownTicks={120}
           linkDirectionalParticles={(link) => {
