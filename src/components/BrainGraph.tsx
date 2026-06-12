@@ -59,7 +59,7 @@ export default function BrainGraph() {
     primary: boolean,
   ) => {
     // All dimensions in graph-space divided by zoom = constant screen size
-    const screenSize = primary ? 12 : 10;
+    const screenSize = primary ? 15 : 13;
     const fontSize   = screenSize / zoom;
     const pad        = 5 / zoom;
     const gap        = 8 / zoom;
