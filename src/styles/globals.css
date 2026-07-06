@@ -17,6 +17,14 @@
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
 }
 
 body {
