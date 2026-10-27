@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { projects } from "@/data/projects";
+import ProjectList from "@/components/ProjectList";
 
 // Change this to whatever passphrase you want
 const PRIVATE_KEY = "cWhQ-M4tsT7-qHpGQ";
@@ -26,8 +28,9 @@ export default function Private() {
       <section className="space-y-10">
         <h1 className="text-2xl font-normal tracking-tight">welcome back, Mats.</h1>
         <p className="text-sm text-[var(--muted)]">
-          [ your private content here ]
+          everything here, published and WIP. mark a project published to mirror it publicly.
         </p>
+        <ProjectList projects={projects} />
       </section>
     );
   }

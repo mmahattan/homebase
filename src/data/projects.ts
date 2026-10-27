@@ -12,12 +12,15 @@ export type Project = {
   url?: string;
   files?: ProjectFile[];
   year: number;
+  // false = still a WIP prototype, only visible in the private /m view
+  published: boolean;
 };
 
 // Add your projects here
 export const projects: Project[] = [
   {
     title: "Multilingual Speech to Text Agent",
+    published: true,
     description:
       "A multilingual chatbot that transcribes spoken input via OpenAI's Whisper and routes responses through IBM's WatsonX Runtime. Uses embedded keywords as a semantic foundation for intent matching, enabling natural voice-driven conversation across multiple languages.",
     tags: ["Python", "OpenAI Whisper", "IBM WatsonX", "Speech-to-Text", "NLP"],
@@ -32,6 +35,7 @@ export const projects: Project[] = [
   },
   {
     title: "Going Global: Starlink to India",
+    published: true,
     description:
       "A consulting report for MOR-492, a Global Strategy course, advising Starlink on its market entry into India. Analyzes the regional competitive landscape, regulatory environment, and infrastructure opportunities to build a strategic recommendation for expansion into one of the world's fastest-growing connectivity markets.",
     tags: ["Consulting", "Global Strategy", "Market Entry", "Research"],
@@ -42,6 +46,7 @@ export const projects: Project[] = [
   },
   {
     title: "Netflix Mood Engine",
+    published: true,
     description: "A UX prototype for a mood-based content discovery feature on Netflix. Select how you're feeling and get a personalized watch session — with a simulated AI loading flow and curated picks. Built for MOR-499, a Product Management course.",
     tags: ["UX Design", "Prototype", "HTML/CSS", "JavaScript"],
     year: 2026,
@@ -54,6 +59,7 @@ export const projects: Project[] = [
   },
   {
     title: "Personal Website",
+    published: true,
     description: "This site — a minimal personal website built with Next.js and TypeScript.",
     tags: ["Next.js", "TypeScript", "Tailwind"],
     year: 2026,
