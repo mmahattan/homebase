@@ -45,20 +45,12 @@ export default function Private() {
       >
         <div className="flex items-start justify-between gap-6">
           <div className="space-y-2">
-            <h1 className="text-3xl font-normal tracking-tight">Hey, it&apos;s Kei.</h1>
+            <h1 className="text-3xl font-normal tracking-tight">Hey Staff, it&apos;s Kei.</h1>
             <p className="text-[var(--muted)]">You&apos;re in.</p>
           </div>
-          <div className="flex items-center gap-2 shrink-0 pt-1">
-            <span className="text-xs text-[var(--muted)] tracking-widest uppercase border border-[var(--border)] rounded-full px-3 py-1.5 whitespace-nowrap">
-              private working space
-            </span>
-            <button
-              onClick={() => router.push("/")}
-              className="text-xs text-[var(--muted)] hover:text-[var(--foreground)] border border-[var(--border)] hover:border-[var(--muted)] rounded-full px-3 py-1.5 transition-colors whitespace-nowrap"
-            >
-              eject ↩
-            </button>
-          </div>
+          <span className="text-xs text-[var(--muted)] tracking-widest uppercase border border-[var(--border)] rounded-full px-3 py-1.5 whitespace-nowrap shrink-0">
+            private working space
+          </span>
         </div>
 
         <div className="space-y-6 border-t border-[var(--border)] pt-10">
@@ -67,6 +59,15 @@ export default function Private() {
             everything here, published and WIP. mark a project published to mirror it publicly.
           </p>
           <ProjectList projects={projects} />
+        </div>
+
+        <div className="flex justify-center pt-4">
+          <button
+            onClick={() => router.push("/")}
+            className="text-xs text-[var(--muted)] hover:text-[var(--foreground)] border border-[var(--border)] hover:border-[var(--muted)] rounded-full px-4 py-2 transition-colors"
+          >
+            eject ↩
+          </button>
         </div>
       </div>
     );
