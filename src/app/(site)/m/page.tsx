@@ -38,6 +38,11 @@ export default function Private() {
       <form onSubmit={handleSubmit} className="flex items-center gap-3 border-b border-[var(--border)] pb-2 w-full max-w-xs">
         <input
           type="password"
+          name="kei-house-passphrase"
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck={false}
           value={input}
           onChange={(e) => {
             setInput(e.target.value);
