@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 // Change this to whatever passphrase you want
-const PRIVATE_KEY = "kei2026";
+const PRIVATE_KEY = "cWhQ-M4tsT7-qHpGQ";
 
 export default function Private() {
   const [input, setInput] = useState("");
