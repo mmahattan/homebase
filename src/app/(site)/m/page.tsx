@@ -73,13 +73,11 @@ export default function Private() {
 
   if (stage === "home") {
     return (
-      <div
-        className={`space-y-16 transition-all duration-700 ease-out ${
-          homeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}
-      >
+      <>
+        {/* Rendered outside the animated wrapper below so position: fixed is
+            relative to the viewport, not the wrapper's transform. */}
         <div
-          className="hidden xl:block fixed top-8 z-50"
+          className="hidden xl:block fixed top-9 z-50"
           style={{ left: "calc(50% + 21rem + 1.5rem)" }}
         >
           <span className="inline-block bg-red-600 text-white text-xs font-bold tracking-widest uppercase px-4 py-2 rounded-full shadow-lg whitespace-nowrap">
@@ -87,6 +85,20 @@ export default function Private() {
           </span>
         </div>
 
+        <div className="fixed bottom-6 inset-x-0 flex justify-center z-50">
+          <button
+            onClick={() => router.push("/")}
+            className="text-xs text-[var(--muted)] hover:text-[var(--foreground)] bg-[var(--background)] border border-[var(--border)] hover:border-[var(--muted)] rounded-full px-4 py-2 shadow-lg transition-colors"
+          >
+            eject ↩
+          </button>
+        </div>
+
+        <div
+          className={`space-y-16 pb-20 transition-all duration-700 ease-out ${
+            homeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+        >
         <div className="flex items-start justify-between gap-6">
           {view === "concierge" ? (
             <div className="space-y-2">
@@ -161,16 +173,8 @@ export default function Private() {
             </div>
           )}
         </div>
-
-        <div className="flex justify-center pt-4">
-          <button
-            onClick={() => router.push("/")}
-            className="text-xs text-[var(--muted)] hover:text-[var(--foreground)] border border-[var(--border)] hover:border-[var(--muted)] rounded-full px-4 py-2 transition-colors"
-          >
-            eject ↩
-          </button>
         </div>
-      </div>
+      </>
     );
   }
 
