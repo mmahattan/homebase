@@ -12,7 +12,7 @@ export default function Private() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (input === PRIVATE_KEY) {
+    if (input.trim() === PRIVATE_KEY) {
       setAuth(true);
     } else {
       setWrong(true);
