@@ -1,21 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { projects } from "@/data/projects";
 import ProjectList from "@/components/ProjectList";
 
 // Change this to whatever passphrase you want
 const PRIVATE_KEY = "cWhQ-M4tsT7-qHpGQ";
 
+type Stage = "gate" | "leaving" | "home";
+
 export default function Private() {
+  const router = useRouter();
   const [input, setInput] = useState("");
-  const [auth, setAuth] = useState(false);
+  const [stage, setStage] = useState<Stage>("gate");
+  const [homeVisible, setHomeVisible] = useState(false);
   const [wrong, setWrong] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (input.trim() === PRIVATE_KEY) {
-      setAuth(true);
+      setStage("leaving");
+      setTimeout(() => setStage("home"), 450);
     } else {
       setWrong(true);
       setTimeout(() => setWrong(false), 2000);
@@ -23,20 +29,55 @@ export default function Private() {
     }
   }
 
-  if (auth) {
+  useEffect(() => {
+    if (stage === "home") {
+      const id = requestAnimationFrame(() => setHomeVisible(true));
+      return () => cancelAnimationFrame(id);
+    }
+  }, [stage]);
+
+  if (stage === "home") {
     return (
-      <section className="space-y-10">
-        <h1 className="text-2xl font-normal tracking-tight">welcome back, Mats.</h1>
-        <p className="text-sm text-[var(--muted)]">
-          everything here, published and WIP. mark a project published to mirror it publicly.
-        </p>
-        <ProjectList projects={projects} />
-      </section>
+      <div
+        className={`space-y-16 transition-all duration-700 ease-out ${
+          homeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`}
+      >
+        <div className="flex items-start justify-between gap-6">
+          <div className="space-y-2">
+            <h1 className="text-3xl font-normal tracking-tight">Hey, it&apos;s Kei.</h1>
+            <p className="text-[var(--muted)]">You&apos;re in.</p>
+          </div>
+          <div className="flex items-center gap-2 shrink-0 pt-1">
+            <span className="text-xs text-[var(--muted)] tracking-widest uppercase border border-[var(--border)] rounded-full px-3 py-1.5 whitespace-nowrap">
+              private working space
+            </span>
+            <button
+              onClick={() => router.push("/")}
+              className="text-xs text-[var(--muted)] hover:text-[var(--foreground)] border border-[var(--border)] hover:border-[var(--muted)] rounded-full px-3 py-1.5 transition-colors whitespace-nowrap"
+            >
+              eject ↩
+            </button>
+          </div>
+        </div>
+
+        <div className="space-y-6 border-t border-[var(--border)] pt-10">
+          <h2 className="text-xs tracking-widest uppercase text-[var(--muted)]">prototypes</h2>
+          <p className="text-sm text-[var(--muted)] leading-relaxed">
+            everything here, published and WIP. mark a project published to mirror it publicly.
+          </p>
+          <ProjectList projects={projects} />
+        </div>
+      </div>
     );
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[55vh] gap-5">
+    <div
+      className={`flex flex-col items-center justify-center min-h-[55vh] gap-5 transition-all duration-[450ms] ease-in ${
+        stage === "leaving" ? "opacity-0 -translate-y-4" : "opacity-100 translate-y-0"
+      }`}
+    >
       <p className="text-xs text-[var(--muted)] tracking-widest uppercase">private</p>
       <form onSubmit={handleSubmit} className="flex items-center gap-3 border-b border-[var(--border)] pb-2 w-full max-w-xs">
         <input
