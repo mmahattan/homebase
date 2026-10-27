@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
+import { usePrivateSpace } from "./PrivateSpace";
 
 const links = [
   { href: "/", label: "home" },
@@ -14,10 +15,21 @@ const links = [
 
 export default function Nav() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { isPrivate, goTo } = usePrivateSpace();
+
+  // While in the private working space, every nav link stays inside it —
+  // eject is the only way out.
+  function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    if (!isPrivate) return;
+    e.preventDefault();
+    if (pathname !== "/m") router.push("/m");
+    goTo("concierge");
+  }
 
   return (
     <nav className="flex items-center justify-between py-8 mb-16">
-      <Link href="/" className="text-sm tracking-widest uppercase font-medium">
+      <Link href="/" onClick={handleNavClick} className="text-sm tracking-widest uppercase font-medium">
         M.
       </Link>
       <div className="flex items-center gap-8">
@@ -26,6 +38,7 @@ export default function Nav() {
             <li key={href}>
               <Link
                 href={href}
+                onClick={handleNavClick}
                 className={`text-sm tracking-wide transition-colors ${
                   pathname === href
                     ? "text-[var(--foreground)]"

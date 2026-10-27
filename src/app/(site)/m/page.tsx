@@ -4,16 +4,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { projects } from "@/data/projects";
 import ProjectList from "@/components/ProjectList";
+import { usePrivateSpace, PrivateView } from "@/components/PrivateSpace";
 
 // Change this to whatever passphrase you want
 const PRIVATE_KEY = "cWhQ-M4tsT7-qHpGQ";
 
-type Stage = "gate" | "leaving" | "home";
-type View = "concierge" | "prototypes";
+const chips: { label: string; view: PrivateView }[] = [{ label: "prototypes", view: "prototypes" }];
 
-const chips: { label: string; view: View }[] = [{ label: "prototypes", view: "prototypes" }];
-
-function resolve(input: string): View | null {
+function resolve(input: string): PrivateView | null {
   const q = input.toLowerCase().trim();
   if (!q) return null;
   if (["prototype", "project", "wip", "work", "build"].some((k) => q.includes(k))) {
@@ -24,11 +22,11 @@ function resolve(input: string): View | null {
 
 export default function Private() {
   const router = useRouter();
+  const { isPrivate, view, enter, exit, goTo } = usePrivateSpace();
   const [input, setInput] = useState("");
-  const [stage, setStage] = useState<Stage>("gate");
+  const [leaving, setLeaving] = useState(false);
   const [homeVisible, setHomeVisible] = useState(false);
   const [wrong, setWrong] = useState(false);
-  const [view, setView] = useState<View>("concierge");
   const [viewVisible, setViewVisible] = useState(true);
   const [queryValue, setQueryValue] = useState("");
   const [miss, setMiss] = useState(false);
@@ -36,8 +34,8 @@ export default function Private() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (input.trim() === PRIVATE_KEY) {
-      setStage("leaving");
-      setTimeout(() => setStage("home"), 450);
+      setLeaving(true);
+      setTimeout(() => enter(), 450);
     } else {
       setWrong(true);
       setTimeout(() => setWrong(false), 2000);
@@ -46,16 +44,18 @@ export default function Private() {
   }
 
   useEffect(() => {
-    if (stage === "home") {
+    if (isPrivate) {
       const id = requestAnimationFrame(() => setHomeVisible(true));
       return () => cancelAnimationFrame(id);
     }
-  }, [stage]);
+    setHomeVisible(false);
+    setLeaving(false);
+  }, [isPrivate]);
 
-  function goTo(next: View) {
+  function goToView(next: PrivateView) {
     setViewVisible(false);
     setTimeout(() => {
-      setView(next);
+      goTo(next);
       setViewVisible(true);
     }, 250);
   }
@@ -64,14 +64,19 @@ export default function Private() {
     e.preventDefault();
     const next = resolve(queryValue);
     if (next) {
-      goTo(next);
+      goToView(next);
     } else {
       setMiss(true);
       setTimeout(() => setMiss(false), 2500);
     }
   }
 
-  if (stage === "home") {
+  function eject() {
+    exit();
+    router.push("/");
+  }
+
+  if (isPrivate) {
     return (
       <>
         {/* Rendered outside the animated wrapper below so position: fixed is
@@ -87,7 +92,7 @@ export default function Private() {
 
         <div className="fixed bottom-6 inset-x-0 flex justify-center z-50">
           <button
-            onClick={() => router.push("/")}
+            onClick={eject}
             className="text-xs text-[var(--muted)] hover:text-[var(--foreground)] bg-[var(--background)] border border-[var(--border)] hover:border-[var(--muted)] rounded-full px-4 py-2 shadow-lg transition-colors"
           >
             eject ↩
@@ -99,80 +104,80 @@ export default function Private() {
             homeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-        <div className="flex items-start justify-between gap-6">
-          {view === "concierge" ? (
-            <div className="space-y-2">
-              <h1 className="text-3xl font-normal tracking-tight">Hey Staff, it&apos;s Kei.</h1>
-              <p className="text-[var(--muted)]">You&apos;re in.</p>
-            </div>
-          ) : (
-            <button
-              onClick={() => goTo("concierge")}
-              className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
-            >
-              ← back
-            </button>
-          )}
-          <span className="xl:hidden text-xs text-[var(--muted)] tracking-widest uppercase border border-red-600 text-red-600 rounded-full px-3 py-1.5 whitespace-nowrap shrink-0 font-bold">
-            private working space
-          </span>
-        </div>
-
-        <div
-          className={`transition-all duration-300 ease-out ${
-            viewVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-          }`}
-        >
-          {view === "concierge" ? (
-            <div className="flex flex-col items-center text-center gap-10 py-10">
-              <div className="flex flex-wrap justify-center gap-3">
-                {chips.map(({ label, view: v }) => (
-                  <button
-                    key={label}
-                    onClick={() => goTo(v)}
-                    className="text-sm text-[var(--muted)] border border-[var(--border)] rounded-full px-4 py-2 hover:text-[var(--foreground)] hover:border-[var(--muted)] transition-colors"
-                  >
-                    {label}
-                  </button>
-                ))}
+          <div className="flex items-start justify-between gap-6">
+            {view === "concierge" ? (
+              <div className="space-y-2">
+                <h1 className="text-3xl font-normal tracking-tight">Hey Staff, it&apos;s Kei.</h1>
+                <p className="text-[var(--muted)]">You&apos;re in.</p>
               </div>
+            ) : (
+              <button
+                onClick={() => goToView("concierge")}
+                className="text-sm text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+              >
+                ← back
+              </button>
+            )}
+            <span className="xl:hidden text-xs text-[var(--muted)] tracking-widest uppercase border border-red-600 text-red-600 rounded-full px-3 py-1.5 whitespace-nowrap shrink-0 font-bold">
+              private working space
+            </span>
+          </div>
 
-              <form onSubmit={handleQuerySubmit} className="w-full max-w-xs">
-                <div className="flex items-center gap-3 border-b border-[var(--border)] pb-2">
-                  <input
-                    value={queryValue}
-                    onChange={(e) => {
-                      setQueryValue(e.target.value);
-                      setMiss(false);
-                    }}
-                    placeholder="or type anything..."
-                    className="flex-1 bg-transparent text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none"
-                  />
-                  <button
-                    type="submit"
-                    className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors shrink-0"
-                    aria-label="Go"
-                  >
-                    →
-                  </button>
+          <div
+            className={`transition-all duration-300 ease-out ${
+              viewVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+          >
+            {view === "concierge" ? (
+              <div className="flex flex-col items-center text-center gap-10 py-10">
+                <div className="flex flex-wrap justify-center gap-3">
+                  {chips.map(({ label, view: v }) => (
+                    <button
+                      key={label}
+                      onClick={() => goToView(v)}
+                      className="text-sm text-[var(--muted)] border border-[var(--border)] rounded-full px-4 py-2 hover:text-[var(--foreground)] hover:border-[var(--muted)] transition-colors"
+                    >
+                      {label}
+                    </button>
+                  ))}
                 </div>
-                {miss && (
-                  <p className="text-xs text-[var(--muted)] mt-3">
-                    not sure where to send you — try the option above
-                  </p>
-                )}
-              </form>
-            </div>
-          ) : (
-            <div className="space-y-6 border-t border-[var(--border)] pt-10">
-              <h2 className="text-xs tracking-widest uppercase text-[var(--muted)]">prototypes</h2>
-              <p className="text-sm text-[var(--muted)] leading-relaxed">
-                everything here, published and WIP. mark a project published to mirror it publicly.
-              </p>
-              <ProjectList projects={projects} />
-            </div>
-          )}
-        </div>
+
+                <form onSubmit={handleQuerySubmit} className="w-full max-w-xs">
+                  <div className="flex items-center gap-3 border-b border-[var(--border)] pb-2">
+                    <input
+                      value={queryValue}
+                      onChange={(e) => {
+                        setQueryValue(e.target.value);
+                        setMiss(false);
+                      }}
+                      placeholder="or type anything..."
+                      className="flex-1 bg-transparent text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none"
+                    />
+                    <button
+                      type="submit"
+                      className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors shrink-0"
+                      aria-label="Go"
+                    >
+                      →
+                    </button>
+                  </div>
+                  {miss && (
+                    <p className="text-xs text-[var(--muted)] mt-3">
+                      not sure where to send you — try the option above
+                    </p>
+                  )}
+                </form>
+              </div>
+            ) : (
+              <div className="space-y-6 border-t border-[var(--border)] pt-10">
+                <h2 className="text-xs tracking-widest uppercase text-[var(--muted)]">prototypes</h2>
+                <p className="text-sm text-[var(--muted)] leading-relaxed">
+                  everything here, published and WIP. mark a project published to mirror it publicly.
+                </p>
+                <ProjectList projects={projects} />
+              </div>
+            )}
+          </div>
         </div>
       </>
     );
@@ -181,7 +186,7 @@ export default function Private() {
   return (
     <div
       className={`flex flex-col items-center justify-center min-h-[55vh] gap-5 transition-all duration-[450ms] ease-in ${
-        stage === "leaving" ? "opacity-0 -translate-y-4" : "opacity-100 translate-y-0"
+        leaving ? "opacity-0 -translate-y-4" : "opacity-100 translate-y-0"
       }`}
     >
       <p className="text-xs text-[var(--muted)] tracking-widest uppercase">private</p>

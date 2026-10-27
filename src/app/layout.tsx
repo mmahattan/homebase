@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ThemeProvider from "@/components/ThemeProvider";
+import { PrivateSpaceProvider } from "@/components/PrivateSpace";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -22,7 +23,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <PrivateSpaceProvider>{children}</PrivateSpaceProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
