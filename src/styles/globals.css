@@ -27,6 +27,42 @@ button {
   font-family: inherit;
 }
 
+.pixel-font {
+  font-family: var(--font-pixel), monospace;
+}
+
+/* 8-bit motion for the private drive: stepped, never smooth */
+@keyframes pixel-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(0.85); opacity: 0; }
+}
+@keyframes pixel-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.pixel-pop {
+  animation: pixel-pop 360ms steps(4) forwards;
+}
+.pixel-in {
+  animation: pixel-in 300ms steps(3) both;
+}
+.pixel-folder svg {
+  transition: transform 160ms steps(2);
+}
+.pixel-folder:hover svg {
+  transform: translateY(-4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pixel-pop,
+  .pixel-in {
+    animation: none;
+  }
+  .pixel-folder svg {
+    transition: none;
+  }
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);

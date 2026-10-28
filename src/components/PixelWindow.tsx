@@ -1,0 +1,27 @@
+import { ReactNode } from "react";
+
+export default function PixelWindow({
+  title,
+  onClose,
+  children,
+}: {
+  title: string;
+  onClose: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <div className="pixel-in border-2 border-[var(--foreground)] shadow-[6px_6px_0_var(--foreground)] bg-[var(--background)]">
+      <div className="flex items-center justify-between gap-4 border-b-2 border-[var(--foreground)] px-3 py-2">
+        <span className="pixel-font text-[9px] leading-relaxed">{title}</span>
+        <button
+          onClick={onClose}
+          aria-label="Close folder"
+          className="pixel-font text-[9px] border-2 border-[var(--foreground)] px-1.5 py-0.5 hover:bg-[var(--foreground)] hover:text-[var(--background)]"
+        >
+          x
+        </button>
+      </div>
+      <div className="p-5 sm:p-6">{children}</div>
+    </div>
+  );
+}
