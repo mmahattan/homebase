@@ -4,13 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const chips = [
-  { label: "AI front desk for my business", href: "/start" },
+  { label: "AI front desk for my business", href: "/mats" },
   { label: "just browsing", href: "/projects" },
   { label: "it's me, Mats", href: "/m" },
 ];
 
 const routeMap: [string[], string][] = [
-  [["business", "ai", "line", "instagram", "bot", "front desk", "assistant", "sme", "thai", "startup", "service", "chat", "help"], "/start"],
+  [["business", "ai", "line", "instagram", "bot", "front desk", "assistant", "sme", "thai", "startup", "service", "chat", "help"], "/mats"],
   [["project", "portfolio", "work", "build", "code", "browse", "look"], "/projects"],
   [["about", "who", "chronicle", "journey", "story", "background", "resume", "cv"], "/about"],
   [["music", "passion", "lately", "vibe", "spotify", "playlist", "listen", "song"], "/passions"],
