@@ -4,16 +4,23 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { projects } from "@/data/projects";
 import ProjectList from "@/components/ProjectList";
+import BusinessWorld from "@/components/BusinessWorld";
 import { usePrivateSpace, PrivateView } from "@/components/PrivateSpace";
 
 // Change this to whatever passphrase you want
 const PRIVATE_KEY = "cWhQ-M4tsT7-qHpGQ";
 
-const chips: { label: string; view: PrivateView }[] = [{ label: "prototypes", view: "prototypes" }];
+const chips: { label: string; view: PrivateView }[] = [
+  { label: "prototypes", view: "prototypes" },
+  { label: "the business world", view: "business" },
+];
 
 function resolve(input: string): PrivateView | null {
   const q = input.toLowerCase().trim();
   if (!q) return null;
+  if (["business", "mats", "service", "client", "deal", "pitch"].some((k) => q.includes(k))) {
+    return "business";
+  }
   if (["prototype", "project", "wip", "work", "build"].some((k) => q.includes(k))) {
     return "prototypes";
   }
@@ -167,6 +174,11 @@ export default function Private() {
                     </p>
                   )}
                 </form>
+              </div>
+            ) : view === "business" ? (
+              <div className="space-y-10 border-t border-[var(--border)] pt-10">
+                <h2 className="text-xs tracking-widest uppercase text-[var(--muted)]">the business world</h2>
+                <BusinessWorld />
               </div>
             ) : (
               <div className="space-y-6 border-t border-[var(--border)] pt-10">
