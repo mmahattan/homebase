@@ -78,13 +78,38 @@ function walk(path: string[]): Folder[] {
 
 type Destination = { view: PrivateView; path: string[] };
 
+const STOP_WORDS = new Set(["the", "and", "for", "with", "from", "into", "open", "show"]);
+
+// Every folder at any depth, with the path that reaches it.
+function allFolders(level: Folder[] = folders, parent: string[] = []): { folder: Folder; path: string[] }[] {
+  return level.flatMap((folder) => {
+    const path = [...parent, folder.id];
+    return [{ folder, path }, ...allFolders(folder.children ?? [], path)];
+  });
+}
+
+// Matches typed words against folder names, so new projects and ideas are
+// searchable as soon as they're added. "multi" finds "multilingual ...".
+function matchByName(q: string): string[] | null {
+  const words = q.split(/[^a-z0-9]+/).filter((w) => w.length >= 3 && !STOP_WORDS.has(w));
+  let best: { path: string[]; score: number } | null = null;
+  for (const { folder, path } of allFolders()) {
+    const labelWords = folder.label.split(/[^a-z0-9]+/);
+    const score = words.filter((w) => labelWords.some((lw) => lw.startsWith(w))).length;
+    if (score > 0 && (!best || score > best.score)) best = { path, score };
+  }
+  return best?.path ?? null;
+}
+
 function resolve(input: string): Destination | null {
   const q = input.toLowerCase().trim();
   if (!q) return null;
+  const byName = matchByName(q);
+  if (byName) return { view: "station", path: byName };
   if (["business", "mats", "service", "client", "deal", "pitch"].some((k) => q.includes(k))) {
     return { view: "station", path: [BUSINESS_WORLD] };
   }
-  if (["project", "portfolio", "starlink", "netflix", "bot", "website"].some((k) => q.includes(k))) {
+  if (["portfolio"].some((k) => q.includes(k))) {
     return { view: "station", path: [PROJECTS] };
   }
   if (["imagination", "station", "prototype", "wip", "work", "build", "folder"].some((k) => q.includes(k))) {
