@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { projects } from "@/data/projects";
 import ProjectList from "@/components/ProjectList";
 import BusinessWorld from "@/components/BusinessWorld";
-import PixelFolder, { FolderColor } from "@/components/PixelFolder";
+import PixelFolder, { FolderColor, FolderTag } from "@/components/PixelFolder";
 import PixelWindow from "@/components/PixelWindow";
 import { usePrivateSpace, PrivateView } from "@/components/PrivateSpace";
 
@@ -21,11 +21,12 @@ const palette: FolderColor[] = [
 
 // A folder either opens into more folders (children) or into a window (content).
 // published = already live on the public side; drives the [PUBLISHED] / [WIP] tag.
+// Only individual ideas/projects set it — worlds and groups stay untagged.
 type Folder = {
   id: string;
   label: string;
   color: FolderColor;
-  published: boolean;
+  published?: boolean;
   content?: ReactNode;
   children?: Folder[];
 };
@@ -47,19 +48,20 @@ const folders: Folder[] = [
     id: BUSINESS_WORLD,
     label: "the business world",
     color: { fill: "#f7d154", shade: "#d9a92a" },
-    // Live publicly at /mats.
-    published: true,
     content: <BusinessWorld />,
   },
   {
     id: PROJECTS,
     label: "projects",
     color: { fill: "#8ec5f0", shade: "#5a9fd6" },
-    // Counts as published only once every project inside it is.
-    published: projectFolders.every((f) => f.published),
     children: projectFolders,
   },
 ];
+
+function tagFor(folder: Folder): FolderTag | undefined {
+  if (folder.published === undefined) return undefined;
+  return folder.published ? "PUBLISHED" : "WIP";
+}
 
 // Walks a path of folder ids from the imagination station down.
 function walk(path: string[]): Folder[] {
@@ -268,7 +270,7 @@ export default function Private() {
             ) : current && !visible ? (
               <PixelWindow
                 title={current.label}
-                tag={current.published ? "PUBLISHED" : "WIP"}
+                tag={tagFor(current)}
                 onClose={() => navigate("station", path.slice(0, -1))}
               >
                 {current.content}
@@ -283,7 +285,7 @@ export default function Private() {
                     <PixelFolder
                       key={f.id}
                       label={f.label}
-                      tag={f.published ? "PUBLISHED" : "WIP"}
+                      tag={tagFor(f)}
                       color={f.color}
                       delay={i * 70}
                       className="pixel-in"
