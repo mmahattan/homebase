@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
-export type PrivateView = "concierge" | "prototypes";
+export type PrivateView = "concierge" | "station";
 
 type PrivateSpaceState = {
   isPrivate: boolean;

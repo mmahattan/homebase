@@ -19,8 +19,19 @@ const shade: [number, number, number, number][] = [
 
 export type FolderColor = { fill: string; shade: string };
 
+export type FolderTag = "PUBLISHED" | "WIP";
+
+export function TagLabel({ tag }: { tag: FolderTag }) {
+  return (
+    <span className={`pixel-font text-[7px] ${tag === "WIP" ? "text-red-600" : "text-[var(--muted)]"}`}>
+      [{tag}]
+    </span>
+  );
+}
+
 export default function PixelFolder({
   label,
+  tag,
   color,
   size = "sm",
   delay = 0,
@@ -28,6 +39,7 @@ export default function PixelFolder({
   onClick,
 }: {
   label: string;
+  tag?: FolderTag;
   color: FolderColor;
   size?: "sm" | "lg";
   delay?: number;
@@ -65,6 +77,7 @@ export default function PixelFolder({
       >
         {label}
       </span>
+      {tag && <TagLabel tag={tag} />}
     </button>
   );
 }

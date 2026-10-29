@@ -19,36 +19,74 @@ const palette: FolderColor[] = [
   { fill: "#c3a6f0", shade: "#9a7bd4" },
 ];
 
-type Folder = { id: string; label: string; color: FolderColor; content: ReactNode };
+// A folder either opens into more folders (children) or into a window (content).
+// published = already live on the public side; drives the [PUBLISHED] / [WIP] tag.
+type Folder = {
+  id: string;
+  label: string;
+  color: FolderColor;
+  published: boolean;
+  content?: ReactNode;
+  children?: Folder[];
+};
 
 const BUSINESS_WORLD = "the-business-world";
+const PROJECTS = "projects";
 
-// Everything inside the prototypes folder. The Business World mock sits first.
+const projectFolders: Folder[] = projects.map((project, i) => ({
+  id: project.title,
+  label: project.title.toLowerCase(),
+  color: palette[i % palette.length],
+  published: project.published,
+  content: <ProjectList projects={[project]} />,
+}));
+
+// Everything inside the imagination station.
 const folders: Folder[] = [
   {
     id: BUSINESS_WORLD,
     label: "the business world",
     color: { fill: "#f7d154", shade: "#d9a92a" },
+    // Live publicly at /mats.
+    published: true,
     content: <BusinessWorld />,
   },
-  ...projects.map((project, i) => ({
-    id: project.title,
-    label: project.title.toLowerCase(),
-    color: palette[i % palette.length],
-    content: <ProjectList projects={[project]} />,
-  })),
+  {
+    id: PROJECTS,
+    label: "projects",
+    color: { fill: "#8ec5f0", shade: "#5a9fd6" },
+    // Counts as published only once every project inside it is.
+    published: projectFolders.every((f) => f.published),
+    children: projectFolders,
+  },
 ];
 
-type Destination = { view: PrivateView; folder: string | null };
+// Walks a path of folder ids from the imagination station down.
+function walk(path: string[]): Folder[] {
+  const trail: Folder[] = [];
+  let level = folders;
+  for (const id of path) {
+    const next = level.find((f) => f.id === id);
+    if (!next) break;
+    trail.push(next);
+    level = next.children ?? [];
+  }
+  return trail;
+}
+
+type Destination = { view: PrivateView; path: string[] };
 
 function resolve(input: string): Destination | null {
   const q = input.toLowerCase().trim();
   if (!q) return null;
   if (["business", "mats", "service", "client", "deal", "pitch"].some((k) => q.includes(k))) {
-    return { view: "prototypes", folder: BUSINESS_WORLD };
+    return { view: "station", path: [BUSINESS_WORLD] };
   }
-  if (["prototype", "project", "wip", "work", "build", "folder"].some((k) => q.includes(k))) {
-    return { view: "prototypes", folder: null };
+  if (["project", "portfolio", "starlink", "netflix", "bot", "website"].some((k) => q.includes(k))) {
+    return { view: "station", path: [PROJECTS] };
+  }
+  if (["imagination", "station", "prototype", "wip", "work", "build", "folder"].some((k) => q.includes(k))) {
+    return { view: "station", path: [] };
   }
   return null;
 }
@@ -63,7 +101,7 @@ export default function Private() {
   const [viewVisible, setViewVisible] = useState(true);
   const [queryValue, setQueryValue] = useState("");
   const [miss, setMiss] = useState(false);
-  const [folder, setFolder] = useState<string | null>(null);
+  const [path, setPath] = useState<string[]>([]);
   const [opening, setOpening] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
@@ -85,29 +123,29 @@ export default function Private() {
     }
     setHomeVisible(false);
     setLeaving(false);
-    setFolder(null);
+    setPath([]);
   }, [isPrivate]);
 
-  function navigate(next: PrivateView, nextFolder: string | null = null) {
+  function navigate(next: PrivateView, nextPath: string[] = []) {
     setViewVisible(false);
     setTimeout(() => {
       goTo(next);
-      setFolder(nextFolder);
+      setPath(nextPath);
       setOpening(false);
       setViewVisible(true);
     }, 250);
   }
 
-  function openPrototypes() {
+  function openStation() {
     setOpening(true);
-    setTimeout(() => navigate("prototypes"), 360);
+    setTimeout(() => navigate("station"), 360);
   }
 
   function handleQuerySubmit(e: React.FormEvent) {
     e.preventDefault();
     const next = resolve(queryValue);
     if (next) {
-      navigate(next.view, next.folder);
+      navigate(next.view, next.path);
     } else {
       setMiss(true);
       setTimeout(() => setMiss(false), 2500);
@@ -120,11 +158,16 @@ export default function Private() {
   }
 
   if (isPrivate) {
-    const openFolder = folders.find((f) => f.id === folder);
+    const trail = walk(path);
+    const current = trail[trail.length - 1];
+    const visible = current ? current.children : folders;
     const crumbs: { label: string; go?: () => void }[] = [
       { label: "house of kei", go: () => navigate("concierge") },
-      { label: "prototypes", go: openFolder ? () => navigate("prototypes") : undefined },
-      ...(openFolder ? [{ label: openFolder.label }] : []),
+      { label: "imagination station", go: trail.length ? () => navigate("station") : undefined },
+      ...trail.map((f, i) => ({
+        label: f.label,
+        go: i < trail.length - 1 ? () => navigate("station", path.slice(0, i + 1)) : undefined,
+      })),
     ];
 
     return (
@@ -189,11 +232,11 @@ export default function Private() {
             {view === "concierge" ? (
               <div className="flex flex-col items-center text-center gap-12 py-6">
                 <PixelFolder
-                  label="prototypes"
+                  label="imagination station"
                   size="lg"
                   color={{ fill: "#f7d154", shade: "#d9a92a" }}
                   className={opening ? "pixel-pop" : ""}
-                  onClick={openPrototypes}
+                  onClick={openStation}
                 />
 
                 <form onSubmit={handleQuerySubmit} className="w-full max-w-xs">
@@ -222,9 +265,13 @@ export default function Private() {
                   )}
                 </form>
               </div>
-            ) : openFolder ? (
-              <PixelWindow title={openFolder.label} onClose={() => navigate("prototypes")}>
-                {openFolder.content}
+            ) : current && !visible ? (
+              <PixelWindow
+                title={current.label}
+                tag={current.published ? "PUBLISHED" : "WIP"}
+                onClose={() => navigate("station", path.slice(0, -1))}
+              >
+                {current.content}
               </PixelWindow>
             ) : (
               <div className="space-y-10">
@@ -232,14 +279,15 @@ export default function Private() {
                   everything here, published and WIP. mark a project published to mirror it publicly.
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-10 justify-items-center">
-                  {folders.map((f, i) => (
+                  {(visible ?? []).map((f, i) => (
                     <PixelFolder
                       key={f.id}
                       label={f.label}
+                      tag={f.published ? "PUBLISHED" : "WIP"}
                       color={f.color}
                       delay={i * 70}
                       className="pixel-in"
-                      onClick={() => navigate("prototypes", f.id)}
+                      onClick={() => navigate("station", [...path, f.id])}
                     />
                   ))}
                 </div>
