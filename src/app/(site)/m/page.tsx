@@ -8,7 +8,6 @@ import BusinessWorld from "@/components/BusinessWorld";
 import PixelFolder, { FolderColor } from "@/components/PixelFolder";
 import PixelWindow from "@/components/PixelWindow";
 import { usePrivateSpace, PrivateView } from "@/components/PrivateSpace";
-import { pixelFont } from "@/lib/fonts";
 
 // Change this to whatever passphrase you want
 const PRIVATE_KEY = "cWhQ-M4tsT7-qHpGQ";
@@ -151,7 +150,7 @@ export default function Private() {
         </div>
 
         <div
-          className={`${pixelFont.variable} space-y-16 pb-20 transition-all duration-700 ease-out ${
+          className={`space-y-16 pb-20 transition-all duration-700 ease-out ${
             homeVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >

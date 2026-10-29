@@ -70,3 +70,42 @@ body {
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* ── Staff side: the whole page goes 8-bit while the private space is open ── */
+[data-staff] {
+  --text-xs: 8px;
+  --text-xs--line-height: 1.8;
+  --text-sm: 10px;
+  --text-sm--line-height: 1.9;
+  --text-base: 11px;
+  --text-base--line-height: 2;
+  --text-2xl: 14px;
+  --text-2xl--line-height: 1.5;
+  --text-3xl: 16px;
+  --text-3xl--line-height: 1.5;
+  --tracking-tight: 0;
+  --tracking-wide: 0;
+  --tracking-widest: 0.05em;
+  --border: #bbbbbb;
+}
+[data-staff][data-theme="dark"] {
+  --border: #555555;
+}
+[data-staff] body {
+  font-family: var(--font-pixel), monospace;
+  font-size: 11px;
+  line-height: 2;
+}
+[data-staff] .leading-relaxed {
+  line-height: 2;
+}
+[data-staff] .rounded,
+[data-staff] .rounded-full {
+  border-radius: 0;
+}
+[data-staff] .border {
+  border-width: 2px;
+}
+[data-staff] .shadow-lg {
+  box-shadow: 3px 3px 0 var(--foreground);
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 export type PrivateView = "concierge" | "prototypes";
 
@@ -17,6 +17,12 @@ const PrivateSpaceContext = createContext<PrivateSpaceState | null>(null);
 export function PrivateSpaceProvider({ children }: { children: ReactNode }) {
   const [isPrivate, setIsPrivate] = useState(false);
   const [view, setView] = useState<PrivateView>("concierge");
+
+  // The 8-bit staff theme in globals.css keys off this attribute, so the
+  // public site is untouched until the passphrase is entered.
+  useEffect(() => {
+    document.documentElement.toggleAttribute("data-staff", isPrivate);
+  }, [isPrivate]);
 
   return (
     <PrivateSpaceContext.Provider
