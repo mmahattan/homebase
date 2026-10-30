@@ -43,7 +43,7 @@ export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) 
 
   return (
     <div className="relative mx-auto max-w-[calc(75vh*16/9)]">
-      <div className="relative aspect-video mx-auto max-w-[calc(75vh*16/9)] overflow-hidden">
+      <div className="relative aspect-video overflow-hidden">
         <svg
           viewBox={`0 0 ${ROOM_W} ${ROOM_H}`}
           shapeRendering="crispEdges"
