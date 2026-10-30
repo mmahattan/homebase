@@ -12,8 +12,8 @@ export default function BusinessWorldDraft() {
     <div className="space-y-10">
       <div className="space-y-4 text-[var(--muted)] leading-relaxed">
         <p>
-          The Business World is where the House of Kei works with others. We lend the skills of
-          the House&apos;s worlds to help your brand or business grow, and what we earn goes back
+          The Business World is where the House of Kei works with external parties &amp;
+          partners. We lend the skills of the House&apos;s worlds to help your brand or business grow, and what we earn goes back
           into the creative work the House makes.
         </p>
         <p>For now, that work happens through MATS.</p>
