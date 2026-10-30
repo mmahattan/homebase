@@ -1,7 +1,6 @@
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { projects } from "@/data/projects";
 import ProjectList from "@/components/ProjectList";
 import BusinessWorld from "@/components/BusinessWorld";
@@ -128,8 +127,7 @@ function resolve(input: string): Destination | null {
 }
 
 export default function Private() {
-  const router = useRouter();
-  const { isPrivate, view, enter, exit, goTo } = usePrivateSpace();
+  const { isPrivate, view, enter, eject, goTo } = usePrivateSpace();
   const [input, setInput] = useState("");
   const [leaving, setLeaving] = useState(false);
   const [homeVisible, setHomeVisible] = useState(false);
@@ -188,11 +186,6 @@ export default function Private() {
     }
   }
 
-  function eject() {
-    exit();
-    router.push("/");
-  }
-
   if (isPrivate) {
     const trail = walk(path);
     const current = trail[trail.length - 1];
@@ -222,7 +215,7 @@ export default function Private() {
         <div className="fixed bottom-6 inset-x-0 flex justify-center z-50">
           <button
             onClick={eject}
-            className="text-xs text-[var(--muted)] hover:text-[var(--foreground)] bg-[var(--background)] border border-[var(--border)] hover:border-[var(--muted)] rounded-full px-4 py-2 shadow-lg transition-colors"
+            className="pixel-font text-[10px] font-bold uppercase tracking-widest bg-[var(--foreground)] text-[var(--background)] border-2 border-[var(--foreground)] px-5 py-3 shadow-[4px_4px_0_#dc2626] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#dc2626]"
           >
             eject ↩
           </button>
