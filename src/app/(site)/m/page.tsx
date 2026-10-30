@@ -4,6 +4,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { projects } from "@/data/projects";
 import ProjectList from "@/components/ProjectList";
 import BusinessWorld from "@/components/BusinessWorld";
+import BusinessWorldDraft from "@/components/BusinessWorldDraft";
 import PixelFolder, { FolderColor, FolderTag } from "@/components/PixelFolder";
 import PixelWindow from "@/components/PixelWindow";
 import { usePrivateSpace, PrivateView } from "@/components/PrivateSpace";
@@ -55,6 +56,14 @@ const folders: Folder[] = [
         // Live publicly at /mats.
         published: true,
         content: <BusinessWorld />,
+      },
+      {
+        id: "biz-world-front-page-draft",
+        label: "front page draft",
+        color: { fill: "#9edb9a", shade: "#6cb868" },
+        // Staff-only until approved; then it replaces the live front page.
+        published: false,
+        content: <BusinessWorldDraft />,
       },
     ],
   },
