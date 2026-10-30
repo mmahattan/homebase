@@ -27,7 +27,8 @@ export default function PixelWindow({
           x
         </button>
       </div>
-      <div className="p-5 sm:p-6">{children}</div>
+      {/* public-look: the content renders exactly as it does on the public side */}
+      <div className="public-look p-5 sm:p-6">{children}</div>
     </div>
   );
 }

@@ -48,7 +48,16 @@ const folders: Folder[] = [
     id: BUSINESS_WORLD,
     label: "the business world",
     color: { fill: "#f7d154", shade: "#d9a92a" },
-    content: <BusinessWorld />,
+    children: [
+      {
+        id: "biz-world-front-page",
+        label: "biz world front page",
+        color: { fill: "#f4a6c0", shade: "#d97a9c" },
+        // Live publicly at /mats.
+        published: true,
+        content: <BusinessWorld />,
+      },
+    ],
   },
   {
     id: PROJECTS,

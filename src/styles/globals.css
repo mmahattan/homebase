@@ -5,14 +5,16 @@
   --background: #fafafa;
   --foreground: #111111;
   --muted: #888888;
-  --border: #e5e5e5;
+  --border-public: #e5e5e5;
+  --border: var(--border-public);
 }
 
 [data-theme="dark"] {
   --background: #111111;
   --foreground: #ffffff;
   --muted: #aaaaaa;
-  --border: #2a2a2a;
+  --border-public: #2a2a2a;
+  --border: var(--border-public);
 }
 
 html {
@@ -96,16 +98,38 @@ body {
   font-size: 11px;
   line-height: 2;
 }
-[data-staff] .leading-relaxed {
+[data-staff] .leading-relaxed:not(.public-look *) {
   line-height: 2;
 }
-[data-staff] .rounded,
-[data-staff] .rounded-full {
+[data-staff] .rounded:not(.public-look *),
+[data-staff] .rounded-full:not(.public-look *) {
   border-radius: 0;
 }
-[data-staff] .border {
+[data-staff] .border:not(.public-look *) {
   border-width: 2px;
 }
-[data-staff] .shadow-lg {
+[data-staff] .shadow-lg:not(.public-look *) {
   box-shadow: 3px 3px 0 var(--foreground);
+}
+
+/* Inside staff windows, content goes back to the public look: the 8-bit
+   theme is only the frame. Values mirror Tailwind's defaults and body above. */
+[data-staff] .public-look {
+  --text-xs: 0.75rem;
+  --text-xs--line-height: calc(1 / 0.75);
+  --text-sm: 0.875rem;
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-base: 1rem;
+  --text-base--line-height: calc(1.5 / 1);
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: calc(2 / 1.5);
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --tracking-tight: -0.025em;
+  --tracking-wide: 0.025em;
+  --tracking-widest: 0.1em;
+  --border: var(--border-public);
+  font-family: "Georgia", serif;
+  font-size: 1rem;
+  line-height: 1.5;
 }
