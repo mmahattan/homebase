@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { projects } from "@/data/projects";
 import ProjectList from "@/components/ProjectList";
 import BusinessWorld from "@/components/BusinessWorld";
-import BusinessWorldDraft from "@/components/BusinessWorldDraft";
+import BusinessWorldRoom from "@/components/BusinessWorldRoom";
 import Dollhouse from "@/components/Dollhouse";
 import PixelFolder, { FolderColor, FolderTag } from "@/components/PixelFolder";
 import PixelWindow from "@/components/PixelWindow";
@@ -28,11 +28,14 @@ type Folder = {
   label: string;
   color: FolderColor;
   published?: boolean;
-  content?: ReactNode;
+  // A function receives go(path) for content that navigates the drive itself.
+  content?: ReactNode | ((go: (path: string[]) => void) => ReactNode);
   children?: Folder[];
 };
 
 const BUSINESS_WORLD = "the-business-world";
+const FRONT_PAGE_DRAFT = "biz-world-front-page-draft";
+const HOUSE_ENTRY = "house-entry-4-public";
 const PROJECTS = "projects";
 
 const projectFolders: Folder[] = projects.map((project, i) => ({
@@ -59,22 +62,22 @@ const folders: Folder[] = [
         content: <BusinessWorld />,
       },
       {
-        id: "biz-world-front-page-draft",
+        id: FRONT_PAGE_DRAFT,
         label: "front page draft",
         color: { fill: "#9edb9a", shade: "#6cb868" },
         // Staff-only until approved; then it replaces the live front page.
         published: false,
-        content: <BusinessWorldDraft />,
+        content: (go) => <BusinessWorldRoom onLeave={() => go([HOUSE_ENTRY])} />,
       },
     ],
   },
   {
-    id: "house-entry-4-public",
+    id: HOUSE_ENTRY,
     label: "house entry 4 public",
     color: { fill: "#c3a6f0", shade: "#9a7bd4" },
     // Mock-up of the public House of Kei front page: an 8-bit dollhouse.
     published: false,
-    content: <Dollhouse />,
+    content: (go) => <Dollhouse onEnter={() => go([BUSINESS_WORLD, FRONT_PAGE_DRAFT])} />,
   },
   {
     id: PROJECTS,
@@ -318,7 +321,9 @@ export default function Private() {
                 tag={tagFor(current)}
                 onClose={() => navigate("station", path.slice(0, -1))}
               >
-                {current.content}
+                {typeof current.content === "function"
+                  ? current.content((p) => navigate("station", p))
+                  : current.content}
               </PixelWindow>
             ) : (
               <div className="space-y-10">

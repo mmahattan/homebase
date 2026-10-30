@@ -1,6 +1,13 @@
 import { ReactNode } from "react";
 import { FolderTag, TagLabel } from "@/components/PixelFolder";
 
+// Borderless and wider than the text column: the work itself fills the page,
+// up to 72rem, keeping a 1.5rem gutter on each side.
+const wide = {
+  width: "min(100vw - 3rem, 72rem)",
+  marginLeft: "calc(50% - min(50vw - 1.5rem, 36rem))",
+};
+
 export default function PixelWindow({
   title,
   tag,
@@ -13,8 +20,8 @@ export default function PixelWindow({
   children: ReactNode;
 }) {
   return (
-    <div className="pixel-in border-2 border-[var(--foreground)] shadow-[6px_6px_0_var(--foreground)] bg-[var(--background)]">
-      <div className="flex items-center justify-between gap-4 border-b-2 border-[var(--foreground)] px-3 py-2">
+    <div className="pixel-in space-y-5" style={wide}>
+      <div className="flex items-center justify-between gap-4">
         <span className="flex flex-wrap items-baseline gap-x-3">
           <span className="pixel-font text-[9px] leading-relaxed">{title}</span>
           {tag && <TagLabel tag={tag} />}
@@ -28,7 +35,7 @@ export default function PixelWindow({
         </button>
       </div>
       {/* public-look: the content renders exactly as it does on the public side */}
-      <div className="public-look p-5 sm:p-6">{children}</div>
+      <div className="public-look">{children}</div>
     </div>
   );
 }

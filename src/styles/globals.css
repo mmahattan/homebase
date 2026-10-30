@@ -133,35 +133,3 @@ body {
   font-size: 1rem;
   line-height: 1.5;
 }
-
-/* ── The Business World: a modern house with wooden accents ── */
-.biz-world {
-  --biz-bg: #f6f2eb;
-  --biz-card: #ede6db;
-  --biz-ink: #2b2622;
-  --biz-soft: #6f655b;
-  --biz-oak: #a8743f;
-  --biz-line: #e2d8ca;
-  --biz-wood-a: #cfa06e;
-  --biz-wood-b: #b07d4c;
-  background: var(--biz-bg);
-  color: var(--biz-ink);
-  font-family: var(--font-biz), ui-sans-serif, system-ui, sans-serif;
-}
-[data-theme="dark"] .biz-world {
-  --biz-bg: #1d1915;
-  --biz-card: #28221c;
-  --biz-ink: #efe7dc;
-  --biz-soft: #b3a593;
-  --biz-oak: #d2a273;
-  --biz-line: #3a3129;
-  --biz-wood-a: #8a5e3b;
-  --biz-wood-b: #6b4528;
-}
-/* Oak grain: fine light streaks over a warm vertical gradient */
-.biz-wood {
-  background:
-    repeating-linear-gradient(91deg, rgb(255 255 255 / 0.07) 0 2px, transparent 2px 11px),
-    repeating-linear-gradient(88deg, rgb(0 0 0 / 0.06) 0 1px, transparent 1px 17px),
-    linear-gradient(180deg, var(--biz-wood-a), var(--biz-wood-b));
-}

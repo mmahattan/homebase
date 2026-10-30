@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ThemeProvider from "@/components/ThemeProvider";
 import { PrivateSpaceProvider } from "@/components/PrivateSpace";
-import { bizFont, pixelFont } from "@/lib/fonts";
+import { pixelFont } from "@/lib/fonts";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${pixelFont.variable} ${bizFont.variable}`}>
+      <body className={pixelFont.variable}>
         <ThemeProvider>
           <PrivateSpaceProvider>{children}</PrivateSpaceProvider>
         </ThemeProvider>
