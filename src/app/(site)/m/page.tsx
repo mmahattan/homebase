@@ -5,6 +5,7 @@ import { projects } from "@/data/projects";
 import ProjectList from "@/components/ProjectList";
 import BusinessWorld from "@/components/BusinessWorld";
 import BusinessWorldDraft from "@/components/BusinessWorldDraft";
+import Dollhouse from "@/components/Dollhouse";
 import PixelFolder, { FolderColor, FolderTag } from "@/components/PixelFolder";
 import PixelWindow from "@/components/PixelWindow";
 import { usePrivateSpace, PrivateView } from "@/components/PrivateSpace";
@@ -66,6 +67,14 @@ const folders: Folder[] = [
         content: <BusinessWorldDraft />,
       },
     ],
+  },
+  {
+    id: "house-entry-4-public",
+    label: "house entry 4 public",
+    color: { fill: "#c3a6f0", shade: "#9a7bd4" },
+    // Mock-up of the public House of Kei front page: an 8-bit dollhouse.
+    published: false,
+    content: <Dollhouse />,
   },
   {
     id: PROJECTS,

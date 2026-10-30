@@ -2,6 +2,12 @@
 // reader. Replaces BusinessWorld (and /mats) once approved. Kei's own words —
 // keep verbatim. Look: a modern house with wooden accents (.biz-world in
 // globals.css).
+// The Business World's definition, shared with the dollhouse dialog.
+export const BUSINESS_WORLD_DEFINITION = [
+  "The Business World is where the House of Kei works with external parties & partners. We lend the skills of the House's worlds to help your brand or business grow, and what we earn goes back into the creative work the House makes.",
+  "For now, that work happens through MATS.",
+];
+
 const services = [
   "Strategy and digital transformation for businesses",
   "Sponsorship and talent deal negotiation",
@@ -16,11 +22,7 @@ export default function BusinessWorldDraft() {
       <div className="px-6 py-10 sm:px-10 sm:py-14 space-y-14">
         <header className="space-y-6">
           <h1 className="text-3xl sm:text-4xl font-medium tracking-tight">The Business World</h1>
-          <p className="text-lg leading-relaxed">
-            The Business World is where the House of Kei works with external parties &amp;
-            partners. We lend the skills of the House&apos;s worlds to help your brand or business
-            grow, and what we earn goes back into the creative work the House makes.
-          </p>
+          <p className="text-lg leading-relaxed">{BUSINESS_WORLD_DEFINITION[0]}</p>
           <p className="text-[var(--biz-soft)] leading-relaxed">
             For now, that work happens through{" "}
             <span className="font-medium text-[var(--biz-ink)]">MATS</span>.
