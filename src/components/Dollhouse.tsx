@@ -1,31 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import {
-  HOUSE_H,
-  HOUSE_W,
-  Pixels,
-  ROOM_H,
-  ROOM_W,
-  ZOOM,
-  constructionRoom,
-  house,
-  japaneseRoom,
-} from "@/components/PixelArt";
+import PixelCanvas from "@/components/PixelCanvas";
+import { HOUSE_H, HOUSE_W, ROOMS, ROOM_H, ROOM_W, ZOOM, drawHouse } from "@/lib/pixelScenes";
 
-// 8-bit dollhouse for the House of Kei front page. Clicking the open room
+// Dollhouse for the House of Kei front page. Clicking the open room
 // zooms the camera in, then hands off to that room (onEnter).
 
-type Room = { x: number; y: number; open?: boolean };
-
-const rooms: Room[] = [
-  { x: 12, y: 40 },
-  { x: 80, y: 40 },
-  { x: 148, y: 40 },
-  { x: 12, y: 80 },
-  { x: 80, y: 80, open: true },
-  { x: 148, y: 80 },
-];
+const rooms = ROOMS;
 const openRoom = rooms.find((r) => r.open)!;
 
 // Zoom so the open room's center lands in the frame's center at 3.5×.
@@ -55,26 +37,12 @@ export default function Dollhouse({ onEnter }: { onEnter: () => void }) {
           }}
           onTransitionEnd={() => zooming && onEnter()}
         >
-          <svg
-            viewBox={`0 0 ${HOUSE_W} ${HOUSE_H}`}
-            shapeRendering="crispEdges"
+          <PixelCanvas
+            width={HOUSE_W}
+            height={HOUSE_H}
+            draw={drawHouse}
             className="absolute inset-0 w-full h-full"
-            aria-hidden
-          >
-            <Pixels px={house} />
-            {rooms.map((room) => (
-              <svg
-                key={`${room.x}-${room.y}`}
-                x={room.x}
-                y={room.y}
-                width={ROOM_W}
-                height={ROOM_H}
-                viewBox={`0 0 ${ROOM_W} ${ROOM_H}`}
-              >
-                <Pixels px={room.open ? japaneseRoom : constructionRoom} />
-              </svg>
-            ))}
-          </svg>
+          />
 
           {!zooming &&
             rooms.map((room) => {

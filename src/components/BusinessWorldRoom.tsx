@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Pixels, ROOM_H, ROOM_W, japaneseRoom } from "@/components/PixelArt";
+import PixelCanvas from "@/components/PixelCanvas";
+import { ROOM_H, ROOM_W, drawJapaneseRoom } from "@/lib/pixelScenes";
 import { BUSINESS_WORLD_DEFINITION } from "@/data/businessWorld";
 
 // The Business World's room: a traditional Japanese room. On arrival a
 // game-style dialog types out the definition. MATS gets its own space here later.
 
 const DEFINITION_TEXT = BUSINESS_WORLD_DEFINITION.join("\n\n");
+const drawRoom = (ctx: CanvasRenderingContext2D) => drawJapaneseRoom(ctx);
 
 export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) {
   const [popup, setPopup] = useState(true);
@@ -44,15 +46,13 @@ export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) 
   return (
     <div className="relative mx-auto max-w-[calc(75vh*16/9)]">
       <div className="relative aspect-video overflow-hidden">
-        <svg
-          viewBox={`0 0 ${ROOM_W} ${ROOM_H}`}
-          shapeRendering="crispEdges"
+        <PixelCanvas
+          width={ROOM_W}
+          height={ROOM_H}
+          draw={drawRoom}
+          label="The Business World: a Japanese room with shoji doors, tatami, a kotatsu and a shelf"
           className="absolute inset-0 w-full h-full"
-          role="img"
-          aria-label="The Business World: a Japanese room with shoji doors, tatami, a kotatsu and a shelf"
-        >
-          <Pixels px={japaneseRoom} />
-        </svg>
+        />
         <button
           onClick={onLeave}
           className="pixel-font absolute top-3 left-3 text-[8px] bg-[#2b1d16] text-[#f4efe2] px-2 py-1.5 hover:bg-[#f2c230] hover:text-[#2b1d16]"
