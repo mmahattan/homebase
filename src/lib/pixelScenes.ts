@@ -129,7 +129,38 @@ const CREAM = "#efe2c8";
 
 // ── The Business World: a traditional Japanese room ──
 
-export function drawJapaneseRoom(c: Ctx, ox = 0, oy = 0) {
+export type Px = [x: number, y: number, w: number, h: number, color: string];
+
+const CLAY = "#3b2a22";
+const CLAY_L = "#5a4234";
+const GLAZE = "#c9a77c";
+
+// The donabe's lid, in room pixels at its resting spot. Exported so the room
+// view can draw it as an overlay and lift it when MATS opens.
+export const DONABE_LID: Px[] = [
+  [53, 30, 23, 1, GLAZE],
+  [54, 29, 21, 1, CLAY],
+  [55, 28, 19, 1, CLAY],
+  [57, 27, 15, 1, CLAY],
+  [59, 26, 11, 1, CLAY],
+  [62, 25, 5, 1, GLAZE],
+  [63, 24, 3, 1, GLAZE],
+  [56, 28, 3, 1, CLAY_L],
+  [58, 27, 3, 1, CLAY_L],
+  [60, 26, 2, 1, "#7a5a48"],
+];
+// Sitting slightly ajar, so a little of the hotpot shows.
+export const LID_AJAR = { x: 3, y: -1 };
+
+// The hotpot's steam, rising from under the lid (also animated in the room view).
+export const POT_STEAM: [number, number][] = [
+  [57, 27],
+  [56, 24],
+  [58, 21],
+  [57, 18],
+];
+
+export function drawJapaneseRoom(c: Ctx, ox = 0, oy = 0, { lid = true } = {}) {
   inRoom(c, ox, oy, () => {
     // Plaster wall, ceiling beam and corner posts
     rect(c, 0, 0, 128, 48, "#e6d6b8");
@@ -264,20 +295,49 @@ export function drawJapaneseRoom(c: Ctx, ox = 0, oy = 0) {
     wood(c, 34, 38, 60, 3, FRAME, 31);
     rect(c, 34, 38, 60, 1, "#c08a52");
     rect(c, 34, 41, 60, 2, FRAME.dark);
-    // A bowl of mikan and a cup of steaming tea
-    rect(c, 49, 34, 13, 1, INDIGO_L);
-    rect(c, 50, 35, 11, 3, INDIGO);
-    for (const [mx, my] of [[51, 31], [56, 31], [53, 29]]) {
-      rect(c, mx + 1, my, 2, 1, "#f08a24");
-      rect(c, mx, my + 1, 4, 2, "#f08a24");
-      dot(c, mx + 1, my + 1, "#ffb35c");
+    // MATS: a donabe hotpot at the center of the table
+    tint(c, 51, 38, 27, 1, "#000", 0.3);
+    rect(c, 55, 28, 19, 1, "#2a1d17"); // back of the rim
+    rect(c, 54, 29, 21, 2, "#c98b4a"); // miso broth
+    rect(c, 56, 29, 2, 2, "#f4efe2"); // tofu
+    rect(c, 67, 29, 2, 2, "#f4efe2");
+    rect(c, 60, 29, 3, 1, "#6b4426"); // shiitake
+    dot(c, 61, 30, "#d8c9a8");
+    rect(c, 64, 30, 2, 1, "#e8742a"); // carrot
+    rect(c, 70, 29, 3, 1, "#5f8f3e"); // greens
+    dot(c, 71, 30, "#7fb054");
+    dot(c, 59, 30, "#d8e8b0"); // negi
+    rect(c, 53, 31, 23, 1, GLAZE); // rim
+    rect(c, 52, 32, 25, 5, CLAY);
+    rect(c, 53, 37, 23, 1, CLAY);
+    speckle(c, 52, 32, 25, 6, ["#4a352b", "#2f211b"], 0.25, 41);
+    rect(c, 53, 32, 2, 5, CLAY_L);
+    rect(c, 52, 34, 25, 1, "#4f3a2e");
+    rect(c, 50, 32, 2, 2, GLAZE); // handles
+    rect(c, 77, 32, 2, 2, GLAZE);
+    if (lid) {
+      for (const [x, y, w, h, color] of DONABE_LID) rect(c, x + LID_AJAR.x, y + LID_AJAR.y, w, h, color);
+      c.globalAlpha = 0.55;
+      for (const [sx, sy] of POT_STEAM) dot(c, sx, sy, "#fff");
+      c.globalAlpha = 1;
     }
-    dot(c, 55, 28, "#5f8f3e");
-    rect(c, 72, 34, 5, 4, "#efe6d3");
-    rect(c, 72, 34, 5, 1, "#7fa65a");
-    rect(c, 76, 35, 1, 3, "#cbbfa6");
-    c.globalAlpha = 0.55;
-    for (const [sx, sy] of [[73, 32], [74, 31], [74, 30], [73, 29], [74, 27]]) dot(c, sx, sy, "#fff");
+
+    // A teapot on the left, a cup of tea on the right
+    tint(c, 39, 38, 12, 1, "#000", 0.25);
+    rect(c, 43, 30, 3, 1, "#4f6b4a"); // knob
+    rect(c, 41, 31, 7, 1, "#86a67f"); // lid
+    rect(c, 40, 32, 9, 6, "#6f8f6a");
+    rect(c, 41, 37, 7, 1, "#5a7656");
+    rect(c, 40, 32, 1, 5, "#9ab893");
+    rect(c, 49, 33, 2, 1, "#6f8f6a"); // spout
+    rect(c, 50, 32, 1, 1, "#6f8f6a");
+    rect(c, 37, 33, 3, 1, "#3a2414"); // side handle
+    tint(c, 80, 38, 7, 1, "#000", 0.25);
+    rect(c, 80, 34, 6, 4, "#efe6d3");
+    rect(c, 80, 34, 6, 1, "#7fa65a");
+    rect(c, 85, 35, 1, 3, "#cbbfa6");
+    c.globalAlpha = 0.5;
+    for (const [sx, sy] of [[82, 32], [83, 31], [82, 29]]) dot(c, sx, sy, "#fff");
     c.globalAlpha = 1;
     // Zabuton cushions
     for (const x of [16, 94]) {

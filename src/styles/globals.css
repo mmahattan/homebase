@@ -55,7 +55,20 @@ button {
 .pixel-folder:hover svg {
   transform: translateY(-4px);
 }
+/* Hotpot steam in the Business World room */
+@keyframes steam-rise {
+  0% { opacity: 0; transform: translateY(0); }
+  25% { opacity: 0.65; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+.steam-puff {
+  animation: steam-rise 2.4s steps(8) infinite;
+}
 @media (prefers-reduced-motion: reduce) {
+  .steam-puff {
+    animation: none;
+    opacity: 0.5;
+  }
   .pixel-pop,
   .pixel-in {
     animation: none;

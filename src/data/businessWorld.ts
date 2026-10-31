@@ -6,7 +6,7 @@ export const BUSINESS_WORLD_DEFINITION = [
   "For now, that work happens through MATS.",
 ];
 
-// Not shown yet — MATS gets its own space inside the Business World room.
+// Shown when the hotpot (MATS) on the Business World room's kotatsu is opened.
 export const MATS_COPY = {
   intro: "MATS builds meaningful projects for others. Right now, that means:",
   services: [
