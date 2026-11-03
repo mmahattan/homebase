@@ -51,7 +51,8 @@ const STEAM: { x: number; y: number; delay: number }[] = [
   { x: 65, y: 22, delay: 1.9 },
 ];
 
-// Remembers per browser that MATS was opened, so its tag rests grayed out.
+// Remembers per browser that MATS was opened: the "click me" bubble only
+// shows until then. Kept for routing returning visitors later.
 const MATS_VISITED_KEY = "kei:visited:mats";
 
 export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) {
@@ -181,10 +182,9 @@ export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) 
             className="absolute"
           />
         )}
-        {!dialog && (
+        {!dialog && !matsVisited && (
           <HotspotTag
             name="MATS"
-            visited={matsVisited}
             onClick={openMats}
             style={{ left: pct(76, ROOM_W), top: pct(25, ROOM_H) }}
           />
