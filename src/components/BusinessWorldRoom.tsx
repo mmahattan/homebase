@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import HotspotTag from "@/components/HotspotTag";
 import PixelCanvas from "@/components/PixelCanvas";
 import {
   DONABE_LID,
   LID_AJAR,
-  POT_STEAM,
   ROOM_H,
   ROOM_W,
   drawJapaneseRoom,
@@ -40,11 +40,32 @@ const drawRoom = (ctx: CanvasRenderingContext2D) => drawJapaneseRoom(ctx, 0, 0, 
 const POT = { x: 49, y: 22, w: 31, h: 18 };
 const pct = (n: number, of: number) => `${(n / of) * 100}%`;
 
+// Three columns of steam, two staggered puffs each: from the gap under the
+// ajar lid and from around the knob.
+const STEAM: { x: number; y: number; delay: number }[] = [
+  { x: 54, y: 27, delay: 0 },
+  { x: 54, y: 27, delay: 1.1 },
+  { x: 57, y: 25, delay: 0.4 },
+  { x: 57, y: 25, delay: 1.5 },
+  { x: 65, y: 22, delay: 0.8 },
+  { x: 65, y: 22, delay: 1.9 },
+];
+
+// Remembers per browser that MATS was opened, so its tag rests grayed out.
+const MATS_VISITED_KEY = "kei:visited:mats";
+
 export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) {
   const [dialog, setDialog] = useState<Dialog | null>(WORLD_DIALOG);
   const [page, setPage] = useState(0);
   const [typed, setTyped] = useState(0);
   const [lidUp, setLidUp] = useState(false);
+  const [matsVisited, setMatsVisited] = useState(false);
+
+  useEffect(() => {
+    try {
+      setMatsVisited(localStorage.getItem(MATS_VISITED_KEY) === "1");
+    } catch {}
+  }, []);
 
   const text = dialog?.pages[page] ?? "";
   const typing = dialog !== null && typed < text.length;
@@ -70,6 +91,10 @@ export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) 
   }
 
   function openMats() {
+    setMatsVisited(true);
+    try {
+      localStorage.setItem(MATS_VISITED_KEY, "1");
+    } catch {}
     setLidUp(true);
     setTimeout(() => open(MATS_DIALOG), 280);
   }
@@ -115,17 +140,15 @@ export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) 
           aria-hidden
         >
           {!lidUp &&
-            POT_STEAM.map(([x, y], i) => (
-              <rect
-                key={i}
-                x={x}
-                y={y}
-                width={i % 2 ? 2 : 1}
-                height={i % 2 ? 1 : 2}
-                fill="#fff"
-                className="steam-puff"
-                style={{ animationDelay: `${i * 0.6}s` }}
-              />
+            STEAM.map(({ x, y, delay }, i) => (
+              // White puff with a warm gray shadow, so it reads against the
+              // cream shoji paper behind it.
+              <g key={i} className="steam-puff" style={{ animationDelay: `${delay}s` }}>
+                <rect x={x} y={y + 1} width={4} height={2} fill="#9c8a70" opacity={0.7} />
+                <rect x={x + 1} y={y - 1} width={2} height={1} fill="#9c8a70" opacity={0.7} />
+                <rect x={x} y={y} width={3} height={2} fill="#fff" />
+                <rect x={x + 1} y={y - 1} width={1} height={1} fill="#fff" />
+              </g>
             ))}
           <g
             style={{
@@ -133,13 +156,15 @@ export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) 
               transition: "transform 260ms steps(3)",
             }}
           >
-            {DONABE_LID.map(([x, y, w, h, color], i) => (
-              <rect key={i} x={x} y={y} width={w} height={h} fill={color} />
-            ))}
-            {/* Match the lantern's warm light on the canvas below */}
-            {DONABE_LID.map(([x, y, w, h], i) => (
-              <rect key={`glow${i}`} x={x} y={y} width={w} height={h} fill="#ffd28c" opacity={0.18} />
-            ))}
+            <g className={lidUp ? "" : "lid-rattle"}>
+              {DONABE_LID.map(([x, y, w, h, color], i) => (
+                <rect key={i} x={x} y={y} width={w} height={h} fill={color} />
+              ))}
+              {/* Match the lantern's warm light on the canvas below */}
+              {DONABE_LID.map(([x, y, w, h], i) => (
+                <rect key={`glow${i}`} x={x} y={y} width={w} height={h} fill="#ffd28c" opacity={0.18} />
+              ))}
+            </g>
           </g>
         </svg>
 
@@ -153,12 +178,16 @@ export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) 
               width: pct(POT.w, ROOM_W),
               height: pct(POT.h, ROOM_H),
             }}
-            className="group absolute outline-[3px] outline-transparent hover:outline-[#f2c230] focus-visible:outline-[#f2c230]"
-          >
-            <span className="pixel-font absolute left-1/2 -translate-x-1/2 -top-8 whitespace-nowrap bg-[#2b1d16] text-[#f4efe2] text-[9px] px-2 py-1 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100">
-              mats
-            </span>
-          </button>
+            className="absolute"
+          />
+        )}
+        {!dialog && (
+          <HotspotTag
+            name="MATS"
+            visited={matsVisited}
+            onClick={openMats}
+            style={{ left: pct(76, ROOM_W), top: pct(25, ROOM_H) }}
+          />
         )}
 
         <button

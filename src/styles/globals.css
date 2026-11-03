@@ -55,19 +55,41 @@ button {
 .pixel-folder:hover svg {
   transform: translateY(-4px);
 }
-/* Hotpot steam in the Business World room */
+/* Hotpot in the Business World room: swaying steam and a rattling lid */
 @keyframes steam-rise {
-  0% { opacity: 0; transform: translateY(0); }
-  25% { opacity: 0.65; }
-  100% { opacity: 0; transform: translateY(-10px); }
+  0% { opacity: 0; transform: translate(0, 0); }
+  15% { opacity: 0.9; }
+  50% { transform: translate(1px, -8px); }
+  100% { opacity: 0; transform: translate(-1px, -17px); }
 }
 .steam-puff {
-  animation: steam-rise 2.4s steps(8) infinite;
+  animation: steam-rise 2.2s steps(10) infinite;
+}
+@keyframes lid-rattle {
+  0%, 86%, 100% { transform: translateY(0); }
+  89%, 95% { transform: translateY(-1px); }
+  92%, 98% { transform: translateY(0); }
+}
+.lid-rattle {
+  animation: lid-rattle 2.8s steps(1) infinite;
+}
+/* "click me" bubbles on scene hotspots */
+/* transform, not translate: Tailwind positions the bubble with translate */
+@keyframes hotspot-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.hotspot-bounce {
+  animation: hotspot-bounce 0.9s steps(2) infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   .steam-puff {
     animation: none;
-    opacity: 0.5;
+    opacity: 0.6;
+  }
+  .lid-rattle,
+  .hotspot-bounce {
+    animation: none;
   }
   .pixel-pop,
   .pixel-in {
