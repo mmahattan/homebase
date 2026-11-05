@@ -55,8 +55,15 @@ const STEAM: { x: number; y: number; delay: number }[] = [
 // shows until then. Kept for routing returning visitors later.
 const MATS_VISITED_KEY = "kei:visited:mats";
 
-export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) {
-  const [dialog, setDialog] = useState<Dialog | null>(WORLD_DIALOG);
+export default function BusinessWorldRoom({
+  onLeave,
+  startWith,
+}: {
+  onLeave: () => void;
+  // "mats": arriving from the quick menu, straight into MATS.
+  startWith?: "mats";
+}) {
+  const [dialog, setDialog] = useState<Dialog | null>(startWith === "mats" ? null : WORLD_DIALOG);
   const [page, setPage] = useState(0);
   const [typed, setTyped] = useState(0);
   const [lidUp, setLidUp] = useState(false);
@@ -99,6 +106,12 @@ export default function BusinessWorldRoom({ onLeave }: { onLeave: () => void }) 
     setLidUp(true);
     setTimeout(() => open(MATS_DIALOG), 280);
   }
+
+  useEffect(() => {
+    if (startWith === "mats") openMats();
+    // Only on arrival.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Typewriter
   useEffect(() => {

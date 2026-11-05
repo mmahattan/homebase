@@ -5,7 +5,7 @@ import { projects } from "@/data/projects";
 import ProjectList from "@/components/ProjectList";
 import BusinessWorld from "@/components/BusinessWorld";
 import BusinessWorldRoom from "@/components/BusinessWorldRoom";
-import Dollhouse from "@/components/Dollhouse";
+import HouseEntry from "@/components/HouseEntry";
 import PixelFolder, { FolderColor, FolderTag } from "@/components/PixelFolder";
 import PixelWindow from "@/components/PixelWindow";
 import { usePrivateSpace, PrivateView } from "@/components/PrivateSpace";
@@ -23,13 +23,17 @@ const palette: FolderColor[] = [
 // A folder either opens into more folders (children) or into a window (content).
 // published = already live on the public side; drives the [PUBLISHED] / [WIP] tag.
 // Only individual ideas/projects set it — worlds and groups stay untagged.
+type Params = Record<string, string>;
+type Go = (path: string[], params?: Params) => void;
+
 type Folder = {
   id: string;
   label: string;
   color: FolderColor;
   published?: boolean;
-  // A function receives go(path) for content that navigates the drive itself.
-  content?: ReactNode | ((go: (path: string[]) => void) => ReactNode);
+  // A function receives go(path, params) for content that navigates the drive
+  // itself, plus any params the previous step passed along.
+  content?: ReactNode | ((go: Go, params: Params) => ReactNode);
   children?: Folder[];
 };
 
@@ -67,7 +71,12 @@ const folders: Folder[] = [
         color: { fill: "#9edb9a", shade: "#6cb868" },
         // Staff-only until approved; then it replaces the live front page.
         published: false,
-        content: (go) => <BusinessWorldRoom onLeave={() => go([HOUSE_ENTRY])} />,
+        content: (go, params) => (
+          <BusinessWorldRoom
+            startWith={params.start === "mats" ? "mats" : undefined}
+            onLeave={() => go([HOUSE_ENTRY])}
+          />
+        ),
       },
     ],
   },
@@ -77,7 +86,11 @@ const folders: Folder[] = [
     color: { fill: "#c3a6f0", shade: "#9a7bd4" },
     // Mock-up of the public House of Kei front page: an 8-bit dollhouse.
     published: false,
-    content: (go) => <Dollhouse onEnter={() => go([BUSINESS_WORLD, FRONT_PAGE_DRAFT])} />,
+    content: (go) => (
+      <HouseEntry
+        onEnter={(to) => go([BUSINESS_WORLD, FRONT_PAGE_DRAFT], to === "mats" ? { start: "mats" } : {})}
+      />
+    ),
   },
   {
     id: PROJECTS,
@@ -157,6 +170,7 @@ export default function Private() {
   const [queryValue, setQueryValue] = useState("");
   const [miss, setMiss] = useState(false);
   const [path, setPath] = useState<string[]>([]);
+  const [params, setParams] = useState<Params>({});
   const [opening, setOpening] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
@@ -181,11 +195,12 @@ export default function Private() {
     setPath([]);
   }, [isPrivate]);
 
-  function navigate(next: PrivateView, nextPath: string[] = []) {
+  function navigate(next: PrivateView, nextPath: string[] = [], nextParams: Params = {}) {
     setViewVisible(false);
     setTimeout(() => {
       goTo(next);
       setPath(nextPath);
+      setParams(nextParams);
       setOpening(false);
       setViewVisible(true);
     }, 250);
@@ -322,7 +337,7 @@ export default function Private() {
                 onClose={() => navigate("station", path.slice(0, -1))}
               >
                 {typeof current.content === "function"
-                  ? current.content((p) => navigate("station", p))
+                  ? current.content((p, prm) => navigate("station", p, prm), params)
                   : current.content}
               </PixelWindow>
             ) : (
