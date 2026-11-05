@@ -6,7 +6,7 @@
     },
     {
       "id": "USC",
-      "count": 42
+      "count": 40
     },
     {
       "id": "Interviews",
@@ -25,15 +25,15 @@
       "count": 13
     },
     {
-      "id": "DSO-431",
-      "count": 12
-    },
-    {
       "id": "Cactus Jack",
       "count": 12
     },
     {
       "id": "USG",
+      "count": 12
+    },
+    {
+      "id": "DSO-431",
       "count": 12
     },
     {
@@ -45,7 +45,7 @@
       "count": 11
     },
     {
-      "id": "Japan",
+      "id": "UX Design",
       "count": 10
     },
     {
@@ -53,11 +53,7 @@
       "count": 10
     },
     {
-      "id": "UX Design",
-      "count": 10
-    },
-    {
-      "id": "Tokyo",
+      "id": "Japan",
       "count": 9
     },
     {
@@ -65,15 +61,15 @@
       "count": 9
     },
     {
-      "id": "Global Strategy",
-      "count": 7
+      "id": "Tokyo",
+      "count": 9
     },
     {
       "id": "Python",
       "count": 7
     },
     {
-      "id": "TAC-359",
+      "id": "Global Strategy",
       "count": 7
     },
     {
@@ -85,15 +81,11 @@
       "count": 7
     },
     {
-      "id": "BUAD-497",
-      "count": 6
+      "id": "TAC-359",
+      "count": 7
     },
     {
-      "id": "Classification",
-      "count": 6
-    },
-    {
-      "id": "Neural Networks",
+      "id": "USC Marshall",
       "count": 6
     },
     {
@@ -101,31 +93,35 @@
       "count": 6
     },
     {
+      "id": "BUAD-497",
+      "count": 6
+    },
+    {
       "id": "Clustering",
       "count": 6
     },
     {
-      "id": "USC Marshall",
+      "id": "Neural Networks",
       "count": 6
     },
     {
-      "id": "GitHub",
+      "id": "Classification",
       "count": 6
-    },
-    {
-      "id": "Regression Analysis",
-      "count": 5
     },
     {
       "id": "Data Analysis",
       "count": 5
     },
     {
-      "id": "Product Requirements",
+      "id": "Regression Analysis",
+      "count": 5
+    },
+    {
+      "id": "Market Entry",
       "count": 4
     },
     {
-      "id": "IBM WatsonX",
+      "id": "Product Requirements",
       "count": 4
     },
     {
@@ -133,31 +129,23 @@
       "count": 4
     },
     {
-      "id": "Market Entry",
+      "id": "IBM WatsonX",
       "count": 4
-    },
-    {
-      "id": "The Business World",
-      "count": 3
-    },
-    {
-      "id": "React",
-      "count": 3
     },
     {
       "id": "Machine Learning",
       "count": 3
     },
     {
-      "id": "MATS",
-      "count": 2
+      "id": "GitHub",
+      "count": 3
+    },
+    {
+      "id": "The Business World",
+      "count": 3
     },
     {
       "id": "Starlink",
-      "count": 2
-    },
-    {
-      "id": "Pixel Art",
       "count": 2
     },
     {
@@ -165,15 +153,27 @@
       "count": 2
     },
     {
+      "id": "Pixel Art",
+      "count": 2
+    },
+    {
+      "id": "MATS",
+      "count": 2
+    },
+    {
+      "id": "TypeScript",
+      "count": 1
+    },
+    {
+      "id": "React",
+      "count": 1
+    },
+    {
       "id": "Tailwind",
       "count": 1
     },
     {
       "id": "WRIT-340",
-      "count": 1
-    },
-    {
-      "id": "TypeScript",
       "count": 1
     }
   ],
@@ -676,7 +676,7 @@
     {
       "source": "Japan",
       "target": "USC",
-      "strength": 2
+      "strength": 1
     },
     {
       "source": "Japan",
@@ -741,7 +741,7 @@
     {
       "source": "React",
       "target": "USC",
-      "strength": 2
+      "strength": 1
     },
     {
       "source": "Python",
@@ -836,7 +836,7 @@
     {
       "source": "GitHub",
       "target": "USC",
-      "strength": 3
+      "strength": 1
     },
     {
       "source": "GitHub",
@@ -1384,11 +1384,6 @@
       "strength": 1
     },
     {
-      "source": "GitHub",
-      "target": "React",
-      "strength": 2
-    },
-    {
       "source": "Market Entry",
       "target": "Product Management",
       "strength": 1
@@ -1536,16 +1531,6 @@
     {
       "source": "Japan",
       "target": "UX Design",
-      "strength": 1
-    },
-    {
-      "source": "Japan",
-      "target": "React",
-      "strength": 1
-    },
-    {
-      "source": "GitHub",
-      "target": "Japan",
       "strength": 1
     },
     {
