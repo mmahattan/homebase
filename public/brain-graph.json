@@ -29,40 +29,48 @@
       "count": 12
     },
     {
-      "id": "USG",
-      "count": 12
-    },
-    {
       "id": "DSO-431",
       "count": 12
     },
     {
-      "id": "Resume",
-      "count": 11
+      "id": "USG",
+      "count": 12
     },
     {
       "id": "Internship",
       "count": 11
     },
     {
-      "id": "UX Design",
-      "count": 10
-    },
-    {
       "id": "Product Management",
       "count": 10
     },
     {
-      "id": "Japan",
-      "count": 9
+      "id": "UX Design",
+      "count": 10
+    },
+    {
+      "id": "Resume",
+      "count": 10
     },
     {
       "id": "USC Flavors",
       "count": 9
     },
     {
+      "id": "Japan",
+      "count": 9
+    },
+    {
       "id": "Tokyo",
       "count": 9
+    },
+    {
+      "id": "TAC-359",
+      "count": 7
+    },
+    {
+      "id": "ISA",
+      "count": 7
     },
     {
       "id": "Python",
@@ -74,14 +82,6 @@
     },
     {
       "id": "JMP",
-      "count": 7
-    },
-    {
-      "id": "ISA",
-      "count": 7
-    },
-    {
-      "id": "TAC-359",
       "count": 7
     },
     {
@@ -97,15 +97,15 @@
       "count": 6
     },
     {
-      "id": "Clustering",
-      "count": 6
-    },
-    {
       "id": "Neural Networks",
       "count": 6
     },
     {
       "id": "Classification",
+      "count": 6
+    },
+    {
+      "id": "Clustering",
       "count": 6
     },
     {
@@ -117,14 +117,6 @@
       "count": 5
     },
     {
-      "id": "Market Entry",
-      "count": 4
-    },
-    {
-      "id": "Product Requirements",
-      "count": 4
-    },
-    {
       "id": "House of Kei",
       "count": 4
     },
@@ -133,11 +125,15 @@
       "count": 4
     },
     {
-      "id": "Machine Learning",
-      "count": 3
+      "id": "Product Requirements",
+      "count": 4
     },
     {
-      "id": "GitHub",
+      "id": "Market Entry",
+      "count": 4
+    },
+    {
+      "id": "Machine Learning",
       "count": 3
     },
     {
@@ -145,15 +141,11 @@
       "count": 3
     },
     {
-      "id": "Starlink",
-      "count": 2
+      "id": "GitHub",
+      "count": 3
     },
     {
       "id": "Next.js",
-      "count": 2
-    },
-    {
-      "id": "Pixel Art",
       "count": 2
     },
     {
@@ -161,7 +153,15 @@
       "count": 2
     },
     {
-      "id": "TypeScript",
+      "id": "Starlink",
+      "count": 2
+    },
+    {
+      "id": "Pixel Art",
+      "count": 2
+    },
+    {
+      "id": "Tailwind",
       "count": 1
     },
     {
@@ -169,11 +169,11 @@
       "count": 1
     },
     {
-      "id": "Tailwind",
+      "id": "WRIT-340",
       "count": 1
     },
     {
-      "id": "WRIT-340",
+      "id": "TypeScript",
       "count": 1
     }
   ],
