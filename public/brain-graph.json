@@ -1,71 +1,99 @@
 {
   "nodes": [
     {
-      "id": "Artificial Intelligence",
-      "count": 112
-    },
-    {
       "id": "USC",
-      "count": 32
+      "count": 57
     },
     {
-      "id": "ISA",
-      "count": 29
+      "id": "Artificial Intelligence",
+      "count": 56
     },
     {
-      "id": "UX Design",
-      "count": 16
+      "id": "Travel",
+      "count": 27
+    },
+    {
+      "id": "IBM",
+      "count": 22
+    },
+    {
+      "id": "Interviews",
+      "count": 22
+    },
+    {
+      "id": "Resume",
+      "count": 17
+    },
+    {
+      "id": "USG",
+      "count": 14
     },
     {
       "id": "USC Marshall",
       "count": 13
     },
     {
-      "id": "Python",
+      "id": "ASCJ-420",
+      "count": 13
+    },
+    {
+      "id": "Japan",
+      "count": 13
+    },
+    {
+      "id": "DSO-431",
       "count": 12
     },
     {
-      "id": "React",
-      "count": 12
-    },
-    {
-      "id": "Travel",
+      "id": "Cactus Jack",
       "count": 12
     },
     {
       "id": "Product Management",
+      "count": 12
+    },
+    {
+      "id": "Tokyo",
+      "count": 12
+    },
+    {
+      "id": "UX Design",
       "count": 11
+    },
+    {
+      "id": "USC Flavors",
+      "count": 11
+    },
+    {
+      "id": "Internship",
+      "count": 11
+    },
+    {
+      "id": "Python",
+      "count": 10
     },
     {
       "id": "GitHub",
       "count": 10
     },
     {
-      "id": "Interviews",
+      "id": "Global Strategy",
       "count": 10
     },
     {
-      "id": "Global Strategy",
+      "id": "ISA",
       "count": 9
     },
     {
-      "id": "Classification",
-      "count": 9
-    },
-    {
-      "id": "Japan",
-      "count": 9
-    },
-    {
-      "id": "IBM",
+      "id": "Spotify",
       "count": 8
     },
     {
-      "id": "Resume",
-      "count": 7
+      "id": "Neural Networks",
+      "count": 8
     },
     {
-      "id": "Next.js",
+      "id": "The Business World",
       "count": 7
     },
     {
@@ -73,11 +101,31 @@
       "count": 7
     },
     {
-      "id": "Tokyo",
+      "id": "Classification",
+      "count": 7
+    },
+    {
+      "id": "Next.js",
+      "count": 7
+    },
+    {
+      "id": "TAC-359",
+      "count": 7
+    },
+    {
+      "id": "House of Kei",
       "count": 6
     },
     {
-      "id": "Spotify",
+      "id": "BUAD-497",
+      "count": 6
+    },
+    {
+      "id": "MATS",
+      "count": 6
+    },
+    {
+      "id": "Data Analysis",
       "count": 6
     },
     {
@@ -85,7 +133,27 @@
       "count": 6
     },
     {
+      "id": "Starlink",
+      "count": 5
+    },
+    {
+      "id": "Market Entry",
+      "count": 5
+    },
+    {
       "id": "Regression Analysis",
+      "count": 5
+    },
+    {
+      "id": "IBM WatsonX",
+      "count": 5
+    },
+    {
+      "id": "React",
+      "count": 5
+    },
+    {
+      "id": "Product Requirements",
       "count": 5
     },
     {
@@ -93,67 +161,27 @@
       "count": 5
     },
     {
-      "id": "Product Requirements",
-      "count": 4
-    },
-    {
-      "id": "Internship",
+      "id": "Pixel Art",
       "count": 4
     },
     {
       "id": "Tailwind",
-      "count": 4
+      "count": 3
     },
     {
       "id": "TypeScript",
-      "count": 4
-    },
-    {
-      "id": "Market Entry",
-      "count": 4
-    },
-    {
-      "id": "IBM WatsonX",
-      "count": 4
-    },
-    {
-      "id": "Neural Networks",
-      "count": 4
-    },
-    {
-      "id": "House of Kei",
       "count": 3
-    },
-    {
-      "id": "USC Flavors",
-      "count": 3
-    },
-    {
-      "id": "The Business World",
-      "count": 2
-    },
-    {
-      "id": "Pixel Art",
-      "count": 2
-    },
-    {
-      "id": "OpenAI Whisper",
-      "count": 2
-    },
-    {
-      "id": "Data Analysis",
-      "count": 2
-    },
-    {
-      "id": "Starlink",
-      "count": 1
-    },
-    {
-      "id": "MATS",
-      "count": 1
     },
     {
       "id": "Machine Learning",
+      "count": 3
+    },
+    {
+      "id": "WRIT-340",
+      "count": 1
+    },
+    {
+      "id": "OpenAI Whisper",
       "count": 1
     },
     {
@@ -164,47 +192,22 @@
   "links": [
     {
       "source": "Artificial Intelligence",
-      "target": "ISA",
-      "strength": 27
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "Travel",
-      "strength": 12
-    },
-    {
-      "source": "ISA",
-      "target": "Travel",
-      "strength": 6
-    },
-    {
-      "source": "Artificial Intelligence",
       "target": "Product Management",
-      "strength": 11
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "USC",
-      "strength": 31
+      "strength": 10
     },
     {
       "source": "Next.js",
       "target": "TypeScript",
-      "strength": 4
+      "strength": 3
     },
     {
       "source": "Next.js",
       "target": "Tailwind",
-      "strength": 4
+      "strength": 3
     },
     {
       "source": "Next.js",
       "target": "Vercel",
-      "strength": 5
-    },
-    {
-      "source": "GitHub",
-      "target": "Next.js",
       "strength": 5
     },
     {
@@ -215,87 +218,72 @@
     {
       "source": "Artificial Intelligence",
       "target": "Next.js",
-      "strength": 6
-    },
-    {
-      "source": "Next.js",
-      "target": "USC",
       "strength": 4
     },
     {
       "source": "Next.js",
-      "target": "USC Marshall",
+      "target": "USC",
       "strength": 4
+    },
+    {
+      "source": "Next.js",
+      "target": "USC Marshall",
+      "strength": 3
     },
     {
       "source": "Tailwind",
       "target": "TypeScript",
-      "strength": 4
+      "strength": 3
     },
     {
       "source": "TypeScript",
       "target": "Vercel",
-      "strength": 3
-    },
-    {
-      "source": "GitHub",
-      "target": "TypeScript",
-      "strength": 4
+      "strength": 2
     },
     {
       "source": "IBM",
       "target": "TypeScript",
-      "strength": 3
+      "strength": 2
     },
     {
       "source": "Artificial Intelligence",
       "target": "TypeScript",
-      "strength": 3
+      "strength": 2
     },
     {
       "source": "TypeScript",
       "target": "USC",
-      "strength": 3
+      "strength": 2
     },
     {
       "source": "TypeScript",
       "target": "USC Marshall",
-      "strength": 3
+      "strength": 2
     },
     {
       "source": "Tailwind",
       "target": "Vercel",
-      "strength": 3
-    },
-    {
-      "source": "GitHub",
-      "target": "Tailwind",
-      "strength": 4
+      "strength": 2
     },
     {
       "source": "IBM",
       "target": "Tailwind",
-      "strength": 3
+      "strength": 2
     },
     {
       "source": "Artificial Intelligence",
       "target": "Tailwind",
-      "strength": 3
+      "strength": 2
     },
     {
       "source": "Tailwind",
       "target": "USC",
-      "strength": 3
+      "strength": 2
     },
     {
       "source": "Tailwind",
       "target": "USC Marshall",
-      "strength": 3
-    },
-    {
-      "source": "GitHub",
-      "target": "Vercel",
-      "strength": 4
+      "strength": 2
     },
     {
       "source": "IBM",
@@ -305,7 +293,7 @@
     {
       "source": "Artificial Intelligence",
       "target": "Vercel",
-      "strength": 5
+      "strength": 4
     },
     {
       "source": "USC",
@@ -315,37 +303,17 @@
     {
       "source": "USC Marshall",
       "target": "Vercel",
-      "strength": 4
-    },
-    {
-      "source": "GitHub",
-      "target": "IBM",
-      "strength": 3
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "GitHub",
-      "strength": 9
-    },
-    {
-      "source": "GitHub",
-      "target": "USC",
-      "strength": 5
-    },
-    {
-      "source": "GitHub",
-      "target": "USC Marshall",
       "strength": 3
     },
     {
       "source": "Artificial Intelligence",
       "target": "IBM",
-      "strength": 8
+      "strength": 19
     },
     {
       "source": "IBM",
       "target": "USC",
-      "strength": 7
+      "strength": 11
     },
     {
       "source": "IBM",
@@ -354,8 +322,13 @@
     },
     {
       "source": "Artificial Intelligence",
+      "target": "USC",
+      "strength": 18
+    },
+    {
+      "source": "Artificial Intelligence",
       "target": "USC Marshall",
-      "strength": 13
+      "strength": 6
     },
     {
       "source": "USC",
@@ -363,49 +336,29 @@
       "strength": 10
     },
     {
-      "source": "Artificial Intelligence",
-      "target": "Regression Analysis",
-      "strength": 5
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "Data Analysis",
-      "strength": 2
-    },
-    {
       "source": "Data Analysis",
       "target": "Regression Analysis",
       "strength": 2
     },
     {
-      "source": "Artificial Intelligence",
-      "target": "Global Strategy",
-      "strength": 9
-    },
-    {
       "source": "Global Strategy",
       "target": "USC",
       "strength": 5
     },
     {
       "source": "Global Strategy",
-      "target": "ISA",
-      "strength": 6
-    },
-    {
-      "source": "Global Strategy",
       "target": "Travel",
-      "strength": 1
-    },
-    {
-      "source": "ISA",
-      "target": "USC",
-      "strength": 10
+      "strength": 3
     },
     {
       "source": "Travel",
       "target": "USC",
-      "strength": 3
+      "strength": 10
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Python",
+      "strength": 6
     },
     {
       "source": "Machine Learning",
@@ -413,54 +366,29 @@
       "strength": 1
     },
     {
-      "source": "Artificial Intelligence",
-      "target": "Machine Learning",
-      "strength": 1
-    },
-    {
-      "source": "ISA",
-      "target": "Machine Learning",
-      "strength": 1
-    },
-    {
       "source": "Clustering",
-      "target": "Machine Learning",
-      "strength": 1
+      "target": "Python",
+      "strength": 2
     },
     {
       "source": "Artificial Intelligence",
-      "target": "Python",
-      "strength": 12
-    },
-    {
-      "source": "ISA",
-      "target": "Python",
-      "strength": 1
-    },
-    {
-      "source": "Clustering",
-      "target": "Python",
+      "target": "Machine Learning",
       "strength": 3
     },
     {
       "source": "Artificial Intelligence",
       "target": "Clustering",
-      "strength": 6
+      "strength": 2
     },
     {
       "source": "Clustering",
-      "target": "ISA",
-      "strength": 3
+      "target": "Machine Learning",
+      "strength": 1
     },
     {
       "source": "IBM",
       "target": "Product Management",
       "strength": 3
-    },
-    {
-      "source": "IBM",
-      "target": "Interviews",
-      "strength": 4
     },
     {
       "source": "IBM",
@@ -468,19 +396,29 @@
       "strength": 1
     },
     {
-      "source": "Product Management",
-      "target": "USC",
-      "strength": 5
+      "source": "IBM",
+      "target": "USG",
+      "strength": 7
     },
     {
-      "source": "Product Management",
-      "target": "USC Marshall",
+      "source": "IBM",
+      "target": "Interviews",
       "strength": 4
     },
     {
-      "source": "Interviews",
-      "target": "Product Management",
-      "strength": 3
+      "source": "Artificial Intelligence",
+      "target": "Product Requirements",
+      "strength": 4
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "USG",
+      "strength": 7
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Interviews",
+      "strength": 11
     },
     {
       "source": "Product Management",
@@ -488,123 +426,143 @@
       "strength": 4
     },
     {
+      "source": "Product Management",
+      "target": "USC",
+      "strength": 4
+    },
+    {
+      "source": "Product Management",
+      "target": "USC Marshall",
+      "strength": 3
+    },
+    {
+      "source": "Product Management",
+      "target": "USG",
+      "strength": 3
+    },
+    {
+      "source": "Interviews",
+      "target": "Product Management",
+      "strength": 5
+    },
+    {
+      "source": "Product Requirements",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "Product Requirements",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "Product Requirements",
+      "target": "USG",
+      "strength": 1
+    },
+    {
+      "source": "Interviews",
+      "target": "Product Requirements",
+      "strength": 3
+    },
+    {
+      "source": "USC",
+      "target": "USG",
+      "strength": 12
+    },
+    {
+      "source": "Interviews",
+      "target": "USC",
+      "strength": 8
+    },
+    {
+      "source": "USC Marshall",
+      "target": "USG",
+      "strength": 4
+    },
+    {
+      "source": "Interviews",
+      "target": "USC Marshall",
+      "strength": 3
+    },
+    {
+      "source": "Interviews",
+      "target": "USG",
+      "strength": 3
+    },
+    {
+      "source": "IBM",
+      "target": "ISA",
+      "strength": 6
+    },
+    {
+      "source": "IBM",
+      "target": "Internship",
+      "strength": 7
+    },
+    {
+      "source": "IBM",
+      "target": "Resume",
+      "strength": 9
+    },
+    {
       "source": "Artificial Intelligence",
-      "target": "Interviews",
+      "target": "ISA",
+      "strength": 6
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Internship",
       "strength": 10
     },
     {
       "source": "Artificial Intelligence",
-      "target": "Product Requirements",
-      "strength": 4
+      "target": "Resume",
+      "strength": 11
     },
     {
-      "source": "Interviews",
+      "source": "ISA",
+      "target": "USC",
+      "strength": 7
+    },
+    {
+      "source": "Internship",
       "target": "USC",
       "strength": 5
     },
     {
-      "source": "Product Requirements",
+      "source": "Resume",
       "target": "USC",
-      "strength": 1
-    },
-    {
-      "source": "Interviews",
-      "target": "USC Marshall",
-      "strength": 3
-    },
-    {
-      "source": "Product Requirements",
-      "target": "USC Marshall",
-      "strength": 1
-    },
-    {
-      "source": "Interviews",
-      "target": "Product Requirements",
-      "strength": 3
-    },
-    {
-      "source": "IBM",
-      "target": "React",
-      "strength": 4
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "React",
-      "strength": 12
-    },
-    {
-      "source": "React",
-      "target": "USC",
-      "strength": 7
+      "strength": 8
     },
     {
       "source": "ISA",
-      "target": "React",
+      "target": "USG",
+      "strength": 6
+    },
+    {
+      "source": "ISA",
+      "target": "Internship",
       "strength": 3
     },
     {
-      "source": "React",
+      "source": "ISA",
       "target": "Resume",
-      "strength": 3
+      "strength": 5
     },
     {
       "source": "Internship",
-      "target": "React",
-      "strength": 2
-    },
-    {
-      "source": "IBM",
-      "target": "ISA",
+      "target": "USG",
       "strength": 3
-    },
-    {
-      "source": "IBM",
-      "target": "Resume",
-      "strength": 4
-    },
-    {
-      "source": "IBM",
-      "target": "Internship",
-      "strength": 2
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "Resume",
-      "strength": 7
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "Internship",
-      "strength": 4
     },
     {
       "source": "Resume",
-      "target": "USC",
-      "strength": 3
-    },
-    {
-      "source": "Internship",
-      "target": "USC",
-      "strength": 3
-    },
-    {
-      "source": "ISA",
-      "target": "Resume",
-      "strength": 4
-    },
-    {
-      "source": "ISA",
-      "target": "Internship",
-      "strength": 3
+      "target": "USG",
+      "strength": 5
     },
     {
       "source": "Internship",
       "target": "Resume",
-      "strength": 2
-    },
-    {
-      "source": "Classification",
-      "target": "Python",
       "strength": 4
     },
     {
@@ -613,24 +571,9 @@
       "strength": 1
     },
     {
-      "source": "Artificial Intelligence",
-      "target": "Classification",
-      "strength": 9
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "JMP",
-      "strength": 7
-    },
-    {
-      "source": "Classification",
-      "target": "JMP",
-      "strength": 6
-    },
-    {
       "source": "IBM",
       "target": "IBM WatsonX",
-      "strength": 4
+      "strength": 5
     },
     {
       "source": "Artificial Intelligence",
@@ -645,7 +588,17 @@
     {
       "source": "IBM WatsonX",
       "target": "ISA",
-      "strength": 2
+      "strength": 3
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "USG",
+      "strength": 3
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Interviews",
+      "strength": 3
     },
     {
       "source": "IBM WatsonX",
@@ -653,34 +606,34 @@
       "strength": 3
     },
     {
-      "source": "IBM WatsonX",
-      "target": "Interviews",
-      "strength": 3
-    },
-    {
       "source": "ISA",
       "target": "Interviews",
-      "strength": 5
+      "strength": 2
     },
     {
       "source": "Interviews",
       "target": "Resume",
-      "strength": 4
+      "strength": 5
     },
     {
-      "source": "Global Strategy",
-      "target": "Starlink",
+      "source": "IBM",
+      "target": "UX Design",
       "strength": 1
     },
     {
       "source": "Artificial Intelligence",
-      "target": "Starlink",
-      "strength": 1
+      "target": "UX Design",
+      "strength": 8
     },
     {
-      "source": "ISA",
+      "source": "Global Strategy",
       "target": "Starlink",
-      "strength": 1
+      "strength": 2
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Classification",
+      "strength": 2
     },
     {
       "source": "Clustering",
@@ -688,19 +641,54 @@
       "strength": 2
     },
     {
-      "source": "Next.js",
-      "target": "React",
-      "strength": 3
+      "source": "Resume",
+      "target": "USC Marshall",
+      "strength": 7
+    },
+    {
+      "source": "The Business World",
+      "target": "USC Marshall",
+      "strength": 4
+    },
+    {
+      "source": "MATS",
+      "target": "USC Marshall",
+      "strength": 4
+    },
+    {
+      "source": "Resume",
+      "target": "The Business World",
+      "strength": 5
+    },
+    {
+      "source": "MATS",
+      "target": "Resume",
+      "strength": 5
+    },
+    {
+      "source": "MATS",
+      "target": "The Business World",
+      "strength": 6
+    },
+    {
+      "source": "GitHub",
+      "target": "Next.js",
+      "strength": 4
     },
     {
       "source": "Next.js",
-      "target": "Spotify",
-      "strength": 3
+      "target": "Python",
+      "strength": 2
     },
     {
       "source": "Next.js",
       "target": "Obsidian",
       "strength": 1
+    },
+    {
+      "source": "Next.js",
+      "target": "Spotify",
+      "strength": 2
     },
     {
       "source": "IBM WatsonX",
@@ -713,16 +701,26 @@
       "strength": 1
     },
     {
+      "source": "Neural Networks",
+      "target": "Next.js",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Next.js",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Next.js",
+      "strength": 1
+    },
+    {
       "source": "Next.js",
       "target": "Product Management",
       "strength": 2
     },
     {
-      "source": "Next.js",
-      "target": "UX Design",
-      "strength": 3
-    },
-    {
       "source": "Global Strategy",
       "target": "Next.js",
       "strength": 2
@@ -733,249 +731,154 @@
       "strength": 1
     },
     {
-      "source": "Neural Networks",
+      "source": "Next.js",
+      "target": "Starlink",
+      "strength": 2
+    },
+    {
+      "source": "ISA",
       "target": "Next.js",
-      "strength": 1
+      "strength": 2
     },
     {
       "source": "Next.js",
+      "target": "USC Flavors",
+      "strength": 2
+    },
+    {
+      "source": "Next.js",
+      "target": "USG",
+      "strength": 2
+    },
+    {
+      "source": "Next.js",
+      "target": "Travel",
+      "strength": 3
+    },
+    {
+      "source": "Japan",
+      "target": "Next.js",
+      "strength": 2
+    },
+    {
+      "source": "Next.js",
+      "target": "Tokyo",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "Vercel",
+      "strength": 3
+    },
+    {
+      "source": "Python",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "Obsidian",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "Spotify",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "Market Entry",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "Starlink",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "ISA",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "USC Flavors",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "USG",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "Travel",
+      "target": "Vercel",
+      "strength": 3
+    },
+    {
+      "source": "Japan",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "Tokyo",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
       "target": "Python",
-      "strength": 2
-    },
-    {
-      "source": "React",
-      "target": "TypeScript",
-      "strength": 2
-    },
-    {
-      "source": "Spotify",
-      "target": "TypeScript",
-      "strength": 2
-    },
-    {
-      "source": "Obsidian",
-      "target": "TypeScript",
-      "strength": 1
-    },
-    {
-      "source": "IBM WatsonX",
-      "target": "TypeScript",
-      "strength": 1
-    },
-    {
-      "source": "OpenAI Whisper",
-      "target": "TypeScript",
-      "strength": 1
-    },
-    {
-      "source": "Product Management",
-      "target": "TypeScript",
-      "strength": 2
-    },
-    {
-      "source": "TypeScript",
-      "target": "UX Design",
-      "strength": 2
-    },
-    {
-      "source": "Global Strategy",
-      "target": "TypeScript",
-      "strength": 2
-    },
-    {
-      "source": "Market Entry",
-      "target": "TypeScript",
-      "strength": 1
-    },
-    {
-      "source": "Neural Networks",
-      "target": "TypeScript",
-      "strength": 1
-    },
-    {
-      "source": "Python",
-      "target": "TypeScript",
-      "strength": 2
-    },
-    {
-      "source": "React",
-      "target": "Tailwind",
-      "strength": 2
-    },
-    {
-      "source": "Spotify",
-      "target": "Tailwind",
-      "strength": 2
-    },
-    {
-      "source": "Obsidian",
-      "target": "Tailwind",
-      "strength": 1
-    },
-    {
-      "source": "IBM WatsonX",
-      "target": "Tailwind",
-      "strength": 1
-    },
-    {
-      "source": "OpenAI Whisper",
-      "target": "Tailwind",
-      "strength": 1
-    },
-    {
-      "source": "Product Management",
-      "target": "Tailwind",
-      "strength": 2
-    },
-    {
-      "source": "Tailwind",
-      "target": "UX Design",
-      "strength": 2
-    },
-    {
-      "source": "Global Strategy",
-      "target": "Tailwind",
-      "strength": 2
-    },
-    {
-      "source": "Market Entry",
-      "target": "Tailwind",
-      "strength": 1
-    },
-    {
-      "source": "Neural Networks",
-      "target": "Tailwind",
-      "strength": 1
-    },
-    {
-      "source": "Python",
-      "target": "Tailwind",
-      "strength": 2
-    },
-    {
-      "source": "React",
-      "target": "Vercel",
       "strength": 3
-    },
-    {
-      "source": "GitHub",
-      "target": "React",
-      "strength": 4
-    },
-    {
-      "source": "React",
-      "target": "Spotify",
-      "strength": 4
-    },
-    {
-      "source": "Obsidian",
-      "target": "React",
-      "strength": 1
-    },
-    {
-      "source": "IBM WatsonX",
-      "target": "React",
-      "strength": 2
-    },
-    {
-      "source": "OpenAI Whisper",
-      "target": "React",
-      "strength": 1
-    },
-    {
-      "source": "Product Management",
-      "target": "React",
-      "strength": 3
-    },
-    {
-      "source": "React",
-      "target": "UX Design",
-      "strength": 4
-    },
-    {
-      "source": "Global Strategy",
-      "target": "React",
-      "strength": 2
-    },
-    {
-      "source": "Market Entry",
-      "target": "React",
-      "strength": 2
-    },
-    {
-      "source": "Neural Networks",
-      "target": "React",
-      "strength": 1
-    },
-    {
-      "source": "Python",
-      "target": "React",
-      "strength": 3
-    },
-    {
-      "source": "React",
-      "target": "USC Marshall",
-      "strength": 5
-    },
-    {
-      "source": "Spotify",
-      "target": "Vercel",
-      "strength": 3
-    },
-    {
-      "source": "Obsidian",
-      "target": "Vercel",
-      "strength": 1
-    },
-    {
-      "source": "IBM WatsonX",
-      "target": "Vercel",
-      "strength": 1
-    },
-    {
-      "source": "OpenAI Whisper",
-      "target": "Vercel",
-      "strength": 1
-    },
-    {
-      "source": "Product Management",
-      "target": "Vercel",
-      "strength": 2
-    },
-    {
-      "source": "UX Design",
-      "target": "Vercel",
-      "strength": 3
-    },
-    {
-      "source": "Global Strategy",
-      "target": "Vercel",
-      "strength": 2
-    },
-    {
-      "source": "Market Entry",
-      "target": "Vercel",
-      "strength": 1
-    },
-    {
-      "source": "Neural Networks",
-      "target": "Vercel",
-      "strength": 1
-    },
-    {
-      "source": "Python",
-      "target": "Vercel",
-      "strength": 2
-    },
-    {
-      "source": "GitHub",
-      "target": "Spotify",
-      "strength": 2
     },
     {
       "source": "GitHub",
       "target": "Obsidian",
       "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "Spotify",
+      "strength": 3
+    },
+    {
+      "source": "GitHub",
+      "target": "IBM",
+      "strength": 3
     },
     {
       "source": "GitHub",
@@ -988,14 +891,29 @@
       "strength": 1
     },
     {
-      "source": "GitHub",
-      "target": "Product Management",
-      "strength": 2
+      "source": "Artificial Intelligence",
+      "target": "GitHub",
+      "strength": 4
     },
     {
       "source": "GitHub",
-      "target": "UX Design",
+      "target": "Neural Networks",
       "strength": 3
+    },
+    {
+      "source": "Data Analysis",
+      "target": "GitHub",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "GitHub",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "Product Management",
+      "strength": 2
     },
     {
       "source": "GitHub",
@@ -1009,13 +927,138 @@
     },
     {
       "source": "GitHub",
-      "target": "Neural Networks",
+      "target": "Starlink",
       "strength": 2
     },
     {
       "source": "GitHub",
+      "target": "USC",
+      "strength": 5
+    },
+    {
+      "source": "GitHub",
+      "target": "ISA",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "USC Flavors",
+      "strength": 3
+    },
+    {
+      "source": "GitHub",
+      "target": "USG",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "Travel",
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "Japan",
+      "strength": 3
+    },
+    {
+      "source": "GitHub",
+      "target": "Tokyo",
+      "strength": 3
+    },
+    {
+      "source": "Obsidian",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "Spotify",
+      "strength": 2
+    },
+    {
+      "source": "IBM",
+      "target": "Python",
+      "strength": 2
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Python",
+      "strength": 5
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
       "target": "Python",
       "strength": 3
+    },
+    {
+      "source": "Product Management",
+      "target": "Python",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Python",
+      "strength": 2
+    },
+    {
+      "source": "Market Entry",
+      "target": "Python",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "USC",
+      "strength": 3
+    },
+    {
+      "source": "ISA",
+      "target": "Python",
+      "strength": 2
+    },
+    {
+      "source": "Python",
+      "target": "USC Flavors",
+      "strength": 2
+    },
+    {
+      "source": "Python",
+      "target": "USG",
+      "strength": 2
+    },
+    {
+      "source": "Python",
+      "target": "Travel",
+      "strength": 2
+    },
+    {
+      "source": "Japan",
+      "target": "Python",
+      "strength": 2
+    },
+    {
+      "source": "Python",
+      "target": "Tokyo",
+      "strength": 2
     },
     {
       "source": "Obsidian",
@@ -1024,8 +1067,98 @@
     },
     {
       "source": "IBM",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "Product Management",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "USG",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Japan",
+      "target": "Obsidian",
+      "strength": 1
+    },
+    {
+      "source": "Obsidian",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
       "target": "Spotify",
-      "strength": 2
+      "strength": 3
     },
     {
       "source": "IBM WatsonX",
@@ -1038,14 +1171,29 @@
       "strength": 1
     },
     {
-      "source": "Product Management",
+      "source": "Artificial Intelligence",
+      "target": "Spotify",
+      "strength": 5
+    },
+    {
+      "source": "Neural Networks",
       "target": "Spotify",
       "strength": 2
     },
     {
-      "source": "Spotify",
-      "target": "UX Design",
-      "strength": 3
+      "source": "Data Analysis",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "Spotify",
+      "strength": 2
     },
     {
       "source": "Global Strategy",
@@ -1058,19 +1206,9 @@
       "strength": 1
     },
     {
-      "source": "Neural Networks",
-      "target": "Spotify",
-      "strength": 1
-    },
-    {
-      "source": "Python",
-      "target": "Spotify",
+      "source": "Spotify",
+      "target": "Starlink",
       "strength": 2
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "Spotify",
-      "strength": 6
     },
     {
       "source": "Spotify",
@@ -1078,79 +1216,54 @@
       "strength": 5
     },
     {
+      "source": "ISA",
+      "target": "Spotify",
+      "strength": 2
+    },
+    {
       "source": "Spotify",
-      "target": "USC Marshall",
+      "target": "USC Flavors",
+      "strength": 3
+    },
+    {
+      "source": "Spotify",
+      "target": "USG",
+      "strength": 2
+    },
+    {
+      "source": "Spotify",
+      "target": "Travel",
+      "strength": 2
+    },
+    {
+      "source": "Japan",
+      "target": "Spotify",
+      "strength": 3
+    },
+    {
+      "source": "Spotify",
+      "target": "Tokyo",
+      "strength": 3
+    },
+    {
+      "source": "IBM",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "Neural Networks",
+      "strength": 2
+    },
+    {
+      "source": "Data Analysis",
+      "target": "IBM",
       "strength": 4
     },
     {
-      "source": "IBM",
-      "target": "Obsidian",
+      "source": "Classification",
+      "target": "IBM",
       "strength": 1
-    },
-    {
-      "source": "IBM WatsonX",
-      "target": "Obsidian",
-      "strength": 1
-    },
-    {
-      "source": "Obsidian",
-      "target": "OpenAI Whisper",
-      "strength": 1
-    },
-    {
-      "source": "Obsidian",
-      "target": "Product Management",
-      "strength": 1
-    },
-    {
-      "source": "Obsidian",
-      "target": "UX Design",
-      "strength": 1
-    },
-    {
-      "source": "Global Strategy",
-      "target": "Obsidian",
-      "strength": 1
-    },
-    {
-      "source": "Market Entry",
-      "target": "Obsidian",
-      "strength": 1
-    },
-    {
-      "source": "Neural Networks",
-      "target": "Obsidian",
-      "strength": 1
-    },
-    {
-      "source": "Obsidian",
-      "target": "Python",
-      "strength": 1
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "Obsidian",
-      "strength": 1
-    },
-    {
-      "source": "Obsidian",
-      "target": "USC",
-      "strength": 1
-    },
-    {
-      "source": "Obsidian",
-      "target": "USC Marshall",
-      "strength": 1
-    },
-    {
-      "source": "IBM",
-      "target": "OpenAI Whisper",
-      "strength": 1
-    },
-    {
-      "source": "IBM",
-      "target": "UX Design",
-      "strength": 2
     },
     {
       "source": "Global Strategy",
@@ -1164,13 +1277,28 @@
     },
     {
       "source": "IBM",
-      "target": "Neural Networks",
-      "strength": 1
+      "target": "Starlink",
+      "strength": 2
     },
     {
       "source": "IBM",
-      "target": "Python",
-      "strength": 2
+      "target": "USC Flavors",
+      "strength": 4
+    },
+    {
+      "source": "IBM",
+      "target": "Travel",
+      "strength": 3
+    },
+    {
+      "source": "IBM",
+      "target": "Japan",
+      "strength": 3
+    },
+    {
+      "source": "IBM",
+      "target": "Tokyo",
+      "strength": 3
     },
     {
       "source": "IBM WatsonX",
@@ -1179,12 +1307,22 @@
     },
     {
       "source": "IBM WatsonX",
-      "target": "Product Management",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "IBM WatsonX",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "IBM WatsonX",
       "strength": 1
     },
     {
       "source": "IBM WatsonX",
-      "target": "UX Design",
+      "target": "Product Management",
       "strength": 1
     },
     {
@@ -1199,27 +1337,52 @@
     },
     {
       "source": "IBM WatsonX",
-      "target": "Neural Networks",
+      "target": "Starlink",
       "strength": 1
     },
     {
       "source": "IBM WatsonX",
-      "target": "Python",
-      "strength": 1
-    },
-    {
-      "source": "IBM WatsonX",
-      "target": "USC Marshall",
+      "target": "USC Flavors",
       "strength": 2
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Japan",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "OpenAI Whisper",
+      "strength": 1
     },
     {
       "source": "OpenAI Whisper",
       "target": "Product Management",
-      "strength": 1
-    },
-    {
-      "source": "OpenAI Whisper",
-      "target": "UX Design",
       "strength": 1
     },
     {
@@ -1233,19 +1396,9 @@
       "strength": 1
     },
     {
-      "source": "Neural Networks",
-      "target": "OpenAI Whisper",
-      "strength": 1
-    },
-    {
       "source": "OpenAI Whisper",
-      "target": "Python",
+      "target": "Starlink",
       "strength": 1
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "OpenAI Whisper",
-      "strength": 2
     },
     {
       "source": "OpenAI Whisper",
@@ -1253,16 +1406,261 @@
       "strength": 1
     },
     {
-      "source": "OpenAI Whisper",
-      "target": "USC Marshall",
+      "source": "ISA",
+      "target": "OpenAI Whisper",
       "strength": 1
     },
     {
-      "source": "Product Management",
-      "target": "UX Design",
+      "source": "OpenAI Whisper",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "USG",
+      "strength": 1
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Japan",
+      "target": "OpenAI Whisper",
+      "strength": 1
+    },
+    {
+      "source": "OpenAI Whisper",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Neural Networks",
       "strength": 5
     },
     {
+      "source": "Artificial Intelligence",
+      "target": "Data Analysis",
+      "strength": 4
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Global Strategy",
+      "strength": 2
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Market Entry",
+      "strength": 3
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Starlink",
+      "strength": 4
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "USC Flavors",
+      "strength": 4
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Travel",
+      "strength": 8
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Japan",
+      "strength": 3
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Tokyo",
+      "strength": 4
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Neural Networks",
+      "strength": 3
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Product Management",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Starlink",
+      "strength": 2
+    },
+    {
+      "source": "Neural Networks",
+      "target": "USC",
+      "strength": 2
+    },
+    {
+      "source": "ISA",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "USC Flavors",
+      "strength": 2
+    },
+    {
+      "source": "Neural Networks",
+      "target": "USG",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Japan",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Tokyo",
+      "strength": 2
+    },
+    {
+      "source": "Classification",
+      "target": "Data Analysis",
+      "strength": 2
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Product Management",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Global Strategy",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Market Entry",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "USC",
+      "strength": 3
+    },
+    {
+      "source": "Data Analysis",
+      "target": "ISA",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "USG",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Travel",
+      "strength": 2
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Japan",
+      "strength": 1
+    },
+    {
+      "source": "Data Analysis",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Product Management",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Global Strategy",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Market Entry",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "ISA",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "USG",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Japan",
+      "strength": 1
+    },
+    {
+      "source": "Classification",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
       "source": "Global Strategy",
       "target": "Product Management",
       "strength": 2
@@ -1271,136 +1669,246 @@
       "source": "Market Entry",
       "target": "Product Management",
       "strength": 2
-    },
-    {
-      "source": "Neural Networks",
-      "target": "Product Management",
-      "strength": 1
     },
     {
       "source": "Product Management",
-      "target": "Python",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "Product Management",
+      "strength": 2
+    },
+    {
+      "source": "Product Management",
+      "target": "USC Flavors",
+      "strength": 2
+    },
+    {
+      "source": "Product Management",
+      "target": "Travel",
+      "strength": 3
+    },
+    {
+      "source": "Japan",
+      "target": "Product Management",
+      "strength": 2
+    },
+    {
+      "source": "Product Management",
+      "target": "Tokyo",
       "strength": 2
     },
     {
       "source": "Global Strategy",
-      "target": "UX Design",
+      "target": "Market Entry",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "ISA",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "USC Flavors",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "USG",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Japan",
       "strength": 3
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Tokyo",
+      "strength": 2
     },
     {
       "source": "Market Entry",
-      "target": "UX Design",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "USC",
       "strength": 2
     },
     {
-      "source": "Neural Networks",
-      "target": "UX Design",
+      "source": "ISA",
+      "target": "Market Entry",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "USG",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "Travel",
       "strength": 2
     },
     {
-      "source": "Python",
-      "target": "UX Design",
+      "source": "Japan",
+      "target": "Market Entry",
+      "strength": 2
+    },
+    {
+      "source": "Market Entry",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
+      "source": "Starlink",
+      "target": "USC",
       "strength": 3
     },
     {
-      "source": "Artificial Intelligence",
-      "target": "UX Design",
-      "strength": 14
+      "source": "ISA",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "Starlink",
+      "target": "USC Flavors",
+      "strength": 2
+    },
+    {
+      "source": "Starlink",
+      "target": "USG",
+      "strength": 1
+    },
+    {
+      "source": "Starlink",
+      "target": "Travel",
+      "strength": 2
+    },
+    {
+      "source": "Japan",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "Starlink",
+      "target": "Tokyo",
+      "strength": 2
     },
     {
       "source": "USC",
-      "target": "UX Design",
-      "strength": 6
+      "target": "USC Flavors",
+      "strength": 7
     },
     {
-      "source": "USC Marshall",
-      "target": "UX Design",
-      "strength": 4
-    },
-    {
-      "source": "Global Strategy",
-      "target": "Market Entry",
-      "strength": 2
-    },
-    {
-      "source": "Global Strategy",
-      "target": "Neural Networks",
-      "strength": 1
-    },
-    {
-      "source": "Global Strategy",
-      "target": "Python",
-      "strength": 2
-    },
-    {
-      "source": "Global Strategy",
-      "target": "USC Marshall",
-      "strength": 4
-    },
-    {
-      "source": "Market Entry",
-      "target": "Neural Networks",
-      "strength": 1
-    },
-    {
-      "source": "Market Entry",
-      "target": "Python",
-      "strength": 1
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "Market Entry",
-      "strength": 4
-    },
-    {
-      "source": "Market Entry",
+      "source": "Japan",
       "target": "USC",
-      "strength": 1
-    },
-    {
-      "source": "Market Entry",
-      "target": "USC Marshall",
-      "strength": 1
-    },
-    {
-      "source": "Neural Networks",
-      "target": "Python",
       "strength": 4
     },
     {
-      "source": "Artificial Intelligence",
-      "target": "Neural Networks",
-      "strength": 4
-    },
-    {
-      "source": "Neural Networks",
+      "source": "Tokyo",
       "target": "USC",
-      "strength": 1
+      "strength": 5
     },
     {
-      "source": "Neural Networks",
-      "target": "USC Marshall",
-      "strength": 1
-    },
-    {
-      "source": "Python",
-      "target": "USC",
+      "source": "ISA",
+      "target": "USC Flavors",
       "strength": 3
     },
     {
-      "source": "Python",
-      "target": "USC Marshall",
+      "source": "ISA",
+      "target": "Travel",
       "strength": 2
+    },
+    {
+      "source": "ISA",
+      "target": "Japan",
+      "strength": 2
+    },
+    {
+      "source": "ISA",
+      "target": "Tokyo",
+      "strength": 2
+    },
+    {
+      "source": "USC Flavors",
+      "target": "USG",
+      "strength": 4
+    },
+    {
+      "source": "Travel",
+      "target": "USC Flavors",
+      "strength": 2
+    },
+    {
+      "source": "Japan",
+      "target": "USC Flavors",
+      "strength": 2
+    },
+    {
+      "source": "Tokyo",
+      "target": "USC Flavors",
+      "strength": 3
+    },
+    {
+      "source": "Travel",
+      "target": "USG",
+      "strength": 2
+    },
+    {
+      "source": "Japan",
+      "target": "USG",
+      "strength": 2
+    },
+    {
+      "source": "Tokyo",
+      "target": "USG",
+      "strength": 2
+    },
+    {
+      "source": "Japan",
+      "target": "Travel",
+      "strength": 6
+    },
+    {
+      "source": "Tokyo",
+      "target": "Travel",
+      "strength": 5
+    },
+    {
+      "source": "Japan",
+      "target": "Tokyo",
+      "strength": 4
     },
     {
       "source": "House of Kei",
       "target": "Next.js",
-      "strength": 1
+      "strength": 2
+    },
+    {
+      "source": "GitHub",
+      "target": "TypeScript",
+      "strength": 2
     },
     {
       "source": "House of Kei",
       "target": "TypeScript",
       "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "Tailwind",
+      "strength": 2
     },
     {
       "source": "House of Kei",
@@ -1410,12 +1918,162 @@
     {
       "source": "GitHub",
       "target": "House of Kei",
+      "strength": 2
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "BUAD-497",
+      "strength": 2
+    },
+    {
+      "source": "BUAD-497",
+      "target": "Market Entry",
+      "strength": 1
+    },
+    {
+      "source": "BUAD-497",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "Next.js",
+      "target": "Resume",
+      "strength": 2
+    },
+    {
+      "source": "Next.js",
+      "target": "The Business World",
+      "strength": 1
+    },
+    {
+      "source": "MATS",
+      "target": "Next.js",
+      "strength": 1
+    },
+    {
+      "source": "Resume",
+      "target": "Vercel",
+      "strength": 2
+    },
+    {
+      "source": "House of Kei",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "The Business World",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "MATS",
+      "target": "Vercel",
       "strength": 1
     },
     {
       "source": "Artificial Intelligence",
-      "target": "Japan",
-      "strength": 8
+      "target": "House of Kei",
+      "strength": 3
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "The Business World",
+      "strength": 3
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "MATS",
+      "strength": 3
+    },
+    {
+      "source": "Starlink",
+      "target": "USC Marshall",
+      "strength": 2
+    },
+    {
+      "source": "Resume",
+      "target": "Starlink",
+      "strength": 3
+    },
+    {
+      "source": "House of Kei",
+      "target": "Starlink",
+      "strength": 3
+    },
+    {
+      "source": "Starlink",
+      "target": "The Business World",
+      "strength": 3
+    },
+    {
+      "source": "MATS",
+      "target": "Starlink",
+      "strength": 3
+    },
+    {
+      "source": "House of Kei",
+      "target": "USC",
+      "strength": 2
+    },
+    {
+      "source": "The Business World",
+      "target": "USC",
+      "strength": 2
+    },
+    {
+      "source": "MATS",
+      "target": "USC",
+      "strength": 2
+    },
+    {
+      "source": "House of Kei",
+      "target": "USC Marshall",
+      "strength": 2
+    },
+    {
+      "source": "Travel",
+      "target": "USC Marshall",
+      "strength": 3
+    },
+    {
+      "source": "House of Kei",
+      "target": "Resume",
+      "strength": 3
+    },
+    {
+      "source": "Resume",
+      "target": "Travel",
+      "strength": 4
+    },
+    {
+      "source": "House of Kei",
+      "target": "The Business World",
+      "strength": 5
+    },
+    {
+      "source": "House of Kei",
+      "target": "MATS",
+      "strength": 4
+    },
+    {
+      "source": "House of Kei",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "The Business World",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "MATS",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "UX Design",
+      "strength": 3
     },
     {
       "source": "Product Requirements",
@@ -1423,34 +2081,9 @@
       "strength": 3
     },
     {
-      "source": "ISA",
-      "target": "UX Design",
-      "strength": 4
-    },
-    {
-      "source": "Interviews",
-      "target": "UX Design",
-      "strength": 3
-    },
-    {
-      "source": "Internship",
-      "target": "UX Design",
-      "strength": 2
-    },
-    {
       "source": "Internship",
       "target": "Interviews",
-      "strength": 3
-    },
-    {
-      "source": "ISA",
-      "target": "Spotify",
-      "strength": 1
-    },
-    {
-      "source": "Japan",
-      "target": "Spotify",
-      "strength": 1
+      "strength": 4
     },
     {
       "source": "Clustering",
@@ -1458,9 +2091,9 @@
       "strength": 1
     },
     {
-      "source": "Global Strategy",
-      "target": "Japan",
-      "strength": 1
+      "source": "Spotify",
+      "target": "USC Marshall",
+      "strength": 2
     },
     {
       "source": "Clustering",
@@ -1468,39 +2101,29 @@
       "strength": 1
     },
     {
-      "source": "Japan",
-      "target": "USC",
-      "strength": 2
-    },
-    {
       "source": "Clustering",
       "target": "USC",
       "strength": 2
     },
     {
-      "source": "ISA",
+      "source": "Clustering",
       "target": "USC Marshall",
-      "strength": 4
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
+      "target": "Japan",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "USC Marshall",
+      "strength": 3
     },
     {
       "source": "Japan",
       "target": "USC Marshall",
-      "strength": 1
-    },
-    {
-      "source": "Clustering",
-      "target": "USC Marshall",
-      "strength": 1
-    },
-    {
-      "source": "ISA",
-      "target": "Japan",
-      "strength": 4
-    },
-    {
-      "source": "Clustering",
-      "target": "Japan",
-      "strength": 1
+      "strength": 2
     },
     {
       "source": "Internship",
@@ -1513,6 +2136,36 @@
       "strength": 1
     },
     {
+      "source": "Internship",
+      "target": "UX Design",
+      "strength": 2
+    },
+    {
+      "source": "Interviews",
+      "target": "UX Design",
+      "strength": 2
+    },
+    {
+      "source": "ISA",
+      "target": "USC Marshall",
+      "strength": 3
+    },
+    {
+      "source": "Internship",
+      "target": "USC Marshall",
+      "strength": 2
+    },
+    {
+      "source": "Python",
+      "target": "React",
+      "strength": 2
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "React",
+      "strength": 2
+    },
+    {
       "source": "React",
       "target": "Regression Analysis",
       "strength": 1
@@ -1523,7 +2176,22 @@
       "strength": 1
     },
     {
+      "source": "React",
+      "target": "USC",
+      "strength": 3
+    },
+    {
       "source": "Python",
+      "target": "Regression Analysis",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Regression Analysis",
+      "strength": 1
+    },
+    {
+      "source": "Clustering",
       "target": "Regression Analysis",
       "strength": 2
     },
@@ -1533,9 +2201,459 @@
       "strength": 1
     },
     {
-      "source": "Clustering",
-      "target": "Regression Analysis",
+      "source": "Data Analysis",
+      "target": "Internship",
+      "strength": 1
+    },
+    {
+      "source": "Internship",
+      "target": "Travel",
       "strength": 2
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "USC",
+      "strength": 4
+    },
+    {
+      "source": "GitHub",
+      "target": "Resume",
+      "strength": 2
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "GitHub",
+      "strength": 1
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "GitHub",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "The Business World",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "MATS",
+      "strength": 1
+    },
+    {
+      "source": "Resume",
+      "target": "Spotify",
+      "strength": 2
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "House of Kei",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "Spotify",
+      "target": "The Business World",
+      "strength": 1
+    },
+    {
+      "source": "MATS",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "IBM",
+      "strength": 1
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "IBM",
+      "strength": 1
+    },
+    {
+      "source": "House of Kei",
+      "target": "IBM",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "The Business World",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "MATS",
+      "strength": 1
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "Artificial Intelligence",
+      "strength": 2
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "Cactus Jack",
+      "strength": 2
+    },
+    {
+      "source": "Neural Networks",
+      "target": "Resume",
+      "strength": 1
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "House of Kei",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "The Business World",
+      "strength": 1
+    },
+    {
+      "source": "MATS",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "Starlink",
+      "strength": 1
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "USC",
+      "strength": 3
+    },
+    {
+      "source": "Resume",
+      "target": "USC Flavors",
+      "strength": 3
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "House of Kei",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "The Business World",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "MATS",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "Resume",
+      "strength": 1
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "Resume",
+      "strength": 1
+    },
+    {
+      "source": "Resume",
+      "target": "Tokyo",
+      "strength": 2
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "Cactus Jack",
+      "strength": 8
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "House of Kei",
+      "strength": 1
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "The Business World",
+      "strength": 1
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "MATS",
+      "strength": 1
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "Tokyo",
+      "strength": 2
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "House of Kei",
+      "strength": 1
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "The Business World",
+      "strength": 1
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "MATS",
+      "strength": 1
+    },
+    {
+      "source": "Cactus Jack",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
+      "source": "House of Kei",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
+      "source": "The Business World",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
+      "source": "MATS",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "IBM WatsonX",
+      "target": "Internship",
+      "strength": 2
+    },
+    {
+      "source": "USC Flavors",
+      "target": "USC Marshall",
+      "strength": 2
+    },
+    {
+      "source": "Internship",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Interviews",
+      "target": "USC Flavors",
+      "strength": 2
+    },
+    {
+      "source": "IBM",
+      "target": "Machine Learning",
+      "strength": 1
+    },
+    {
+      "source": "Internship",
+      "target": "Machine Learning",
+      "strength": 1
+    },
+    {
+      "source": "Next.js",
+      "target": "React",
+      "strength": 1
+    },
+    {
+      "source": "React",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Spotify",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "TypeScript",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "TypeScript",
+      "target": "USG",
+      "strength": 1
+    },
+    {
+      "source": "Resume",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Travel",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Japan",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "Tokyo",
+      "target": "TypeScript",
+      "strength": 1
+    },
+    {
+      "source": "React",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Python",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Spotify",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Tailwind",
+      "target": "USC Flavors",
+      "strength": 1
+    },
+    {
+      "source": "Tailwind",
+      "target": "USG",
+      "strength": 1
+    },
+    {
+      "source": "Resume",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Tailwind",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Japan",
+      "target": "Tailwind",
+      "strength": 1
+    },
+    {
+      "source": "Tailwind",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
+      "source": "React",
+      "target": "Vercel",
+      "strength": 1
+    },
+    {
+      "source": "GitHub",
+      "target": "React",
+      "strength": 3
+    },
+    {
+      "source": "React",
+      "target": "Spotify",
+      "strength": 1
+    },
+    {
+      "source": "IBM",
+      "target": "React",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "React",
+      "strength": 1
+    },
+    {
+      "source": "Global Strategy",
+      "target": "React",
+      "strength": 1
+    },
+    {
+      "source": "React",
+      "target": "USC Marshall",
+      "strength": 1
+    },
+    {
+      "source": "ISA",
+      "target": "React",
+      "strength": 1
     },
     {
       "source": "React",
@@ -1543,74 +2661,74 @@
       "strength": 1
     },
     {
-      "source": "Interviews",
+      "source": "React",
+      "target": "USG",
+      "strength": 1
+    },
+    {
+      "source": "React",
+      "target": "Resume",
+      "strength": 1
+    },
+    {
+      "source": "React",
+      "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Japan",
       "target": "React",
       "strength": 2
     },
     {
-      "source": "IBM",
-      "target": "USC Flavors",
+      "source": "React",
+      "target": "Tokyo",
       "strength": 1
     },
     {
-      "source": "IBM WatsonX",
-      "target": "USC Flavors",
-      "strength": 1
-    },
-    {
-      "source": "IBM WatsonX",
-      "target": "Internship",
-      "strength": 1
-    },
-    {
-      "source": "Artificial Intelligence",
-      "target": "USC Flavors",
-      "strength": 3
-    },
-    {
-      "source": "USC",
-      "target": "USC Flavors",
-      "strength": 3
-    },
-    {
-      "source": "USC Flavors",
+      "source": "GitHub",
       "target": "USC Marshall",
       "strength": 1
     },
     {
-      "source": "Resume",
+      "source": "Python",
       "target": "USC Marshall",
       "strength": 1
     },
     {
-      "source": "Internship",
+      "source": "Python",
+      "target": "Resume",
+      "strength": 1
+    },
+    {
+      "source": "Product Management",
+      "target": "Resume",
+      "strength": 2
+    },
+    {
+      "source": "Global Strategy",
+      "target": "Resume",
+      "strength": 1
+    },
+    {
+      "source": "Tokyo",
       "target": "USC Marshall",
       "strength": 1
     },
     {
-      "source": "ISA",
-      "target": "USC Flavors",
-      "strength": 1
-    },
-    {
-      "source": "Resume",
-      "target": "USC Flavors",
-      "strength": 1
+      "source": "Japan",
+      "target": "Resume",
+      "strength": 2
     },
     {
       "source": "Interviews",
-      "target": "USC Flavors",
-      "strength": 1
+      "target": "Travel",
+      "strength": 4
     },
     {
-      "source": "Internship",
-      "target": "USC Flavors",
-      "strength": 1
-    },
-    {
-      "source": "Classification",
-      "target": "USC",
-      "strength": 1
+      "source": "Cactus Jack",
+      "target": "Interviews",
+      "strength": 3
     },
     {
       "source": "JMP",
@@ -1618,9 +2736,24 @@
       "strength": 1
     },
     {
-      "source": "ISA",
-      "target": "Next.js",
-      "strength": 1
+      "source": "Pixel Art",
+      "target": "USC Marshall",
+      "strength": 2
+    },
+    {
+      "source": "Pixel Art",
+      "target": "Resume",
+      "strength": 2
+    },
+    {
+      "source": "Pixel Art",
+      "target": "The Business World",
+      "strength": 4
+    },
+    {
+      "source": "MATS",
+      "target": "Pixel Art",
+      "strength": 3
     },
     {
       "source": "Pixel Art",
@@ -1630,12 +2763,7 @@
     {
       "source": "House of Kei",
       "target": "Pixel Art",
-      "strength": 2
-    },
-    {
-      "source": "Pixel Art",
-      "target": "The Business World",
-      "strength": 2
+      "strength": 3
     },
     {
       "source": "House of Kei",
@@ -1648,53 +2776,38 @@
       "strength": 2
     },
     {
-      "source": "House of Kei",
-      "target": "The Business World",
-      "strength": 2
-    },
-    {
-      "source": "Classification",
-      "target": "Neural Networks",
-      "strength": 2
-    },
-    {
-      "source": "ISA",
-      "target": "Market Entry",
-      "strength": 3
-    },
-    {
-      "source": "Japan",
-      "target": "Market Entry",
+      "source": "Next.js",
+      "target": "Product Requirements",
       "strength": 1
     },
     {
-      "source": "React",
-      "target": "Travel",
-      "strength": 2
+      "source": "Product Requirements",
+      "target": "Vercel",
+      "strength": 1
     },
     {
       "source": "GitHub",
-      "target": "Travel",
+      "target": "Product Requirements",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "Product Requirements",
       "strength": 1
     },
     {
       "source": "Product Requirements",
-      "target": "React",
-      "strength": 1
-    },
-    {
-      "source": "ISA",
-      "target": "Product Management",
-      "strength": 1
-    },
-    {
-      "source": "Product Management",
       "target": "Resume",
       "strength": 1
     },
     {
-      "source": "Product Management",
+      "source": "Product Requirements",
       "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Market Entry",
+      "target": "UX Design",
       "strength": 1
     },
     {
@@ -1705,11 +2818,6 @@
     {
       "source": "Travel",
       "target": "UX Design",
-      "strength": 2
-    },
-    {
-      "source": "Market Entry",
-      "target": "Resume",
       "strength": 1
     },
     {
@@ -1719,87 +2827,17 @@
     },
     {
       "source": "Market Entry",
-      "target": "Travel",
-      "strength": 1
-    },
-    {
-      "source": "Market Entry",
-      "target": "Product Requirements",
-      "strength": 1
-    },
-    {
-      "source": "ISA",
-      "target": "Product Requirements",
-      "strength": 1
-    },
-    {
-      "source": "Resume",
-      "target": "Travel",
-      "strength": 1
-    },
-    {
-      "source": "Product Requirements",
       "target": "Resume",
-      "strength": 1
-    },
-    {
-      "source": "Interviews",
-      "target": "Travel",
-      "strength": 2
-    },
-    {
-      "source": "Product Requirements",
-      "target": "Travel",
-      "strength": 1
-    },
-    {
-      "source": "Travel",
-      "target": "USC Marshall",
-      "strength": 1
-    },
-    {
-      "source": "Regression Analysis",
-      "target": "UX Design",
       "strength": 1
     },
     {
       "source": "Clustering",
-      "target": "UX Design",
-      "strength": 1
-    },
-    {
-      "source": "Classification",
-      "target": "UX Design",
-      "strength": 1
-    },
-    {
-      "source": "JMP",
-      "target": "UX Design",
+      "target": "Data Analysis",
       "strength": 1
     },
     {
       "source": "Data Analysis",
-      "target": "UX Design",
-      "strength": 1
-    },
-    {
-      "source": "ISA",
-      "target": "Regression Analysis",
-      "strength": 1
-    },
-    {
-      "source": "Classification",
-      "target": "ISA",
-      "strength": 1
-    },
-    {
-      "source": "ISA",
       "target": "JMP",
-      "strength": 1
-    },
-    {
-      "source": "Data Analysis",
-      "target": "ISA",
       "strength": 1
     },
     {
@@ -1818,33 +2856,18 @@
       "strength": 1
     },
     {
-      "source": "Clustering",
-      "target": "Data Analysis",
-      "strength": 1
-    },
-    {
       "source": "Classification",
-      "target": "Data Analysis",
-      "strength": 1
-    },
-    {
-      "source": "Data Analysis",
       "target": "JMP",
-      "strength": 1
+      "strength": 3
     },
     {
       "source": "Artificial Intelligence",
-      "target": "Tokyo",
-      "strength": 4
+      "target": "Pixel Art",
+      "strength": 1
     },
     {
-      "source": "Japan",
-      "target": "Travel",
-      "strength": 2
-    },
-    {
-      "source": "House of Kei",
-      "target": "MATS",
+      "source": "Pixel Art",
+      "target": "Starlink",
       "strength": 1
     },
     {
@@ -1853,18 +2876,8 @@
       "strength": 1
     },
     {
-      "source": "MATS",
-      "target": "The Business World",
-      "strength": 1
-    },
-    {
       "source": "Japan",
       "target": "The Business World",
-      "strength": 1
-    },
-    {
-      "source": "MATS",
-      "target": "Pixel Art",
       "strength": 1
     },
     {
@@ -1885,61 +2898,136 @@
     {
       "source": "Japan",
       "target": "UX Design",
-      "strength": 2
-    },
-    {
-      "source": "Japan",
-      "target": "Tokyo",
-      "strength": 2
-    },
-    {
-      "source": "Tokyo",
-      "target": "USC",
       "strength": 1
     },
     {
       "source": "Regression Analysis",
       "target": "Travel",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "DSO-431",
+      "strength": 8
+    },
+    {
+      "source": "DSO-431",
+      "target": "Internship",
+      "strength": 3
+    },
+    {
+      "source": "DSO-431",
+      "target": "Travel",
       "strength": 2
     },
     {
-      "source": "Classification",
-      "target": "Travel",
-      "strength": 1
-    },
-    {
-      "source": "JMP",
-      "target": "Travel",
-      "strength": 1
-    },
-    {
-      "source": "Japan",
-      "target": "React",
-      "strength": 1
-    },
-    {
-      "source": "GitHub",
-      "target": "Japan",
-      "strength": 1
-    },
-    {
       "source": "Python",
-      "target": "Travel",
+      "target": "TAC-359",
       "strength": 1
     },
     {
-      "source": "Tokyo",
+      "source": "Artificial Intelligence",
+      "target": "TAC-359",
+      "strength": 1
+    },
+    {
+      "source": "Neural Networks",
+      "target": "TAC-359",
+      "strength": 2
+    },
+    {
+      "source": "BUAD-497",
+      "target": "Machine Learning",
+      "strength": 1
+    },
+    {
+      "source": "BUAD-497",
+      "target": "Global Strategy",
+      "strength": 1
+    },
+    {
+      "source": "DSO-431",
+      "target": "IBM",
+      "strength": 4
+    },
+    {
+      "source": "DSO-431",
+      "target": "Data Analysis",
+      "strength": 1
+    },
+    {
+      "source": "DSO-431",
+      "target": "USC",
+      "strength": 1
+    },
+    {
+      "source": "DSO-431",
       "target": "UX Design",
       "strength": 1
     },
     {
-      "source": "Tokyo",
+      "source": "DSO-431",
+      "target": "IBM WatsonX",
+      "strength": 1
+    },
+    {
+      "source": "DSO-431",
+      "target": "Tokyo",
+      "strength": 1
+    },
+    {
+      "source": "DSO-431",
+      "target": "Resume",
+      "strength": 1
+    },
+    {
+      "source": "DSO-431",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "DSO-431",
+      "target": "Interviews",
+      "strength": 1
+    },
+    {
+      "source": "Interviews",
+      "target": "Neural Networks",
+      "strength": 1
+    },
+    {
+      "source": "Artificial Intelligence",
+      "target": "WRIT-340",
+      "strength": 1
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "Interviews",
+      "strength": 3
+    },
+    {
+      "source": "ASCJ-420",
+      "target": "Travel",
+      "strength": 2
+    },
+    {
+      "source": "Cactus Jack",
       "target": "Travel",
       "strength": 1
     },
     {
-      "source": "Travel",
-      "target": "USC Flavors",
+      "source": "ASCJ-420",
+      "target": "Japan",
+      "strength": 1
+    },
+    {
+      "source": "Interviews",
+      "target": "Japan",
+      "strength": 1
+    },
+    {
+      "source": "Interviews",
+      "target": "Tokyo",
       "strength": 1
     }
   ]
