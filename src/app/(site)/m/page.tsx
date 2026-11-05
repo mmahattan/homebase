@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { projects } from "@/data/projects";
 import ProjectList from "@/components/ProjectList";
 import BusinessWorld from "@/components/BusinessWorld";
@@ -37,7 +38,11 @@ type Folder = {
   children?: Folder[];
 };
 
+// Saved versions load only when their folder is opened.
+const BusinessWorldV1 = dynamic(() => import("@/versions/business-world/v1-hotpot/Room"), { ssr: false });
+
 const BUSINESS_WORLD = "the-business-world";
+const VERSIONS = "versions";
 const FRONT_PAGE_DRAFT = "biz-world-front-page-draft";
 const HOUSE_ENTRY = "house-entry-4-public";
 const PROJECTS = "projects";
@@ -77,6 +82,21 @@ const folders: Folder[] = [
             onLeave={() => go([HOUSE_ENTRY])}
           />
         ),
+      },
+      {
+        id: VERSIONS,
+        label: "versions",
+        color: { fill: "#cfc6b8", shade: "#a89f92" },
+        children: [
+          {
+            id: "v1-hotpot",
+            label: "v1 — hotpot",
+            color: { fill: "#f4a6c0", shade: "#d97a9c" },
+            // Frozen snapshot, Nov 5, 2026
+            published: false,
+            content: (go) => <BusinessWorldV1 onLeave={() => go([BUSINESS_WORLD, VERSIONS])} />,
+          },
+        ],
       },
     ],
   },

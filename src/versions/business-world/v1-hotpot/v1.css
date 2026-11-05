@@ -1,0 +1,45 @@
+/* Frozen styles for Business World v1 (hotpot), Nov 5, 2026. Don't edit. */
+
+.v1-pixel-font {
+  font-family: var(--font-pixel), monospace;
+}
+
+@keyframes v1-steam-rise {
+  0% { opacity: 0; transform: translate(0, 0); }
+  15% { opacity: 0.9; }
+  50% { transform: translate(1px, -8px); }
+  100% { opacity: 0; transform: translate(-1px, -17px); }
+}
+.v1-steam-puff {
+  animation: v1-steam-rise 2.2s steps(10) infinite;
+}
+
+@keyframes v1-lid-rattle {
+  0%, 86%, 100% { transform: translateY(0); }
+  89%, 95% { transform: translateY(-1px); }
+  92%, 98% { transform: translateY(0); }
+}
+.v1-lid-rattle {
+  animation: v1-lid-rattle 2.8s steps(1) infinite;
+}
+
+@keyframes v1-hotspot-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.v1-hotspot-bounce {
+  animation: v1-hotspot-bounce 0.9s steps(2) infinite;
+}
+
+@keyframes v1-pixel-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.v1-pixel-in {
+  animation: v1-pixel-in 300ms steps(3) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v1-steam-puff { animation: none; opacity: 0.6; }
+  .v1-lid-rattle, .v1-hotspot-bounce, .v1-pixel-in { animation: none; }
+}
