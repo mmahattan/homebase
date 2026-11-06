@@ -40,6 +40,7 @@ type Folder = {
 
 // Saved versions load only when their folder is opened.
 const BusinessWorldV1 = dynamic(() => import("@/versions/business-world/v1-hotpot/Room"), { ssr: false });
+const BusinessWorldV2 = dynamic(() => import("@/versions/business-world/v2-floating-book/Room"), { ssr: false });
 
 const BUSINESS_WORLD = "the-business-world";
 const VERSIONS = "versions";
@@ -95,6 +96,14 @@ const folders: Folder[] = [
             // Frozen snapshot, Nov 5, 2026
             published: false,
             content: (go) => <BusinessWorldV1 onLeave={() => go([BUSINESS_WORLD, VERSIONS])} />,
+          },
+          {
+            id: "v2-floating-book",
+            label: "v2 — floating book",
+            color: { fill: "#c3a6f0", shade: "#9a7bd4" },
+            // Frozen snapshot, Nov 5, 2026
+            published: false,
+            content: (go) => <BusinessWorldV2 onLeave={() => go([BUSINESS_WORLD, VERSIONS])} />,
           },
         ],
       },

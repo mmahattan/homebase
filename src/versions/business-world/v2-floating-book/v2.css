@@ -1,0 +1,65 @@
+/* Frozen styles for Business World v2 (floating book), Nov 5, 2026. Don't edit. */
+
+.v2-pixel-font {
+  font-family: var(--font-pixel), monospace;
+}
+
+@keyframes v2-pixel-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.v2-pixel-in {
+  animation: v2-pixel-in 300ms steps(3) both;
+}
+
+@keyframes v2-hotspot-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.v2-hotspot-bounce {
+  animation: v2-hotspot-bounce 0.9s steps(2) infinite;
+}
+
+@keyframes v2-aura-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.95; }
+}
+.v2-aura-pulse {
+  animation: v2-aura-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes v2-sparkle {
+  0% { opacity: 0; transform: translateY(0); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-5px); }
+}
+.v2-sparkle {
+  animation: v2-sparkle 2.4s ease-out infinite;
+}
+
+@keyframes v2-book3d-turn {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+.v2-book3d-turn {
+  animation: v2-book3d-turn 10s linear infinite;
+}
+
+@keyframes v2-book3d-bob {
+  from { translate: 0 0; }
+  to { translate: 0 var(--bob); }
+}
+.v2-book3d-bob {
+  animation: v2-book3d-bob 1.8s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-pixel-in,
+  .v2-hotspot-bounce,
+  .v2-aura-pulse,
+  .v2-sparkle,
+  .v2-book3d-turn,
+  .v2-book3d-bob {
+    animation: none;
+  }
+}
