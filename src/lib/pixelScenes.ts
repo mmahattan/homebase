@@ -131,40 +131,62 @@ const CREAM = "#efe2c8";
 
 export type Px = [x: number, y: number, w: number, h: number, color: string];
 
-// MATS: a closed spellbook that floats over the kotatsu. 18×14 room pixels,
-// drawn at BOOK_POS. Shared by the canvas (still, in the dollhouse) and the
-// room view (spinning, with its aura).
-export const BOOK_W = 18;
-export const BOOK_H = 14;
-export const BOOK_POS = { x: 55, y: 20 };
+// MATS: an upright spellbook floating over the kotatsu. Each face is pixel art
+// in room pixels; the room view assembles them into a turning 3D book, and the
+// dollhouse still shows the cover with its page edge.
+export const BOOK_W = 12; // cover width
+export const BOOK_H = 16; // cover height
+export const BOOK_D = 4; // thickness
+export const BOOK_POS = { x: 58, y: 20 };
 const LEATHER = "#262a5c";
+const LEATHER_D = "#1c1f48";
 const GOLD = "#e0b04a";
 const GOLD_L = "#fff0a8";
 const PAGE = "#efe3c4";
-export const BOOK: Px[] = [
-  [0, 0, 16, 13, LEATHER],
-  [0, 0, 1, 13, "#3a3f80"],
-  [16, 1, 2, 12, PAGE],
-  [16, 3, 2, 1, "#d6c7a0"],
-  [16, 6, 2, 1, "#d6c7a0"],
-  [16, 9, 2, 1, "#d6c7a0"],
-  [1, 13, 16, 1, PAGE],
-  // Gold border and corner studs
-  [1, 1, 14, 1, GOLD],
-  [1, 11, 14, 1, GOLD],
-  [1, 1, 1, 11, GOLD],
-  [14, 1, 1, 11, GOLD],
-  [2, 2, 1, 1, GOLD_L],
-  [13, 2, 1, 1, GOLD_L],
-  [2, 10, 1, 1, GOLD_L],
-  [13, 10, 1, 1, GOLD_L],
-  // "M" monogram
-  [5, 4, 1, 5, GOLD],
-  [10, 4, 1, 5, GOLD],
-  [6, 5, 1, 1, GOLD],
-  [7, 6, 2, 1, GOLD_L],
-  [9, 5, 1, 1, GOLD],
+const PAGE_LINE = "#d6c7a0";
+
+const border = (w: number, h: number): Px[] => [
+  [1, 1, w - 2, 1, GOLD],
+  [1, h - 2, w - 2, 1, GOLD],
+  [1, 1, 1, h - 2, GOLD],
+  [w - 2, 1, 1, h - 2, GOLD],
 ];
+
+export const BOOK_FACES: Record<"front" | "back" | "spine" | "pages" | "top", Px[]> = {
+  front: [
+    [0, 0, BOOK_W, BOOK_H, LEATHER],
+    [0, 0, 1, BOOK_H, "#3a3f80"],
+    ...border(BOOK_W, BOOK_H),
+    [2, 2, 1, 1, GOLD_L],
+    [9, 2, 1, 1, GOLD_L],
+    [2, 13, 1, 1, GOLD_L],
+    [9, 13, 1, 1, GOLD_L],
+    [5, 4, 2, 1, GOLD_L],
+    // "M" monogram
+    [3, 6, 1, 5, GOLD],
+    [8, 6, 1, 5, GOLD],
+    [4, 7, 1, 1, GOLD],
+    [5, 8, 2, 1, GOLD_L],
+    [7, 7, 1, 1, GOLD],
+    [5, 12, 2, 1, GOLD_L],
+  ],
+  back: [[0, 0, BOOK_W, BOOK_H, LEATHER], ...border(BOOK_W, BOOK_H)],
+  spine: [
+    [0, 0, BOOK_D, BOOK_H, LEATHER_D],
+    [0, 2, BOOK_D, 1, GOLD],
+    [0, 13, BOOK_D, 1, GOLD],
+    [1, 7, 2, 2, GOLD_L],
+  ],
+  pages: [
+    [0, 0, BOOK_D, BOOK_H, PAGE],
+    ...Array.from({ length: 7 }, (_, i): Px => [0, 2 + i * 2, BOOK_D, 1, PAGE_LINE]),
+  ],
+  top: [
+    [0, 0, BOOK_W, BOOK_D, PAGE],
+    [0, 0, 1, BOOK_D, LEATHER_D],
+    [1, 1, BOOK_W - 1, 1, PAGE_LINE],
+  ],
+};
 
 export function drawJapaneseRoom(c: Ctx, ox = 0, oy = 0, { book = true } = {}) {
   inRoom(c, ox, oy, () => {
@@ -301,10 +323,12 @@ export function drawJapaneseRoom(c: Ctx, ox = 0, oy = 0, { book = true } = {}) {
     wood(c, 34, 38, 60, 3, FRAME, 31);
     rect(c, 34, 38, 60, 1, "#c08a52");
     rect(c, 34, 41, 60, 2, FRAME.dark);
-    // MATS: the floating book (drawn still here; the room view animates it)
+    // MATS: the floating book, still (the room view turns it in 3D)
     if (book) {
       glow(c, BOOK_POS.x + BOOK_W / 2, BOOK_POS.y + BOOK_H / 2, 18, "255, 214, 120", 0.4, 128, 72);
-      for (const [x, y, w, h, color] of BOOK) rect(c, BOOK_POS.x + x, BOOK_POS.y + y, w, h, color);
+      for (const [x, y, w, h, color] of BOOK_FACES.front) rect(c, BOOK_POS.x + x, BOOK_POS.y + y, w, h, color);
+      rect(c, BOOK_POS.x + BOOK_W, BOOK_POS.y + 1, 2, BOOK_H - 1, PAGE);
+      for (let y = 3; y < BOOK_H; y += 2) rect(c, BOOK_POS.x + BOOK_W, BOOK_POS.y + y, 2, 1, PAGE_LINE);
     }
 
     // A teapot on the left, a cup of tea on the right

@@ -55,24 +55,20 @@ button {
 .pixel-folder:hover svg {
   transform: translateY(-4px);
 }
-/* MATS book in the Business World room: slow spin, bob, aura and sparkles */
-@keyframes book-spin {
-  0%, 100% { transform: scaleX(1); }
-  25% { transform: scaleX(0.08); }
-  50% { transform: scaleX(-1); }
-  75% { transform: scaleX(0.08); }
+/* MATS book in the Business World room: a turning 3D book, aura and sparkles */
+@keyframes book3d-turn {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
 }
-.book-spin {
-  animation: book-spin 8s ease-in-out infinite;
-  transform-box: fill-box;
-  transform-origin: center;
+.book3d-turn {
+  animation: book3d-turn 10s linear infinite;
 }
-@keyframes book-bob {
-  from { transform: translateY(0); }
-  to { transform: translateY(-1.5px); }
+@keyframes book3d-bob {
+  from { translate: 0 0; }
+  to { translate: 0 calc(-1.5 * 100cqw / 128); }
 }
-.book-bob {
-  animation: book-bob 1.6s ease-in-out infinite alternate;
+.book3d-bob {
+  animation: book3d-bob 1.8s ease-in-out infinite alternate;
 }
 @keyframes aura-pulse {
   0%, 100% { opacity: 0.55; }
@@ -99,8 +95,8 @@ button {
   animation: hotspot-bounce 0.9s steps(2) infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .book-spin,
-  .book-bob,
+  .book3d-turn,
+  .book3d-bob,
   .aura-pulse,
   .sparkle,
   .hotspot-bounce {

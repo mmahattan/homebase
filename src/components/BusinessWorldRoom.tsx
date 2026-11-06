@@ -4,12 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import HotspotTag from "@/components/HotspotTag";
 import MatsBook from "@/components/MatsBook";
 import PixelCanvas from "@/components/PixelCanvas";
-import { BOOK, BOOK_H, BOOK_POS, BOOK_W, ROOM_H, ROOM_W, drawJapaneseRoom } from "@/lib/pixelScenes";
+import FloatingBook from "@/components/FloatingBook";
+import { BOOK_H, BOOK_POS, BOOK_W, ROOM_H, ROOM_W, drawJapaneseRoom } from "@/lib/pixelScenes";
 import { BUSINESS_WORLD_DEFINITION } from "@/data/businessWorld";
 
 // The Business World's room: a traditional Japanese room. On arrival a
 // game-style dialog types out the definition. Above the kotatsu floats MATS:
-// a slowly spinning spellbook with a magical aura. Clicking it flies the book
+// an upright 3D spellbook, slowly turning, with a magical aura. Clicking it flies the book
 // open (MatsBook).
 
 const DEFINITION_TEXT = BUSINESS_WORLD_DEFINITION.join("\n\n");
@@ -107,7 +108,7 @@ export default function BusinessWorldRoom({
 
   return (
     <div className="relative mx-auto max-w-[calc(75vh*16/9)]">
-      <div className="relative aspect-video overflow-hidden">
+      <div className="relative aspect-video overflow-hidden" style={{ containerType: "inline-size" }}>
         <PixelCanvas
           width={ROOM_W}
           height={ROOM_H}
@@ -134,14 +135,8 @@ export default function BusinessWorldRoom({
           {SPARKLES.map(([x, y, color, delay], i) => (
             <rect key={i} x={x} y={y} width={1} height={1} fill={color} className="sparkle" style={{ animationDelay: `${delay}s` }} />
           ))}
-          <g className="book-bob">
-            <g className="book-spin">
-              {BOOK.map(([x, y, w, h, color], i) => (
-                <rect key={i} x={BOOK_POS.x + x} y={BOOK_POS.y + y} width={w} height={h} fill={color} />
-              ))}
-            </g>
-          </g>
         </svg>
+        <FloatingBook className={`transition-opacity duration-500 ${bookOpen ? "opacity-0" : "opacity-100"}`} />
 
         {!dialog && !bookOpen && (
           <button
