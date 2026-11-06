@@ -55,23 +55,39 @@ button {
 .pixel-folder:hover svg {
   transform: translateY(-4px);
 }
-/* Hotpot in the Business World room: swaying steam and a rattling lid */
-@keyframes steam-rise {
-  0% { opacity: 0; transform: translate(0, 0); }
-  15% { opacity: 0.9; }
-  50% { transform: translate(1px, -8px); }
-  100% { opacity: 0; transform: translate(-1px, -17px); }
+/* MATS book in the Business World room: slow spin, bob, aura and sparkles */
+@keyframes book-spin {
+  0%, 100% { transform: scaleX(1); }
+  25% { transform: scaleX(0.08); }
+  50% { transform: scaleX(-1); }
+  75% { transform: scaleX(0.08); }
 }
-.steam-puff {
-  animation: steam-rise 2.2s steps(10) infinite;
+.book-spin {
+  animation: book-spin 8s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
-@keyframes lid-rattle {
-  0%, 86%, 100% { transform: translateY(0); }
-  89%, 95% { transform: translateY(-1px); }
-  92%, 98% { transform: translateY(0); }
+@keyframes book-bob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-1.5px); }
 }
-.lid-rattle {
-  animation: lid-rattle 2.8s steps(1) infinite;
+.book-bob {
+  animation: book-bob 1.6s ease-in-out infinite alternate;
+}
+@keyframes aura-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 0.95; }
+}
+.aura-pulse {
+  animation: aura-pulse 2.6s ease-in-out infinite;
+}
+@keyframes sparkle {
+  0% { opacity: 0; transform: translateY(0); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-5px); }
+}
+.sparkle {
+  animation: sparkle 2.4s ease-out infinite;
 }
 /* "click me" bubbles on scene hotspots */
 /* transform, not translate: Tailwind positions the bubble with translate */
@@ -83,11 +99,10 @@ button {
   animation: hotspot-bounce 0.9s steps(2) infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .steam-puff {
-    animation: none;
-    opacity: 0.6;
-  }
-  .lid-rattle,
+  .book-spin,
+  .book-bob,
+  .aura-pulse,
+  .sparkle,
   .hotspot-bounce {
     animation: none;
   }

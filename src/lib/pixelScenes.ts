@@ -131,36 +131,42 @@ const CREAM = "#efe2c8";
 
 export type Px = [x: number, y: number, w: number, h: number, color: string];
 
-const CLAY = "#3b2a22";
-const CLAY_L = "#5a4234";
-const GLAZE = "#c9a77c";
-
-// The donabe's lid, in room pixels at its resting spot. Exported so the room
-// view can draw it as an overlay and lift it when MATS opens.
-export const DONABE_LID: Px[] = [
-  [53, 30, 23, 1, GLAZE],
-  [54, 29, 21, 1, CLAY],
-  [55, 28, 19, 1, CLAY],
-  [57, 27, 15, 1, CLAY],
-  [59, 26, 11, 1, CLAY],
-  [62, 25, 5, 1, GLAZE],
-  [63, 24, 3, 1, GLAZE],
-  [56, 28, 3, 1, CLAY_L],
-  [58, 27, 3, 1, CLAY_L],
-  [60, 26, 2, 1, "#7a5a48"],
+// MATS: a closed spellbook that floats over the kotatsu. 18×14 room pixels,
+// drawn at BOOK_POS. Shared by the canvas (still, in the dollhouse) and the
+// room view (spinning, with its aura).
+export const BOOK_W = 18;
+export const BOOK_H = 14;
+export const BOOK_POS = { x: 55, y: 20 };
+const LEATHER = "#262a5c";
+const GOLD = "#e0b04a";
+const GOLD_L = "#fff0a8";
+const PAGE = "#efe3c4";
+export const BOOK: Px[] = [
+  [0, 0, 16, 13, LEATHER],
+  [0, 0, 1, 13, "#3a3f80"],
+  [16, 1, 2, 12, PAGE],
+  [16, 3, 2, 1, "#d6c7a0"],
+  [16, 6, 2, 1, "#d6c7a0"],
+  [16, 9, 2, 1, "#d6c7a0"],
+  [1, 13, 16, 1, PAGE],
+  // Gold border and corner studs
+  [1, 1, 14, 1, GOLD],
+  [1, 11, 14, 1, GOLD],
+  [1, 1, 1, 11, GOLD],
+  [14, 1, 1, 11, GOLD],
+  [2, 2, 1, 1, GOLD_L],
+  [13, 2, 1, 1, GOLD_L],
+  [2, 10, 1, 1, GOLD_L],
+  [13, 10, 1, 1, GOLD_L],
+  // "M" monogram
+  [5, 4, 1, 5, GOLD],
+  [10, 4, 1, 5, GOLD],
+  [6, 5, 1, 1, GOLD],
+  [7, 6, 2, 1, GOLD_L],
+  [9, 5, 1, 1, GOLD],
 ];
-// Sitting slightly ajar, so a little of the hotpot shows.
-export const LID_AJAR = { x: 3, y: -1 };
 
-// The hotpot's steam, rising from under the lid (also animated in the room view).
-export const POT_STEAM: [number, number][] = [
-  [57, 27],
-  [56, 24],
-  [58, 21],
-  [57, 18],
-];
-
-export function drawJapaneseRoom(c: Ctx, ox = 0, oy = 0, { lid = true } = {}) {
+export function drawJapaneseRoom(c: Ctx, ox = 0, oy = 0, { book = true } = {}) {
   inRoom(c, ox, oy, () => {
     // Plaster wall, ceiling beam and corner posts
     rect(c, 0, 0, 128, 48, "#e6d6b8");
@@ -295,31 +301,10 @@ export function drawJapaneseRoom(c: Ctx, ox = 0, oy = 0, { lid = true } = {}) {
     wood(c, 34, 38, 60, 3, FRAME, 31);
     rect(c, 34, 38, 60, 1, "#c08a52");
     rect(c, 34, 41, 60, 2, FRAME.dark);
-    // MATS: a donabe hotpot at the center of the table
-    tint(c, 51, 38, 27, 1, "#000", 0.3);
-    rect(c, 55, 28, 19, 1, "#2a1d17"); // back of the rim
-    rect(c, 54, 29, 21, 2, "#c98b4a"); // miso broth
-    rect(c, 56, 29, 2, 2, "#f4efe2"); // tofu
-    rect(c, 67, 29, 2, 2, "#f4efe2");
-    rect(c, 60, 29, 3, 1, "#6b4426"); // shiitake
-    dot(c, 61, 30, "#d8c9a8");
-    rect(c, 64, 30, 2, 1, "#e8742a"); // carrot
-    rect(c, 70, 29, 3, 1, "#5f8f3e"); // greens
-    dot(c, 71, 30, "#7fb054");
-    dot(c, 59, 30, "#d8e8b0"); // negi
-    rect(c, 53, 31, 23, 1, GLAZE); // rim
-    rect(c, 52, 32, 25, 5, CLAY);
-    rect(c, 53, 37, 23, 1, CLAY);
-    speckle(c, 52, 32, 25, 6, ["#4a352b", "#2f211b"], 0.25, 41);
-    rect(c, 53, 32, 2, 5, CLAY_L);
-    rect(c, 52, 34, 25, 1, "#4f3a2e");
-    rect(c, 50, 32, 2, 2, GLAZE); // handles
-    rect(c, 77, 32, 2, 2, GLAZE);
-    if (lid) {
-      for (const [x, y, w, h, color] of DONABE_LID) rect(c, x + LID_AJAR.x, y + LID_AJAR.y, w, h, color);
-      c.globalAlpha = 0.55;
-      for (const [sx, sy] of POT_STEAM) dot(c, sx, sy, "#fff");
-      c.globalAlpha = 1;
+    // MATS: the floating book (drawn still here; the room view animates it)
+    if (book) {
+      glow(c, BOOK_POS.x + BOOK_W / 2, BOOK_POS.y + BOOK_H / 2, 18, "255, 214, 120", 0.4, 128, 72);
+      for (const [x, y, w, h, color] of BOOK) rect(c, BOOK_POS.x + x, BOOK_POS.y + y, w, h, color);
     }
 
     // A teapot on the left, a cup of tea on the right
