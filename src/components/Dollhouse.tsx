@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import FloatingBook from "@/components/FloatingBook";
 import PixelCanvas from "@/components/PixelCanvas";
 import { HOUSE_H, HOUSE_W, ROOMS, ROOM_H, ROOM_W, ZOOM, drawHouse } from "@/lib/pixelScenes";
 
@@ -17,6 +18,9 @@ const zoomed = `translate(${50 - originX}%, ${50 - originY}%) scale(${ZOOM})`;
 
 const pct = (n: number, of: number) => `${(n / of) * 100}%`;
 
+// The house without the still MATS book; a turning 3D one floats on top.
+const drawHouseScene = (ctx: CanvasRenderingContext2D) => drawHouse(ctx, { book: false });
+
 export default function Dollhouse({ onEnter }: { onEnter: () => void }) {
   const [zooming, setZooming] = useState(false);
 
@@ -27,7 +31,10 @@ export default function Dollhouse({ onEnter }: { onEnter: () => void }) {
 
   return (
     <div className="space-y-4">
-      <div className="relative aspect-video mx-auto max-w-[calc(75vh*16/9)] overflow-hidden bg-[#9ec9e8]">
+      <div
+        className="relative aspect-video mx-auto max-w-[calc(75vh*16/9)] overflow-hidden bg-[#9ec9e8]"
+        style={{ containerType: "inline-size" }}
+      >
         <div
           className="absolute inset-0"
           style={{
@@ -40,9 +47,10 @@ export default function Dollhouse({ onEnter }: { onEnter: () => void }) {
           <PixelCanvas
             width={HOUSE_W}
             height={HOUSE_H}
-            draw={drawHouse}
+            draw={drawHouseScene}
             className="absolute inset-0 w-full h-full"
           />
+          <FloatingBook sceneW={HOUSE_W} sceneH={HOUSE_H} origin={openRoom} aura />
 
           {!zooming &&
             rooms.map((room) => {

@@ -479,7 +479,8 @@ function cloud(c: Ctx, x: number, y: number) {
   rect(c, x + 1, y + 6, 22, 1, "#d6e6f0");
 }
 
-export function drawHouse(c: Ctx) {
+// book: false leaves out the still MATS book (the dollhouse floats a 3D one).
+export function drawHouse(c: Ctx, { book = true } = {}) {
   // Sky, clouds and distant hills
   vgrad(c, 0, 0, HOUSE_W, HOUSE_H, ["#5b97d2", "#6aa5da", "#7ab2e1", "#8cbfe7", "#a0cbec", "#b5d8f1", "#cae4f5", "#dcedf8"]);
   for (const [x, y] of [[24, 18], [96, 6], [350, 8], [400, 40]]) cloud(c, x, y);
@@ -536,7 +537,7 @@ export function drawHouse(c: Ctx) {
   glow(c, open.x + ROOM_W / 2, open.y + ROOM_H / 2, 140, "255, 200, 120", 0.28, HOUSE_W, HOUSE_H);
 
   ROOMS.forEach((room, i) => {
-    if (room.open) drawJapaneseRoom(c, room.x, room.y);
+    if (room.open) drawJapaneseRoom(c, room.x, room.y, { book });
     else drawConstructionRoom(c, room.x, room.y, i + 1);
   });
 

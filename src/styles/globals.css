@@ -65,7 +65,7 @@ button {
 }
 @keyframes book3d-bob {
   from { translate: 0 0; }
-  to { translate: 0 calc(-1.5 * 100cqw / 128); }
+  to { translate: 0 var(--bob); }
 }
 .book3d-bob {
   animation: book3d-bob 1.8s ease-in-out infinite alternate;

@@ -2,7 +2,9 @@
 
 import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { PixelFace } from "@/components/FloatingBook";
 import { MATS_COPY } from "@/data/businessWorld";
+import { BOOK_FACES, BOOK_H, BOOK_W } from "@/lib/pixelScenes";
 
 // MATS as an open spellbook. It flies in from the floating book in the room,
 // spinning as it zooms, swings its cover open, then turns a page per click.
@@ -26,12 +28,11 @@ type Turn = { dir: 1 | -1 } | null;
 
 const TURN_MS = 700;
 
-function Cover() {
+// The same pixel-art cover as the floating book in the room, just bigger.
+function Cover({ side = "front" }: { side?: "front" | "back" }) {
   return (
-    <div className="absolute inset-0 bg-[#262a5c] shadow-[inset_0_0_0_8px_#262a5c,inset_0_0_0_11px_#e0b04a,0_0_60px_rgba(255,214,120,0.45)] flex flex-col items-center justify-center gap-4">
-      <span className="pixel-font text-[#fff0a8] text-xs">✦</span>
-      <span className="pixel-font text-[#e0b04a] text-2xl sm:text-3xl tracking-widest">MATS</span>
-      <span className="pixel-font text-[#fff0a8] text-xs">✦</span>
+    <div className="absolute inset-0 shadow-[0_0_60px_rgba(255,214,120,0.45)]">
+      <PixelFace px={BOOK_FACES[side]} w={BOOK_W} h={BOOK_H} />
     </div>
   );
 }
@@ -253,10 +254,17 @@ function Book({ from, onClose }: { from: DOMRect | null; onClose: () => void }) 
               transform: coverTransform,
               transition: phase === "flying" ? "transform 1000ms cubic-bezier(0.3, 0.1, 0.2, 1)" : "none",
               visibility: phase === "measure" ? "hidden" : "visible",
+              transformStyle: "preserve-3d",
             }}
             onTransitionEnd={(e) => e.target === e.currentTarget && phase === "flying" && setPhase("opening")}
           >
-            <Cover />
+            {/* Two-sided, so the back cover shows as it spins */}
+            <div className="absolute inset-0" style={{ backfaceVisibility: "hidden" }}>
+              <Cover />
+            </div>
+            <div className="absolute inset-0" style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}>
+              <Cover side="back" />
+            </div>
           </div>
         )}
 
